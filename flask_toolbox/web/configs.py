@@ -7,6 +7,7 @@ import os
 
 
 class Config(object):
+    SECRET_KEY = '123456790'  # Create dummy secrey key so we can use sessions
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
