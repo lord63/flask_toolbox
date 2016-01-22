@@ -35,6 +35,12 @@ class Package(db.Model):
 class PyPI(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     package_id = db.Column(db.Integer, db.ForeignKey('package.id'))
+    download_num = db.Column(db.Integer)
+    release_num = db.Column(db.Integer)
+    current_version = db.Column(db.String(20))
+    released_date = db.Column(db.DateTime)
+    first_release = db.Column(db.DateTime)
+    python_version = db.Column(db.String(40))
 
 
 class Github(db.Model):

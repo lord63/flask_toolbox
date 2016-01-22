@@ -8,7 +8,7 @@ from flask_admin import Admin
 from flask_admin.contrib import sqla
 
 from flask_toolbox.web.extensions import db
-from flask_toolbox.web.models import Category, Package
+from flask_toolbox.web.models import Category, Package, PyPI
 
 
 def create_app(config):
@@ -20,6 +20,7 @@ def create_app(config):
     admin = Admin()
     admin.add_view(sqla.ModelView(Category, db.session))
     admin.add_view(sqla.ModelView(Package, db.session))
+    admin.add_view(sqla.ModelView(PyPI, db.session))
     admin.init_app(app)
 
     return app
