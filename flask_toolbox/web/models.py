@@ -12,6 +12,9 @@ class Category(db.Model):
     description = db.Column(db.Text)
     packages = db.relationship('Package', backref='category', lazy='dynamic')
 
+    def __repr__(self):
+        return '<Category %r>' % self.name
+
 
 class Package(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,6 +27,9 @@ class Package(db.Model):
     bug_tracker = db.Column(db.String(80))
     pypi_info = db.relationship('PyPI', backref='package')
     github_info = db.relationship('Github', backref='package')
+
+    def __repr__(self):
+        return '<Package %r>' % self.name
 
 
 class PyPI(db.Model):
