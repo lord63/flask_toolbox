@@ -4,10 +4,9 @@
 from __future__ import absolute_import
 
 from flask import Flask
-from flask_admin import Admin
 from flask_admin.contrib import sqla
 
-from flask_toolbox.web.extensions import db
+from flask_toolbox.web.extensions import db, admin
 from flask_toolbox.web.models import Category, Package, PyPI
 
 
@@ -17,7 +16,6 @@ def create_app(config):
 
     db.init_app(app)
 
-    admin = Admin()
     admin.add_view(sqla.ModelView(Category, db.session))
     admin.add_view(sqla.ModelView(Package, db.session))
     admin.add_view(sqla.ModelView(PyPI, db.session))
