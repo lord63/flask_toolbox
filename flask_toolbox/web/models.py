@@ -42,6 +42,9 @@ class PyPI(db.Model):
     first_release = db.Column(db.DateTime)
     python_version = db.Column(db.String(40))
 
+    def __repr__(self):
+        return '<PyPI %r>' % self.package.name
+
 
 class Github(db.Model):
     id = db.Column(db.Integer, primary_key=True)
