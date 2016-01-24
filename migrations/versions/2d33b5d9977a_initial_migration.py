@@ -1,13 +1,13 @@
 """Initial migration
 
-Revision ID: 8bc8e4c1f48a
+Revision ID: 2d33b5d9977a
 Revises: None
-Create Date: 2016-01-23 19:37:49.371358
+Create Date: 2016-01-24 16:30:46.347957
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '8bc8e4c1f48a'
+revision = '2d33b5d9977a'
 down_revision = None
 
 from alembic import op
@@ -27,7 +27,7 @@ def upgrade():
     sa.Column('category_id', sa.Integer(), nullable=True),
     sa.Column('name', sa.String(length=40), nullable=True),
     sa.Column('description', sa.Text(), nullable=True),
-    sa.Column('website_url', sa.String(length=80), nullable=True),
+    sa.Column('pypi_url', sa.String(length=80), nullable=True),
     sa.Column('documentation_url', sa.String(length=80), nullable=True),
     sa.Column('source_code_url', sa.String(length=80), nullable=True),
     sa.Column('bug_tracker_url', sa.String(length=80), nullable=True),
