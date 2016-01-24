@@ -7,7 +7,7 @@ import datetime
 import re
 
 
-class PyPI(object):
+class PyPIMeta(object):
     def __init__(self, response):
         self.response = response
 
