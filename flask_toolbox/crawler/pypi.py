@@ -54,7 +54,7 @@ class PyPI(object):
             for item in self.response['info']['classifiers']
             if 'Programming Language' in item and
             re.search(r'(?<=Programming Language :: Python :: ).{3}', item)]
-        return versions
+        return ' '.join(versions)
 
     def _parse_date(self, date_string):
         """Parse the date string and return the datetime object."""
