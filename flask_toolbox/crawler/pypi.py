@@ -8,8 +8,7 @@ import re
 
 
 class PyPI(object):
-    def __init__(self, name, response):
-        self.name = name
+    def __init__(self, response):
         self.response = response
 
     @property
