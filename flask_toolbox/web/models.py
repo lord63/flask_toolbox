@@ -49,3 +49,14 @@ class PyPI(db.Model):
 class Github(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     package_id = db.Column(db.Integer, db.ForeignKey('package.id'))
+    watchers = db.Column(db.Integer)
+    forks = db.Column(db.Integer)
+    development_activity = db.Column(db.String(20))
+    last_commit = db.Column(db.DateTime)
+    first_commit = db.Column(db.DateTime)
+    contributors = db.Column(db.Integer)
+    issues = db.Column(db.Integer)
+    pull_requests = db.Column(db.Integer)
+
+    def __repr__(self):
+        return '<Github %r>' % self.package.name
