@@ -32,13 +32,13 @@ class Worker(object):
                 db.session.commit()
             else:
                 new_pypi = PyPI(
-                    package_id = package.id,
-                    download_num = pakcage_info.download_num,
-                    release_num = pakcage_info.release_num,
-                    current_version = pakcage_info.current_version,
-                    released_date = pakcage_info.released_date,
-                    first_release = pakcage_info.first_release,
-                    python_version = pakcage_info.python_version
+                    package_id=package.id,
+                    download_num=pakcage_info.download_num,
+                    release_num=pakcage_info.release_num,
+                    current_version=pakcage_info.current_version,
+                    released_date=pakcage_info.released_date,
+                    first_release=pakcage_info.first_release,
+                    python_version=pakcage_info.python_version
                 )
                 db.session.add(new_pypi)
                 db.session.commit()
@@ -60,16 +60,16 @@ class Worker(object):
                 db.session.commit()
             else:
                 new_github = Github(
-                    package_id = package.id,
-                    watchers = repo_info.watchers,
-                    forks = repo_info.forks,
-                    last_commit = repo_info.last_commit,
-                    contributors = repo_info.contributors,
-                    issues = repo_info.issues,
-                    pull_requests = repo_info.pull_requests,
-                    development_activity = get_development_activity(
+                    package_id=package.id,
+                    watchers=repo_info.watchers,
+                    forks=repo_info.forks,
+                    last_commit=repo_info.last_commit,
+                    contributors=repo_info.contributors,
+                    issues=repo_info.issues,
+                    pull_requests=repo_info.pull_requests,
+                    development_activity=get_development_activity(
                         package.source_code_url),
-                    first_commit = get_first_commit(package.source_code_url)
+                    first_commit=get_first_commit(package.source_code_url)
                 )
                 db.session.add(new_github)
                 db.session.commit()
