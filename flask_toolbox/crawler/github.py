@@ -14,8 +14,16 @@ class GithubMeta(object):
     def __init__(self, response):
         self.tree = html.fromstring(response.text)
 
+    def _custom_int(self, string_number):
+        # 1999 commits will be 1,999 commits on github.
+        if ',' in string_number:
+            return int(string_number.replace(',', ''))
+        return int(string_number)
+
     def _get_num(self, css_expression, index):
-        return int(self.tree.cssselect(css_expression)[index].text.strip())
+        number = self._custom_int(
+            self.tree.cssselect(css_expression)[index].text.strip())
+        return number
 
     @property
     def watchers(self):
