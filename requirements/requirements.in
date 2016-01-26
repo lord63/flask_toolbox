@@ -1,0 +1,8 @@
+requests
+lxml
+cssselect
+flask
+flask-admin
+flask-script
+flask-migrate
+flask-sqlalchemy
