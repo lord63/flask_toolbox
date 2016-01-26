@@ -28,7 +28,7 @@ class GithubMeta(object):
     @property
     def last_commit(self):
         commit_time = self.tree.cssselect('time')[0].get('datetime')
-        return datetime.datetime.strptime(commit_time, '%Y-%m-%dT%H:%M:%SZ')
+        return _parse_date(commit_time)
 
     @property
     def contributors(self):
@@ -54,4 +54,29 @@ def get_first_commit(url):
     page_url = "{0}/commits?page={1}".format(url, first_commit_page)
     tree = html.fromstring(requests.get(page_url).text)
     first_commit_time = tree.cssselect('time')[-1].get('datetime')
-    return datetime.datetime.strptime(first_commit_time, '%Y-%m-%dT%H:%M:%SZ')
+    return _parse_date(first_commit_time)
+
+
+def get_development_activity(url):
+    owner, repo = url.split('/')[-2:]
+    url = 'https://api.github.com/repos/{0}/{1}/commits'.format(owner, repo)
+    response = requests.get(url)
+    epoch = datetime.datetime.utcfromtimestamp(0)
+    deltas = [_parse_date(commit['commit']['committer']['date']) - epoch
+              for commit in response.json()]
+    average_delta = (
+        sum(delta.total_seconds() for delta in deltas) // len(response.json()))
+    average_date = epoch + datetime.timedelta(seconds=average_delta)
+    delta_of_day = (datetime.datetime.now() - average_date).days
+    if delta_of_day in range(0, 7+1):
+        return 'Very active'
+    elif delta_of_day in range(8, 31+1):
+        return 'Active'
+    elif delta_of_day in range(32, 365+1):
+        return 'Less Active'
+    else:
+        return 'Inactive'
+
+
+def _parse_date(date_string):
+    return datetime.datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
