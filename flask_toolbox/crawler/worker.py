@@ -3,8 +3,10 @@
 
 from __future__ import absolute_import
 
+import os
+
 from flask_toolbox.web.app import create_app
-from flask_toolbox.web.configs import Config
+from flask_toolbox.web.configs import ProductionConfig, DevelopmentConfig
 from flask_toolbox.web.extensions import db
 from flask_toolbox.web.models import PyPI, Github, Package
 from flask_toolbox.crawler.crawler import Crawler
@@ -14,7 +16,10 @@ from flask_toolbox.crawler.github import (get_first_commit,
 
 class Worker(object):
     def __init__(self):
-        app = create_app(Config)
+        configuration = (
+            ProductionConfig if os.environ.get('FLASK_APP_ENV') == 'production'
+            else DevelopmentConfig)
+        app = create_app(configuration)
         app.app_context().push()
 
     def update_package_pypi_info(self):
