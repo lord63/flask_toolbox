@@ -9,6 +9,7 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Shell
 import yaml
 
+from flask_toolbox.crawler.worker import Worker
 from flask_toolbox.web.app import create_app
 from flask_toolbox.web.configs import ProductionConfig, DevelopmentConfig
 from flask_toolbox.web.extensions import db
@@ -63,6 +64,16 @@ def init_data():
             )
             db.session.add(new_package)
             db.session.commit()
+
+
+@manager.command
+def update_data():
+    worker = Worker()
+    print('Update PyPI info...')
+    worker.update_package_pypi_info()
+    print('Update Github info...')
+    worker.update_package_github_info()
+    print('Done.')
 
 
 manager.add_command('shell', Shell(make_context=_make_context))
