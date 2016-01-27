@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
+from __future__ import absolute_import, print_function
 
 import os
 
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Shell
+import yaml
 
 from flask_toolbox.web.app import create_app
 from flask_toolbox.web.configs import ProductionConfig, DevelopmentConfig
 from flask_toolbox.web.extensions import db
+from flask_toolbox.web.models import Category, Package
 
 
 CONFIG = (ProductionConfig if os.environ.get('FLASK_APP_ENV') == 'production'
@@ -33,6 +35,34 @@ def init_db():
         db.drop_all()
         db.create_all()
     print('Init the database.')
+
+
+@manager.command
+def init_data():
+    with open('packages.yml') as f:
+        data = yaml.load(f)
+
+    for category_name, category_info in data['categories'].items():
+        new_category = Category(
+            name=category_name,
+            description=category_info['description']
+        )
+        db.session.add(new_category)
+        db.session.commit()
+
+        for package in category_info['packages']:
+            package_info = data['packages'][package]
+            new_package = Package(
+                category_id=new_category.id,
+                name=package,
+                description=package_info['description'],
+                pypi_url=package_info['pypi_url'],
+                documentation_url=package_info['documentation_url'],
+                source_code_url=package_info['source_code_url'],
+                bug_tracker_url=package_info['bug_tracker_url'],
+            )
+            db.session.add(new_package)
+            db.session.commit()
 
 
 manager.add_command('shell', Shell(make_context=_make_context))
