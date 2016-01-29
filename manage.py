@@ -10,8 +10,7 @@ from flask_script import Manager, Shell
 import yaml
 
 from flask_toolbox.crawler.celery import celery_app
-from flask_toolbox.crawler.worker import (update_package_pypi_info,
-                                          update_package_github_info)
+from flask_toolbox.crawler.worker import update_pypi_info, update_github_info
 from flask_toolbox.web.app import create_app
 from flask_toolbox.web.configs import ProductionConfig, DevelopmentConfig
 from flask_toolbox.web.extensions import db
@@ -71,9 +70,9 @@ def init_data():
 @manager.command
 def update_data():
     print('Update PyPI info...')
-    update_package_pypi_info.delay()
+    update_pypi_info()
     print('Update Github info...')
-    update_package_github_info.delay()
+    update_github_info()
     print('Done.')
 
 
