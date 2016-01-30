@@ -20,6 +20,7 @@ from flask_toolbox.web.models import Category, Package
 CONFIG = (ProductionConfig if os.environ.get('FLASK_APP_ENV') == 'production'
           else DevelopmentConfig)
 app = create_app(CONFIG)
+app.app_context().push()
 manager = Manager(app)
 migrate = Migrate(app, db)
 

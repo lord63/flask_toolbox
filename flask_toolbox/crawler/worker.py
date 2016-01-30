@@ -3,11 +3,6 @@
 
 from __future__ import absolute_import
 
-import os
-from functools import wraps
-
-from flask_toolbox.web.app import create_app
-from flask_toolbox.web.configs import DevelopmentConfig, ProductionConfig
 from flask_toolbox.web.extensions import db
 from flask_toolbox.web.models import PyPI, Github, Package
 from flask_toolbox.crawler.celery import celery_app
@@ -16,25 +11,12 @@ from flask_toolbox.crawler.github import (get_first_commit,
                                           get_development_activity)
 
 
-def add_app_context(func):
-    @wraps(func)
-    def wrapper(*args, **kwds):
-        CONFIG = (
-            ProductionConfig if os.environ.get('FLASK_APP_ENV') == 'production'
-            else DevelopmentConfig)
-        app = create_app(CONFIG)
-        app.app_context().push()
-        func(*args, **kwds)
-    return wrapper
-
-
 def update_pypi_info():
     for package in Package.query.all():
         update_package_pypi_info.delay(package)
 
 
 @celery_app.task
-@add_app_context
 def update_package_pypi_info(package):
     pakcage_info = Crawler().get_pypi_info(package.pypi_url)
     pypi = PyPI.query.filter_by(package_id=package.id).first()
@@ -67,7 +49,6 @@ def update_github_info():
 
 
 @celery_app.task
-@add_app_context
 def update_package_github_info(package):
     repo_info = Crawler().get_github_info(package.source_code_url)
     github = Github.query.filter_by(package_id=package.id).first()
