@@ -55,10 +55,9 @@ class GithubMeta(object):
         return self._get_num('.counter', -1)
 
 
-def get_first_commit(url):
+def get_first_commit(url, commit_num):
     # Steal this idea from https://github.com/wong2/first-commit.
-    commits = GithubMeta(requests.get(url)).commits
-    first_commit_page = int(math.ceil(commits / 35))
+    first_commit_page = int(math.ceil(commit_num / 35))
     page_url = "{0}/commits?page={1}".format(url, first_commit_page)
     tree = html.fromstring(requests.get(page_url).text)
     first_commit_time = tree.cssselect('time')[-1].get('datetime')

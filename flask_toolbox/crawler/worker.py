@@ -74,7 +74,8 @@ def update_package_github_info(package):
             pull_requests=repo_info.pull_requests,
             development_activity=get_development_activity(
                 package.source_code_url),
-            first_commit=get_first_commit(package.source_code_url)
+            first_commit=get_first_commit(
+                package.source_code_url, repo_info.commits)
         )
         db.session.add(new_github)
         db.session.commit()
