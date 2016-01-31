@@ -12,3 +12,11 @@ class CategoryView(ModelView):
 
 class PackageView(ModelView):
     column_searchable_list = ['name']
+
+
+class PyPIView(ModelView):
+    column_searchable_list = ['package.name']
+
+
+class GithubView(ModelView):
+    column_searchable_list = ['package.name']
