@@ -17,5 +17,5 @@ class Crawler(object):
 
     def get_github_info(self, url):
         response = requests.get(url)
-        repo_info = GithubMeta(response)
+        repo_info = GithubMeta(response, url)
         return repo_info

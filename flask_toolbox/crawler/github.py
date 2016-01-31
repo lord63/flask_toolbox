@@ -4,15 +4,28 @@
 from __future__ import absolute_import, division
 
 import datetime
+from functools import partial
 import math
+import os
 
 from lxml import html
 import requests
 
 
+# Use your github token if you want a higher API rate limit.
+if os.environ.get('GITHUB_TOKEN'):
+    api_request = partial(requests.get, headers={
+        'User-Agent': 'https://github.com/lord63/flask_toolbox',
+        'Authorization': 'token {0}'.format(os.environ['GITHUB_TOKEN'])})
+else:
+    api_request = partial(requests.get, headers={
+        'User-Agent': 'https://github.com/lord63/flask_toolbox'})
+
+
 class GithubMeta(object):
-    def __init__(self, response):
+    def __init__(self, response, url):
         self.tree = html.fromstring(response.text)
+        self.url = url
 
     def _custom_int(self, string_number):
         # 1999 commits will be 1,999 commits on github.
@@ -21,9 +34,11 @@ class GithubMeta(object):
         return int(string_number)
 
     def _get_num(self, css_expression, index):
-        number = self._custom_int(
-            self.tree.cssselect(css_expression)[index].text.strip())
-        return number
+        result = self.tree.cssselect(css_expression)[index].text
+        if result is None:
+            return result
+        else:
+            return self._custom_int(result.strip())
 
     @property
     def watchers(self):
@@ -40,7 +55,17 @@ class GithubMeta(object):
 
     @property
     def contributors(self):
-        return self._get_num('.text-emphasized', -1)
+        num = self._get_num('.text-emphasized', -1)
+        # You may get None for contributor num, see #17.
+        # This patch is not elegant enough, please help me improve it.
+        if num is None:
+            owner, repo = self.url.split('/')[-2:]
+            url = 'https://api.github.com/repos/{0}/{1}/contributors'.format(
+                owner, repo)
+            response = api_request(url)
+            return len(response.json())
+        else:
+            return num
 
     @property
     def commits(self):
@@ -67,7 +92,7 @@ def get_first_commit(url, commit_num):
 def get_development_activity(url):
     owner, repo = url.split('/')[-2:]
     url = 'https://api.github.com/repos/{0}/{1}/commits'.format(owner, repo)
-    response = requests.get(url)
+    response = api_request(url)
     epoch = datetime.datetime.utcfromtimestamp(0)
     deltas = [_parse_date(commit['commit']['committer']['date']) - epoch
               for commit in response.json()]
