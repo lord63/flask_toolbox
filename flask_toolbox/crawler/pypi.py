@@ -52,7 +52,7 @@ class PyPIMeta(object):
             item.split('::')[-1].strip()
             for item in self.response['info']['classifiers']
             if 'Programming Language' in item and
-            re.search(r'(?<=Programming Language :: Python :: ).{3}', item)]
+            len(item.split('::')[-1].strip())==3]
         return ' '.join(versions)
 
     def _parse_date(self, date_string):
