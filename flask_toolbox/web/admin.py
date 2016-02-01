@@ -7,11 +7,11 @@ from flask_admin.contrib.sqla import ModelView
 
 
 class CategoryView(ModelView):
-    column_searchable_list = ['name']
+    column_searchable_list = ['name', 'description']
 
 
 class PackageView(ModelView):
-    column_searchable_list = ['name']
+    column_searchable_list = ['name', 'description']
 
 
 class PyPIView(ModelView):
