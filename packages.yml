@@ -27,10 +27,46 @@ categories:
     description:
     packages:
       - Flask-Login
+      - Flask-Security
+  Database/ORM/ODM:
+    description:
+    packages:
+      - Flask-MongoEngine
+      - Flask-SQLAlchemy
   Data Validation:
     description:
     packages:
       - Flask-WTF
+  Development:
+    description:
+    packages:
+      - Flask-DebugToolbar
+  Email:
+    description:
+    packages:
+      - Flask-Mail
+  Frontend:
+    description:
+    packages:
+      - Flask-Marshmallow
+      - Flask-Mako
+  Full-text Searching:
+    description:
+    packages:
+      - Flask-WhooshAlchemy
+  Queue:
+    description:
+    packages:
+      - Flask-RQ
+  Utils:
+    description:
+    packages:
+      - Flask-Bcrypt
+      - Flask-Moment
+      - Flask-Principal
+      - Flask-Script
+      - Flask-SocketIO
+      - Flask-Paginate
 packages:
   Flask-Admin:
     description: Simple and extensible administrative interface framework for Flask.
@@ -38,18 +74,108 @@ packages:
     documentation_url: http://flask-admin.readthedocs.org/en/latest
     source_code_url: https://github.com/flask-admin/flask-admin
     bug_tracker_url: https://github.com/flask-admin/flask-admin/issues
+  Flask-Bcrypt:
+    description: Flask-Bcrypt is a Flask extension that provides bcrypt hashing utilities for your application.
+    pypi_url: https://pypi.python.org/pypi/Flask-Bcrypt
+    documentation_url:  http://readthedocs.org/docs/flask-bcrypt
+    source_code_url: https://github.com/maxcountryman/flask-bcrypt
+    bug_tracker_url: https://github.com/maxcountryman/flask-bcrypt/issues
+  Flask-DebugToolbar:
+    description: A toolbar overlay for debugging Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-DebugToolbar
+    documentation_url: http://flask-debugtoolbar.rtfd.org
+    source_code_url: https://github.com/mgood/flask-debugtoolbar
+    bug_tracker_url: https://github.com/mgood/flask-debugtoolbar/issues
   Flask-Login:
     description: Flask user session management.
     pypi_url: https://pypi.python.org/pypi/Flask-Login
     documentation_url: http://flask-login.readthedocs.org/en/latest
     source_code_url: https://github.com/maxcountryman/flask-login
     bug_tracker_url: https://github.com/maxcountryman/flask-login/issues
+  Flask-Mail:
+    description: Flask-Mail adds SMTP mail sending to your Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-Mail
+    documentation_url: http://packages.python.org/Flask-Mail
+    source_code_url: https://github.com/mattupstate/flask-mail
+    bug_tracker_url: https://github.com/mattupstate/flask-mail/issues
+  Flask-Mako:
+    description: Provides support for Mako Templates in Flask.
+    pypi_url: http://pypi.python.org/pypi/Flask-Mako/
+    documentation_url: http://packages.python.org/Flask-Mako
+    source_code_url: https://github.com/benselme/flask-mako
+    bug_tracker_url: https://github.com/benselme/flask-mako/issues
+  Flask-Marshmallow:
+    description: Flask + marshmallow for beautiful APIs.
+    pypi_url: https://pypi.python.org/pypi/flask-marshmallow
+    documentation_url: http://flask-marshmallow.readthedocs.org
+    source_code_url: https://github.com/marshmallow-code/flask-marshmallow
+    bug_tracker_url: https://github.com/marshmallow-code/flask-marshmallow/issues
+  Flask-Moment:
+    description: Formatting of dates and times in Flask templates using moment.js.
+    pypi_url: https://pypi.python.org/pypi/Flask-Moment
+    documentation_url:
+    source_code_url: https://github.com/miguelgrinberg/Flask-Moment
+    bug_tracker_url: https://github.com/miguelgrinberg/Flask-Moment/issues
+  Flask-MongoEngine:
+    description: MongoEngine flask extension with WTF model forms support.
+    pypi_url: https://pypi.python.org/pypi/flask-mongoengine
+    documentation_url: https://flask-mongoengine.readthedocs.org
+    source_code_url: https://github.com/MongoEngine/flask-mongoengine
+    bug_tracker_url: https://github.com/MongoEngine/flask-mongoengine/issues
+  Flask-Paginate:
+    description: Pagination support for flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-paginate
+    documentation_url: http://pythonhosted.org/Flask-paginate
+    source_code_url: https://github.com/lixxu/flask-paginate
+    bug_tracker_url: https://github.com/lixxu/flask-paginate/issues
+  Flask-Principal:
+    description: Identity management for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-Principal
+    documentation_url: http://packages.python.org/Flask-Principal
+    source_code_url: https://github.com/mattupstate/flask-principal
+    bug_tracker_url: https://github.com/mattupstate/flask-principal/issues
+  Flask-RQ:
+    description: RQ (Redis Queue) integration for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-RQ
+    documentation_url: http://packages.python.org/Flask-RQ/
+    source_code_url: https://github.com/mattupstate/flask-rq
+    bug_tracker_url: https://github.com/mattupstate/flask-rq/issues
+  Flask-Script:
+    description: Flask extension to help writing external scripts for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-Script
+    documentation_url: http://flask-script.readthedocs.org/
+    source_code_url: https://github.com/smurfix/flask-script
+    bug_tracker_url: https://github.com/smurfix/flask-script/issues
+  Flask-Security:
+    description: Quick and simple security for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-Security
+    documentation_url: http://packages.python.org/Flask-Security
+    source_code_url: https://github.com/mattupstate/flask-security
+    bug_tracker_url: https://github.com/mattupstate/flask-security/issues
+  Flask-SocketIO:
+    description: Socket.IO integration for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-SocketIO
+    documentation_url: http://pythonhosted.org/Flask-SocketIO
+    source_code_url: https://github.com/miguelgrinberg/Flask-SocketIO
+    bug_tracker_url: https://github.com/miguelgrinberg/Flask-SocketIO/issues
+  Flask-SQLAlchemy:
+    description: Adds SQLAlchemy support to Flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-SQLAlchemy
+    documentation_url: http://flask-sqlalchemy.pocoo.org
+    source_code_url: https://github.com/mitsuhiko/flask-sqlalchemy
+    bug_tracker_url: https://github.com/mitsuhiko/flask-sqlalchemy/issues
   Flask-SuperAdmin:
     description: The best admin interface framework for Flask. With scaffolding for MongoEngine, Django and SQLAlchemy.
     pypi_url: https://pypi.python.org/pypi/Flask-SuperAdmin
     documentation_url: http://flask-superadmin.readthedocs.org
     source_code_url: https://github.com/SyrusAkbary/Flask-SuperAdmin
     bug_tracker_url: https://github.com/SyrusAkbary/Flask-SuperAdmin/issues
+  Flask-WhooshAlchemy:
+    description: Whoosh indexing capabilities for Flask-SQLAlchemy.
+    pypi_url: https://pypi.python.org/pypi/Flask-WhooshAlchemy
+    documentation_url: http://packages.python.org/Flask-WhooshAlchemy
+    source_code_url: https://github.com/gyllstromk/Flask-WhooshAlchemy
+    bug_tracker_url: https://github.com/gyllstromk/Flask-WhooshAlchemy/issues
   Flask-WTF:
     description: Simple integration of Flask and WTForms, including CSRF, file upload and Recaptcha integration.
     pypi_url: https://pypi.python.org/pypi/Flask-WTF
