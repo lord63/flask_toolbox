@@ -4,11 +4,16 @@
 from __future__ import absolute_import
 
 from flask import Flask
+from werkzeug.utils import import_string
 
 from flask_toolbox.web.extensions import db, admin
 from flask_toolbox.web.models import Category, Package, PyPI, Github
 from flask_toolbox.web.admin import (CategoryView, PackageView, PyPIView,
                                      GithubView)
+
+blueprints = [
+    'flask_toolbox.web.views.home:home_page',
+]
 
 
 admin.add_view(CategoryView(Category, db.session))
@@ -23,5 +28,8 @@ def create_app(config):
 
     db.init_app(app)
     admin.init_app(app)
+
+    for blueprint in blueprints:
+        app.register_blueprint(import_string(blueprint))
 
     return app
