@@ -23,7 +23,7 @@ admin.add_view(GithubView(Github, db.session))
 
 
 def create_app(config):
-    app = Flask('flask_toolbox')
+    app = Flask('flask_toolbox/web')
     app.config.from_object(config)
 
     db.init_app(app)
