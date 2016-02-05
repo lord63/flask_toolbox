@@ -7,6 +7,7 @@ import os
 
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Shell
+from livereload import Server
 import yaml
 
 from flask_toolbox.crawler.celery import celery_app
@@ -30,6 +31,12 @@ def _make_context():
     app and db by default.
     """
     return {'app': app, 'db': db}
+
+
+@manager.command
+def live():
+    server = Server(app.wsgi_app)
+    server.serve(port=5000)
 
 
 @manager.command
