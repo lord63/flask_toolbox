@@ -1,0 +1,34 @@
+.navbar-form {
+  padding-right: 0px;
+}
+
+#logo {
+  display: inline;
+}
+
+#logo a {
+  background-image: url("../logo.svg");
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 200px;
+}
+
+.navmenu {
+  float: right;
+}
+
+.navmenu li {
+  display: inline;
+  background-color: #9ea3a9;
+  width: 200px;
+  height: 25px;
+  padding: 5px 10px 5px 10px;
+}
+
+.navmenu li a {
+  color: #e6e8ea;
+}
+
+.navmenu li a:hover {
+  color: black;
+}
