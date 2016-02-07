@@ -11,10 +11,21 @@
   background-repeat: no-repeat;
   height: 50px;
   width: 200px;
+  font-size: 30px;
+}
+
+#logo a img {
+  height: 80px;
+  width: 80px;
+}
+
+#logo a:hover {
+  text-decoration: none;
 }
 
 .navmenu {
   float: right;
+  margin-top: 28px;
 }
 
 .navmenu li {
@@ -31,4 +42,5 @@
 
 .navmenu li a:hover {
   color: black;
+  text-decoration: none;
 }
