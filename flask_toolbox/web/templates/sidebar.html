@@ -1,14 +1,16 @@
+{% macro sidebar(sidebar_title, item_list) %}
 <div class="col-md-4">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">Related packages in this category.</h3>
+      <h3 class="panel-title">{{ sidebar_title }}</h3>
     </div>
     <ul class="list-group">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Morbi leo risus</li>
-      <li class="list-group-item">Porta ac consectetur ac</li>
-      <li class="list-group-item">Vestibulum at eros</li>
+      {% for item in item_list %}
+        <li class="list-group-item">
+          <a href="{{ url_for('package_page.index', package=item)}}">{{ item }}</a>
+        </li>
+      {% endfor %}
     </ul>
   </div>
 </div>
+{% endmacro %}
