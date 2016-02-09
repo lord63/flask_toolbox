@@ -13,6 +13,7 @@ from flask_toolbox.web.admin import (CategoryView, PackageView, PyPIView,
 
 blueprints = [
     'flask_toolbox.web.views.home:home_page',
+    'flask_toolbox.web.views.package:package_page'
 ]
 
 
