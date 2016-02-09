@@ -74,3 +74,18 @@
   background-color: #fff;
   margin-bottom: 10px;
 }
+
+/* category page */
+.category-stats {
+  float: right;
+}
+
+.category-description {
+  display: block;
+  text-align: center;
+}
+
+.category-info div {
+  background-color: #fff;
+  margin-bottom: 10px;
+}

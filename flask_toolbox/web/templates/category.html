@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="well">
+  <span class="category-name">Admin</span>
+  <span class="category-stats">Stats</span>
+  <span class="category-description">description</span>
+</div>
+<div class="col-md-8 well package-info">
+  <div class="row package-basic">
+    pakcage info.
+  </div>
+  <div class="row package-pypi">
+    package pypi
+  </div>
+  <div class="row package-github">
+    package github
+  </div>
+</div>
+{% include "sidebar.html" %}
+{% endblock %}
