@@ -30,7 +30,7 @@ def _make_context():
     """Return context dict for a shell session so you can access
     app and db by default.
     """
-    return {'app': app, 'db': db}
+    return {'app': app, 'db': db, 'Package': Package, 'Category': Category}
 
 
 @manager.command
