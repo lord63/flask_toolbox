@@ -23,4 +23,5 @@ def index(package):
     )
     return render_template(
         'package.html', package=the_package,
+        pypi=the_package.pypi_info[0], github=the_package.github_info[0],
         related_packages=related_packages, sidebar_title=sidebar_title)
