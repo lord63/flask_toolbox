@@ -1,9 +1,10 @@
+{% import "sidebar.html" as sidebar %}
 {% extends 'base.html' %}
 {% block body %}
 <div class="well">
-  <span class="package-name">Flask-Admin</span>
+  <span class="package-name">{{ package.name }}</span>
   <span class="package-stats">Stats</span>
-  <span class="package-description">description</span>
+  <span class="package-description">{{ package.description }}</span>
 </div>
 <div class="col-md-8 well package-info">
   <div class="row package-basic">
@@ -16,5 +17,5 @@
     package github
   </div>
 </div>
-{% include "sidebar.html" %}
+{{ sidebar.sidebar(sidebar_title, related_packages)}}
 {% endblock %}
