@@ -16,6 +16,7 @@ blueprints = [
     'flask_toolbox.web.views.category:category_page',
     'flask_toolbox.web.views.categories:categories_page',
     'flask_toolbox.web.views.package:package_page',
+    'flask_toolbox.web.views.packages:packages_page',
 ]
 
 
