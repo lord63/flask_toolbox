@@ -59,3 +59,18 @@
 .navigation ul li {
   list-style: none;
 }
+
+/* package page */
+.package-stats {
+  float: right;
+}
+
+.package-description {
+  display: block;
+  text-align: center;
+}
+
+.package-info div {
+  background-color: #fff;
+  margin-bottom: 10px;
+}
