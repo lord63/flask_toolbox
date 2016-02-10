@@ -10,6 +10,14 @@
 <div class="col-md-8 package">
   {% for package in related_packages %}
   <div class="package-info well">
+    <div class="row package-header">
+      <div class="col-md-12">
+        <h4>{{ package.name }}</h4>
+      </div>
+      <div class="col-md-12">
+        <p>{{ package.description }}</p>
+      </div>
+    </div>
     {{ package_info.package_info(package) }}
   </div>
   {% endfor %}
