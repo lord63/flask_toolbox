@@ -6,79 +6,81 @@
   <span class="package-stats">Stats</span>
   <span class="package-description">{{ package.description }}</span>
 </div>
-<div class="col-md-8 well package-info">
-  <div class="row package-basic">
-    <div class="col-md-3">
-      <a href="{{ package.documentation_url }}"><i class="fa fa-book"></i> Documentation</a>
+<div class="col-md-9 package">
+  <div class="well package-info">
+    <div class="row package-basic">
+      <div class="col-md-3">
+        <a href="{{ package.documentation_url }}"><i class="fa fa-book"></i> Documentation</a>
+      </div>
+      <div class="col-md-3">
+        <a href="{{ package.source_code_url }}"><i class="fa fa-code-fork"></i> Source Code</a>
+      </div>
+      <div class="col-md-3">
+        <a href="{{ package.pypi_url }}"><i class="fa fa-wrench"></i> PyPI</a>
+      </div>
+      <div class="col-md-3">
+        <a href="{{ package.bug_tracker_url }}"><i class="fa fa-bug"></i> Bug Tracker</a>
+      </div>
     </div>
-    <div class="col-md-3">
-      <a href="{{ package.source_code_url }}"><i class="fa fa-code-fork"></i> Source Code</a>
+    <div class="row package-pypi">
+      <div class="col-md-2">
+        <p>Downloads</p>
+        <p>{{ pypi.download_num }}</p>
+      </div>
+      <div class="col-md-2">
+        <p>Release Num</p>
+        <p>{{ pypi.release_num }}</p>
+      </div>
+      <div class="col-md-2">
+        <p>Current Version</p>
+        <p>{{ pypi.current_version }}</p>
+      </div>
+      <div class="col-md-2">
+        <p>Python Version</p>
+        <p>{{ pypi.python_version }}</p>
+      </div>
+      <div class="col-md-2">
+        <p>Released Date</p>
+        <p>{{ pypi.released_date }}</p>
+      </div>
+      <div class="col-md-2">
+        <p>First Release</p>
+        <p>{{ pypi.first_release }}</p>
+      </div>
     </div>
-    <div class="col-md-3">
-      <a href="{{ package.pypi_url }}"><i class="fa fa-wrench"></i> PyPI</a>
-    </div>
-    <div class="col-md-3">
-      <a href="{{ package.bug_tracker_url }}"><i class="fa fa-bug"></i> Bug Tracker</a>
-    </div>
-  </div>
-  <div class="row package-pypi">
-    <div class="col-md-2">
-      <p>Downloads</p>
-      <p>{{ pypi.download_num }}</p>
-    </div>
-    <div class="col-md-2">
-      <p>Release Num</p>
-      <p>{{ pypi.release_num }}</p>
-    </div>
-    <div class="col-md-2">
-      <p>Current Version</p>
-      <p>{{ pypi.current_version }}</p>
-    </div>
-    <div class="col-md-2">
-      <p>Python Version</p>
-      <p>{{ pypi.python_version }}</p>
-    </div>
-    <div class="col-md-2">
-      <p>Released Date</p>
-      <p>{{ pypi.released_date }}</p>
-    </div>
-    <div class="col-md-2">
-      <p>First Release</p>
-      <p>{{ pypi.first_release }}</p>
-    </div>
-  </div>
-  <div class="row package-github">
-    <div class="col-md-3">
-      <p>Wacthers</p>
-      <p>{{ github.watchers }}</p>
-    </div>
-    <div class="col-md-3">
-      <p>Forks</p>
-      <p>{{ github.forks }}</p>
-    </div>
-    <div class="col-md-3">
-      <p>Development Activity</p>
-      <p>{{ github.development_activity }}</p>
-    </div>
-    <div class="col-md-3">
-      <p>Last Commit</p>
-      <p>{{ github.last_commit }}</p>
-    </div>
-    <div class="col-md-3">
-      <p>First Commit</p>
-      <p>{{ github.first_commit }}</p>
-    </div>
-    <div class="col-md-3">
-      <p>Contributors</p>
-      <p>{{ github.contributors }}</p>
-    </div>
-    <div class="col-md-3">
-      <p>Issues</p>
-      <p>{{ github.issues }}</p>
-    </div>
-    <div class="col-md-3">
-      <p>Pull Requests</p>
-      <p>{{ github.pull_requests }}</p>
+    <div class="row package-github">
+      <div class="col-md-3">
+        <p>Wacthers</p>
+        <p>{{ github.watchers }}</p>
+      </div>
+      <div class="col-md-3">
+        <p>Forks</p>
+        <p>{{ github.forks }}</p>
+      </div>
+      <div class="col-md-3">
+        <p>Development Activity</p>
+        <p>{{ github.development_activity }}</p>
+      </div>
+      <div class="col-md-3">
+        <p>First Commit</p>
+        <p>{{ github.first_commit }}</p>
+      </div>
+      <div class="col-md-3">
+        <p>Last Commit</p>
+        <p>{{ github.last_commit }}</p>
+      </div>
+      <div class="col-md-3">
+        <p>Contributors</p>
+        <p>{{ github.contributors }}</p>
+      </div>
+      <div class="col-md-3">
+        <p>Issues</p>
+        <p>{{ github.issues }}</p>
+      </div>
+      <div class="col-md-3">
+        <p>Pull Requests</p>
+        <p>{{ github.pull_requests }}</p>
+      </div>
     </div>
   </div>
 </div>
