@@ -22,7 +22,11 @@
         <a href="{{ package.bug_tracker_url }}"><i class="fa fa-bug"></i> Bug Tracker</a>
       </div>
     </div>
+
     <div class="row package-pypi">
+      <div class="col-md-12">
+        <p>PyPI: <a href="{{ package.pypi_url }}">{{ package.name }}</a></p>
+      </div>
       <div class="col-md-2">
         <p>Downloads</p>
         <p>{{ pypi.download_num }}</p>
@@ -48,7 +52,13 @@
         <p>{{ pypi.first_release }}</p>
       </div>
     </div>
+
     <div class="row package-github">
+      <div class="col-md-12">
+        <p>Github: <a href="{{ package.source_code_url }}">
+          {{ package.source_code_url.split('/')[-2:] | join('/') }}</a>
+        </p>
+      </div>
       <div class="col-md-3">
         <p>Wacthers</p>
         <p>{{ github.watchers }}</p>
