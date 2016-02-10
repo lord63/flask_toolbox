@@ -25,8 +25,8 @@ class Package(db.Model):
     documentation_url = db.Column(db.String(80))
     source_code_url = db.Column(db.String(80))
     bug_tracker_url = db.Column(db.String(80))
-    pypi_info = db.relationship('PyPI', backref='package')
-    github_info = db.relationship('Github', backref='package')
+    pypi_info = db.relationship('PyPI', uselist=False, backref='package')
+    github_info = db.relationship('Github', uselist=False, backref='package')
 
     def __repr__(self):
         return '<Package %r>' % self.name

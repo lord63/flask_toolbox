@@ -20,27 +20,27 @@
   </div>
   <div class="col-md-2">
     <p>Downloads</p>
-    <p>{{ package.pypi_info[0].download_num }}</p>
+    <p>{{ package.pypi_info.download_num }}</p>
   </div>
   <div class="col-md-2">
     <p>Release Num</p>
-    <p>{{ package.pypi_info[0].release_num }}</p>
+    <p>{{ package.pypi_info.release_num }}</p>
   </div>
   <div class="col-md-2">
     <p>Current Version</p>
-    <p>{{ package.pypi_info[0].current_version }}</p>
+    <p>{{ package.pypi_info.current_version }}</p>
   </div>
   <div class="col-md-2">
     <p>Python Version</p>
-    <p>{{ package.pypi_info[0].python_version }}</p>
+    <p>{{ package.pypi_info.python_version }}</p>
   </div>
   <div class="col-md-2">
     <p>Released Date</p>
-    <p>{{ package.pypi_info[0].released_date }}</p>
+    <p>{{ package.pypi_info.released_date }}</p>
   </div>
   <div class="col-md-2">
     <p>First Release</p>
-    <p>{{ package.pypi_info[0].first_release }}</p>
+    <p>{{ package.pypi_info.first_release }}</p>
   </div>
 </div>
 
@@ -52,35 +52,35 @@
   </div>
   <div class="col-md-3">
     <p>Wacthers</p>
-    <p>{{ package.github_info[0].watchers }}</p>
+    <p>{{ package.github_info.watchers }}</p>
   </div>
   <div class="col-md-3">
     <p>Forks</p>
-    <p>{{ package.github_info[0].forks }}</p>
+    <p>{{ package.github_info.forks }}</p>
   </div>
   <div class="col-md-3">
     <p>Development Activity</p>
-    <p>{{ package.github_info[0].development_activity }}</p>
+    <p>{{ package.github_info.development_activity }}</p>
   </div>
   <div class="col-md-3">
     <p>First Commit</p>
-    <p>{{ package.github_info[0].first_commit }}</p>
+    <p>{{ package.github_info.first_commit }}</p>
   </div>
   <div class="col-md-3">
     <p>Last Commit</p>
-    <p>{{ package.github_info[0].last_commit }}</p>
+    <p>{{ package.github_info.last_commit }}</p>
   </div>
   <div class="col-md-3">
     <p>Contributors</p>
-    <p>{{ package.github_info[0].contributors }}</p>
+    <p>{{ package.github_info.contributors }}</p>
   </div>
   <div class="col-md-3">
     <p>Issues</p>
-    <p>{{ package.github_info[0].issues }}</p>
+    <p>{{ package.github_info.issues }}</p>
   </div>
   <div class="col-md-3">
     <p>Pull Requests</p>
-    <p>{{ package.github_info[0].pull_requests }}</p>
+    <p>{{ package.github_info.pull_requests }}</p>
   </div>
 </div>
 {% endmacro %}
