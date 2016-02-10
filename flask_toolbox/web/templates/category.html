@@ -1,20 +1,18 @@
+{% import "macros/sidebar.html" as sidebar %}
+{% import "macros/package_info.html" as package_info %}
 {% extends 'base.html' %}
 {% block body %}
 <div class="well">
-  <span class="category-name">Admin</span>
+  <span class="category-name">{{ category.name }}</span>
   <span class="category-stats">Stats</span>
-  <span class="category-description">description</span>
+  <span class="category-description">{{ category.description }}</span>
 </div>
-<div class="col-md-8 well package-info">
-  <div class="row package-basic">
-    pakcage info.
+<div class="col-md-8 package">
+  {% for package in related_packages %}
+  <div class="package-info well">
+    {{ package_info.package_info(package) }}
   </div>
-  <div class="row package-pypi">
-    package pypi
-  </div>
-  <div class="row package-github">
-    package github
-  </div>
+  {% endfor %}
 </div>
-{% include "sidebar.html" %}
+{{ sidebar.sidebar(sidebar_title, packages_list)}}
 {% endblock %}

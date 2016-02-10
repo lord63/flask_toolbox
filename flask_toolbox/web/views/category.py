@@ -5,6 +5,8 @@ from __future__ import absolute_import
 
 from flask import Blueprint, render_template
 
+from flask_toolbox.web.models import Category
+
 
 category_page = Blueprint('category_page', __name__,
                          template_folder='templates')
@@ -12,4 +14,11 @@ category_page = Blueprint('category_page', __name__,
 
 @category_page.route('/categories/<category>')
 def index(category):
-    return render_template('category.html')
+    the_category = Category.query.filter_by(name=category).first_or_404()
+    related_packages = the_category.packages.all()
+    sidebar_title = "{0} packages in this category".format(len(related_packages))
+    packages_list = [package.name for package in related_packages]
+    return render_template(
+        'category.html', category=the_category,
+        related_packages=related_packages,
+        sidebar_title=sidebar_title, packages_list=packages_list)
