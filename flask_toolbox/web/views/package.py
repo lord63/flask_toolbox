@@ -19,9 +19,8 @@ def index(package):
     related_packages = [item.name for item in category.packages.all()
                         if item.name != package]
     sidebar_title = (
-        "Other related packages in the same category".format(category.name)
+        "Other related packages in the {0} category".format(category.name)
     )
     return render_template(
         'package.html', package=the_package,
-        pypi=the_package.pypi_info[0], github=the_package.github_info[0],
         related_packages=related_packages, sidebar_title=sidebar_title)
