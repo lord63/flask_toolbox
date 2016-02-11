@@ -89,3 +89,17 @@
   background-color: #fff;
   margin-bottom: 10px;
 }
+
+/* packages page*/
+.packages-category a {
+  color: #fff;
+}
+
+.packages-category a:hover {
+  text-decoration: none;
+}
+
+.packages-description {
+  font-size: 11px;
+  margin-left: 10px;
+}

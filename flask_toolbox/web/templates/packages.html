@@ -1,3 +1,4 @@
+{% import "macros/sidebar.html" as sidebar %}
 {% extends 'base.html' %}
 {% block body %}
 <div class="well">
@@ -5,12 +6,18 @@
 </div>
 <div class="col-md-8">
   <ul class="list-group">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+  {% for package in packages %}
+    <li class="list-group-item">
+      <a href="{{ url_for('package_page.index', package=package.name) }}">{{ package.name }}</a>
+      <span class="badge packages-category">
+        <a href="{{ url_for('category_page.index', category=package.category.name) }}">
+          {{ package.category.name }}
+        </a>
+      </span>
+      <span class="packages-description">{{ package.description }}</span>
+    </li>
+  {% endfor %}
   </ul>
 </div>
-{% include "sidebar.html" %}
+{{ sidebar.sidebar(sidebar_title, package_list, 'package')}}
 {% endblock %}
