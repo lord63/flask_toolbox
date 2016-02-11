@@ -1,4 +1,4 @@
-{% macro sidebar(sidebar_title, item_list) %}
+{% macro sidebar(sidebar_title, item_list, list_type) %}
 <div class="col-md-3">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -7,7 +7,11 @@
     <ul class="list-group">
       {% for item in item_list %}
         <li class="list-group-item">
-          <a href="{{ url_for('package_page.index', package=item)}}">{{ item }}</a>
+          {% if list_type == 'package' %}
+            <a href="{{ url_for('package_page.index', package=item)}}">{{ item }}</a>
+          {% else %}
+            <a href="{{ url_for('category_page.index', category=item)}}">{{ item }}</a>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>
