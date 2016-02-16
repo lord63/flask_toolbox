@@ -36,4 +36,9 @@ def create_app(config):
     for blueprint in blueprints:
         app.register_blueprint(import_string(blueprint))
 
+    @app.context_processor
+    def inject_statics():
+        return dict(package_num=Package.query.count(),
+                    category_num=Category.query.count())
+
     return app
