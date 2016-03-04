@@ -56,7 +56,10 @@ categories:
   Full-text Searching:
     description:
     packages:
+      - Flask-PonyWhoosh
       - Flask-WhooshAlchemy
+      - Flask-WhooshAlchemyPlus
+      - Flask-Whooshee
   Metrics Tracking:
     description:
     packages:
@@ -183,6 +186,12 @@ packages:
     documentation_url: http://pythonhosted.org/Flask-paginate
     source_code_url: https://github.com/lixxu/flask-paginate
     bug_tracker_url: https://github.com/lixxu/flask-paginate/issues
+  Flask-PonyWhoosh:
+    description: Make your Flask App and your database PonyORM searchable.
+    pypi_url: https://pypi.python.org/pypi/Flask-PonyWhoosh
+    documentation_url: Make your Flask App and your database PonyORM searchable.
+    source_code_url: https://github.com/compiteing/Flask-PonyWhoosh
+    bug_tracker_url: https://github.com/compiteing/Flask-PonyWhoosh/issues
   Flask-Principal:
     description: Identity management for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-Principal
@@ -231,6 +240,18 @@ packages:
     documentation_url: http://packages.python.org/Flask-WhooshAlchemy
     source_code_url: https://github.com/gyllstromk/Flask-WhooshAlchemy
     bug_tracker_url: https://github.com/gyllstromk/Flask-WhooshAlchemy/issues
+  Flask-WhooshAlchemyPlus:
+    description: Whoosh extension to Flask/SQLAlchemy.
+    pypi_url: https://pypi.python.org/pypi/Flask-WhooshAlchemyPlus
+    documentation_url:
+    source_code_url: https://github.com/Revolution1/Flask-WhooshAlchemyPlus
+    bug_tracker_url: https://github.com/Revolution1/Flask-WhooshAlchemyPlus/issues
+  Flask-Whooshee:
+    description: Customizable Flask - SQLAlchemy - Whoosh integration.
+    pypi_url: https://pypi.python.org/pypi/flask-whooshee
+    documentation_url:
+    source_code_url: https://github.com/bkabrda/flask-whooshee
+    bug_tracker_url: https://github.com/bkabrda/flask-whooshee/issues
   Flask-WTF:
     description: Simple integration of Flask and WTForms, including CSRF, file upload and Recaptcha integration.
     pypi_url: https://pypi.python.org/pypi/Flask-WTF
