@@ -35,12 +35,14 @@ def _make_context():
 
 @manager.command
 def live():
+    """"Set up a liveload server."""
     server = Server(app.wsgi_app)
     server.serve(port=5000)
 
 
 @manager.command
 def init_db():
+    """Initialize the database."""
     with app.app_context():
         db.drop_all()
         db.create_all()
@@ -49,6 +51,7 @@ def init_db():
 
 @manager.command
 def init_data():
+    """Seed the database with packages.yml"""
     with open('packages.yml') as f:
         data = yaml.load(f)
 
@@ -77,6 +80,7 @@ def init_data():
 
 @manager.command
 def update_data():
+    """Crawl package's github and PyPI info."""
     print('Update PyPI info...')
     update_pypi_info()
     print('Update Github info...')
