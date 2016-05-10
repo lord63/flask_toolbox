@@ -2,6 +2,7 @@ celery
 cssselect
 flask
 flask-admin
+flask-wtf
 flask-script
 flask-migrate
 flask-sqlalchemy
