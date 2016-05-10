@@ -1,6 +1,6 @@
 # Category information style guide:
 #
-# Category Name(titlecased, join with one space):
+# Category Name(titlecased, join with one dash):
 #   description: optional, short description of the category
 #   packages:
 #     - Package-Name
@@ -31,12 +31,12 @@ categories:
       - Flask-HTTPAuth
       - Flask-Login
       - Flask-Security
-  Database/ORM/ODM:
+  Database-ORM-ODM:
     description:
     packages:
       - Flask-MongoEngine
       - Flask-SQLAlchemy
-  Data Validation:
+  Data-Validation:
     description:
     packages:
       - Flask-WTF
@@ -53,18 +53,18 @@ categories:
     packages:
       - Flask-Marshmallow
       - Flask-Mako
-  Full-text Searching:
+  Full-text-Searching:
     description:
     packages:
       - Flask-PonyWhoosh
       - Flask-WhooshAlchemy
       - Flask-WhooshAlchemyPlus
       - Flask-Whooshee
-  Metrics Tracking:
+  Metrics-Tracking:
     description:
     packages:
       - Flask-Analytics
-  Other SDK:
+  Other-SDK:
     description:
     packages:
       - Flask-GoogleMaps
