@@ -1,6 +1,9 @@
 Development Guide
 ==================
 
+Run the server
+--------------
+
 Clone the fresh source code::
 
     $ git clone https://github.com/lord63/flask_toolbox.git
@@ -19,3 +22,26 @@ Initialize the database::
 Run the server::
 
     (venv)$ python manage.py runserver
+
+Run the crawler
+---------------
+
+start the redis server::
+
+    $ redis-server
+
+start the rabbitmq server::
+
+    $ rabbitmq-server
+
+set up a github token(in case that you may hit the github api rate limit)::
+
+    $ export GITHUB_TOKEN="xxx"
+
+start the celery worker::
+
+    $ celery -A manage.celery_app worker --loglevel=info
+
+start the crawler::
+
+    $ python manage.py update_data
