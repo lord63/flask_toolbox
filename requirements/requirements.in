@@ -9,4 +9,5 @@ flask-sqlalchemy
 livereload
 lxml
 pyyaml
+redis
 requests
