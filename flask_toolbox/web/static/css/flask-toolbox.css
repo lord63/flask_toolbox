@@ -108,3 +108,15 @@
 .intro {
   margin-top: 30px;
 }
+
+/* home page */
+.search-form {
+  max-width: 60%;
+  margin: 0 auto;
+  margin-bottom: 170px;
+  margin-top: 170px;
+}
+
+.search-form h1 {
+  margin-bottom: 30px;
+}
