@@ -50,7 +50,7 @@ class GithubMeta(object):
 
     @property
     def last_commit(self):
-        commit_time = self.tree.cssselect('time')[0].get('datetime')
+        commit_time = self.tree.cssselect('relative-time')[0].get('datetime')
         return _parse_date(commit_time)
 
     @property
@@ -85,7 +85,7 @@ def get_first_commit(url, commit_num):
     first_commit_page = int(math.ceil(commit_num / 35))
     page_url = "{0}/commits?page={1}".format(url, first_commit_page)
     tree = html.fromstring(requests.get(page_url).text)
-    first_commit_time = tree.cssselect('time')[-1].get('datetime')
+    first_commit_time = tree.cssselect('relative-time')[-1].get('datetime')
     return _parse_date(first_commit_time)
 
 
