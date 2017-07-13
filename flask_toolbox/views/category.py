@@ -5,7 +5,7 @@ from __future__ import absolute_import
 
 from flask import Blueprint, render_template
 
-from flask_toolbox.web.models import Category
+from flask_toolbox.models import Category
 
 
 category_page = Blueprint('category_page', __name__,

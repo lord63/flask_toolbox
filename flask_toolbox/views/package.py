@@ -5,7 +5,7 @@ from __future__ import absolute_import
 
 from flask import Blueprint, render_template
 
-from flask_toolbox.web.models import Package
+from flask_toolbox.models import Package
 
 
 package_page = Blueprint('package_page', __name__,

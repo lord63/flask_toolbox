@@ -3,8 +3,8 @@
 
 from __future__ import absolute_import
 
-from flask_toolbox.web.extensions import db
-from flask_toolbox.web.models import PyPI, Github, Package
+from flask_toolbox.extensions import db
+from flask_toolbox.models import PyPI, Github, Package
 from flask_toolbox.crawler.celery import celery_app
 from flask_toolbox.crawler.crawler import Crawler
 from flask_toolbox.crawler.github import (get_first_commit,

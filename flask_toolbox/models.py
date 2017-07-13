@@ -3,7 +3,7 @@
 
 from __future__ import absolute_import
 
-from flask_toolbox.web.extensions import db
+from flask_toolbox.extensions import db
 
 
 class Category(db.Model):

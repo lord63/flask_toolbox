@@ -12,10 +12,10 @@ import yaml
 
 from flask_toolbox.crawler.celery import celery_app
 from flask_toolbox.crawler.worker import update_pypi_info, update_github_info
-from flask_toolbox.web.app import create_app
-from flask_toolbox.web.configs import ProductionConfig, DevelopmentConfig
-from flask_toolbox.web.extensions import db
-from flask_toolbox.web.models import Category, Package
+from flask_toolbox.app import create_app
+from flask_toolbox.configs import ProductionConfig, DevelopmentConfig
+from flask_toolbox.extensions import db
+from flask_toolbox.models import Category, Package
 
 
 CONFIG = (ProductionConfig if os.environ.get('FLASK_APP_ENV') == 'production'
