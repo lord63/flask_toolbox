@@ -5,8 +5,9 @@ from __future__ import absolute_import, print_function
 
 import os
 
+import click
 from flask_migrate import Migrate, MigrateCommand
-from flask_script import Manager, Shell
+from flask.cli import FlaskGroup
 from livereload import Server
 import yaml
 
@@ -22,25 +23,17 @@ CONFIG = (ProductionConfig if os.environ.get('FLASK_APP_ENV') == 'production'
           else DevelopmentConfig)
 app = create_app(CONFIG)
 app.app_context().push()
-manager = Manager(app)
 migrate = Migrate(app, db)
 
 
-def _make_context():
-    """Return context dict for a shell session so you can access
-    app and db by default.
-    """
-    return {'app': app, 'db': db, 'Package': Package, 'Category': Category}
-
-
-@manager.command
+@app.cli.command()
 def live():
     """"Set up a liveload server."""
     server = Server(app.wsgi_app)
     server.serve(port=5000)
 
 
-@manager.command
+@app.cli.command()
 def init_db():
     """Initialize the database."""
     with app.app_context():
@@ -49,7 +42,7 @@ def init_db():
     print('Init the database.')
 
 
-@manager.command
+@app.cli.command()
 def init_data():
     """Seed the database with packages.yml"""
     with open('packages.yml') as f:
@@ -78,7 +71,7 @@ def init_data():
             db.session.commit()
 
 
-@manager.command
+@app.cli.command()
 def update_data():
     """Crawl package's github and PyPI info."""
     print('Update PyPI info...')
@@ -86,11 +79,3 @@ def update_data():
     print('Update Github info...')
     update_github_info()
     print('Done.')
-
-
-manager.add_command('shell', Shell(make_context=_make_context))
-manager.add_command('db', MigrateCommand)
-
-
-if __name__ == '__main__':
-    manager.run()

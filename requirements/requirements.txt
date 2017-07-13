@@ -16,7 +16,7 @@ click==6.7                # via flask
 cssselect==1.0.1
 flask-admin==1.5.0
 flask-migrate==2.0.4
-flask-script==2.0.5
+flask-script==2.0.5       # via flask-migrate
 flask-sqlalchemy==2.2
 flask-wtf==0.14.2
 flask==0.12.2

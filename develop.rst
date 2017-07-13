@@ -16,12 +16,13 @@ Install the dependencies, it's recommand to set up a virtual environment::
 
 Initialize the database::
 
-    (venv)$ python manage.py init_db
-    (venv)$ python manage.py init_data
+    (venv)$ export FLASK_APP=manage.py
+    (venv)$ flask init_db
+    (venv)$ flask init_data
 
 Run the server::
 
-    (venv)$ python manage.py runserver
+    (venv)$ flask run
 
 Run the crawler
 ---------------
@@ -44,4 +45,4 @@ start the celery worker::
 
 start the crawler::
 
-    $ python manage.py update_data
+    $ flask update_data
