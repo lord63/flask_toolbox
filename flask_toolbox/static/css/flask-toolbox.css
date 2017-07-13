@@ -73,6 +73,8 @@
 .package-info div {
   background-color: #fff;
   margin-bottom: 10px;
+  padding-top: 5px;
+  border-radius: 10px;
 }
 
 /* category page */
