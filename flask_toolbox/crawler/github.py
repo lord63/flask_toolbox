@@ -73,11 +73,11 @@ class GithubMeta(object):
 
     @property
     def issues(self):
-        return self._get_num('.counter', 0)
+        return self._get_num('.Counter', 0)
 
     @property
     def pull_requests(self):
-        return self._get_num('.counter', -1)
+        return self._get_num('.Counter', 1)
 
 
 def get_first_commit(url, commit_num):
