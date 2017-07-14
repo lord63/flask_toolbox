@@ -13,11 +13,12 @@ from flask_toolbox.crawler.github import (get_first_commit,
 
 def update_pypi_info():
     for package in Package.query.all():
-        update_package_pypi_info.delay(package)
+        update_package_pypi_info.delay(package.id)
 
 
 @celery_app.task
-def update_package_pypi_info(package):
+def update_package_pypi_info(package_id):
+    package = Package.query.get(package_id)
     pakcage_info = Crawler().get_pypi_info(package.pypi_url)
     pypi = PyPI.query.filter_by(package_id=package.id).first()
     if pypi:
@@ -45,11 +46,12 @@ def update_package_pypi_info(package):
 
 def update_github_info():
     for package in Package.query.all():
-        update_package_github_info.delay(package)
+        update_package_github_info.delay(package.id)
 
 
 @celery_app.task
-def update_package_github_info(package):
+def update_package_github_info(package_id):
+    package = Package.query.get(package_id)
     repo_info = Crawler().get_github_info(package.source_code_url)
     github = Github.query.filter_by(package_id=package.id).first()
     if github:
