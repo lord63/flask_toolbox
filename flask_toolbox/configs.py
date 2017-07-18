@@ -19,7 +19,10 @@ class DevelopmentConfig(Config):
 
 
 class ProductionConfig(Config):
+    SECRET_KEY = os.environ.get('FLASK_TOOLBOX_SECRET_KEY')
     DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(
+        os.path.join(Config.ROOT, 'flask_toolbox_prod.db'))
 
 
 class TestConfig(Config):
