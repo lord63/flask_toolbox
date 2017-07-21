@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block body %}
+  <div class="col-md-8 col-md-offset-2 package">
+    <form action="{{ url_for('home_page.search') }}" method=post>
+      <div class="form-group">
+          <input type="text" class="form-control" id="keywords" name="keywords" value="{{ keywords }}">
+      </div>
+    </form>
+    {% if packages|length == 0 %}
+      <p>No result for {{ keywords }}</p>
+    {% else %}
+      {% if packages|length == 1 %}
+        <p>There is only 1 result for {{ keywords }}</p>
+      {% else %}
+        <p>There are {{ packages|length }} results for {{ keywords }}</p>
+      {% endif %}
+      <ul class="list-group">
+      {% for package in packages %}
+        <li class="list-group-item">
+          <a href="{{ url_for('package_page.index', package=package.name) }}">{{ package.name }}</a>
+          <span class="badge packages-category">
+            <a href="{{ url_for('category_page.index', category=package.category.name) }}">
+              {{ package.category.name }}
+            </a>
+          </span>
+          <span class="packages-description">{{ package.description }}</span>
+        </li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -2,11 +2,10 @@
 {% block body %}
 <div class="search-form">
   <h1>Hopefully the missing toolbox for flask,<br>find the flask extentions you want</h1>
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Input your keyword here">
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="button">Search</button>
-    </span>
-  </div>
+  <form action="{{ url_for('home_page.search') }}" method=post>
+    <div class="form-group">
+      <input type="text" class="form-control" id="keywords" name="keywords" placeholder="Input your keyword here, press Enter to search">
+    </div>
+  </form>
 </div>
 {% endblock %}
