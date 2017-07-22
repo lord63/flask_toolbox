@@ -1,3 +1,10 @@
+2017.07.22 v0.6.0
+=================
+
+* support search, `#28 <https://github.com/lord63/flask_toolbox/issues/28>`_
+* upgrade packages, drop flask-script, `#29 <https://github.com/lord63/flask_toolbox/issues/29>`_
+* normalize the category name, `#27 <https://github.com/lord63/flask_toolbox/issues/27>`_
+
 2016.03.03 v0.5.0
 =================
 
