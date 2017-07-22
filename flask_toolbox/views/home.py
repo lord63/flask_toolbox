@@ -25,7 +25,7 @@ def intro():
 
 @home_page.route('/search', methods=['POST'])
 def search():
-    keywords = filter(lambda x: len(x) > 0, request.form['keywords'].split(' '))
+    keywords = list(filter(lambda x: len(x) > 0, request.form['keywords'].split(' ')))
     if not len(keywords):
         return redirect(url_for('home_page.index'))
     name_query = [Package.name.ilike('%{0}%'.format(word)) for word in keywords]
