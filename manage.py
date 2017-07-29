@@ -11,7 +11,6 @@ from flask.cli import FlaskGroup
 from livereload import Server
 import yaml
 
-from flask_toolbox.crawler.celery import celery_app
 from flask_toolbox.crawler.worker import update_pypi_info, update_github_info
 from flask_toolbox.app import create_app
 from flask_toolbox.configs import ProductionConfig, DevelopmentConfig

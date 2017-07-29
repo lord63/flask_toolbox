@@ -3,9 +3,10 @@
 
 from __future__ import absolute_import
 
+import time
+
 from flask_toolbox.extensions import db
 from flask_toolbox.models import PyPI, Github, Package
-from flask_toolbox.crawler.celery import celery_app
 from flask_toolbox.crawler.crawler import Crawler
 from flask_toolbox.crawler.github import (get_first_commit,
                                           get_development_activity)
@@ -13,10 +14,10 @@ from flask_toolbox.crawler.github import (get_first_commit,
 
 def update_pypi_info():
     for package in Package.query.all():
-        update_package_pypi_info.delay(package.id)
+        time.sleep(0.3)
+        update_package_pypi_info(package.id)
 
 
-@celery_app.task
 def update_package_pypi_info(package_id):
     package = Package.query.get(package_id)
     pakcage_info = Crawler().get_pypi_info(package.pypi_url)
@@ -46,10 +47,10 @@ def update_package_pypi_info(package_id):
 
 def update_github_info():
     for package in Package.query.all():
-        update_package_github_info.delay(package.id)
+        time.sleep(0.3)
+        update_package_github_info(package.id)
 
 
-@celery_app.task
 def update_package_github_info(package_id):
     package = Package.query.get(package_id)
     repo_info = Crawler().get_github_info(package.source_code_url)
