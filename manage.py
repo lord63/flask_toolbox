@@ -56,11 +56,11 @@ def init_data():
         db.session.add(new_category)
         db.session.commit()
 
-        for package in category_info['packages']:
-            package_info = data['packages'][package]
+        for package_name in category_info['packages']:
+            package_info = data['packages'][package_name]
             new_package = Package(
                 category_id=new_category.id,
-                name=package,
+                name=package_name,
                 description=package_info['description'],
                 pypi_url=package_info['pypi_url'],
                 documentation_url=package_info['documentation_url'],
@@ -69,6 +69,43 @@ def init_data():
             )
             db.session.add(new_package)
             db.session.commit()
+
+
+@app.cli.command()
+def sync_data():
+    """Sync the database with packages.yml"""
+    with open('packages.yml') as f:
+        data = yaml.load(f)
+
+    for category_name, category_info in data['categories'].items():
+        category = Category.query.filter_by(name=category_name).first()
+        if category:
+            category.description = category_info['description']
+        else:
+            category = Category(
+                name=category_name,
+                description=category_info['description']
+            )
+        db.session.add(category)
+
+        for package_name in category_info['packages']:
+            package_info = data['packages'][package_name]
+            package = Package.query.filter_by(name=package_name).first()
+            if package:
+                package_info.update({'name': package_name, 'category_id': category.id})
+                db.session.query(Package).filter(Package.id==package.id).update(package_info)
+            else:
+                package = Package(
+                    category_id=category.id,
+                    name=package_name,
+                    description=package_info['description'],
+                    pypi_url=package_info['pypi_url'],
+                    documentation_url=package_info['documentation_url'],
+                    source_code_url=package_info['source_code_url'],
+                    bug_tracker_url=package_info['bug_tracker_url'],
+                )
+            db.session.add(package)
+    db.session.commit()
 
 
 @app.cli.command()
