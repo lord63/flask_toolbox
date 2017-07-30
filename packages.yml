@@ -124,8 +124,8 @@ packages:
     description: i18n and l10n support for Flask based on Babel and pytz.
     pypi_url: https://pypi.python.org/pypi/Flask-Babel
     documentation_url: https://pythonhosted.org/Flask-Babel
-    source_code_url: https://github.com/citruspi/Flask-Babel
-    bug_tracker_url: https://github.com/citruspi/Flask-Babel/issues
+    source_code_url: https://github.com/python-babel/flask-babel
+    bug_tracker_url: https://github.com/python-babel/flask-babel/issues
   Flask-Bcrypt:
     description: Flask-Bcrypt is a Flask extension that provides bcrypt hashing utilities for your application.
     pypi_url: https://pypi.python.org/pypi/Flask-Bcrypt
@@ -242,10 +242,10 @@ packages:
     bug_tracker_url: https://github.com/lixxu/flask-paginate/issues
   Flask-PonyWhoosh:
     description: Make your Flask App and your database PonyORM searchable.
-    pypi_url: https://pypi.python.org/pypi/Flask-PonyWhoosh
-    documentation_url: Make your Flask App and your database PonyORM searchable.
-    source_code_url: https://github.com/compiteing/Flask-PonyWhoosh
-    bug_tracker_url: https://github.com/compiteing/Flask-PonyWhoosh/issues
+    pypi_url: https://pypi.python.org/pypi/flask-ponywhoosh
+    documentation_url: A search engine for flask using pony orm and whoosh.
+    source_code_url: https://github.com/jonaprieto/flask-ponywhoosh
+    bug_tracker_url: https://github.com/jonaprieto/flask-ponywhoosh/issues
   Flask-Principal:
     description: Identity management for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-Principal
