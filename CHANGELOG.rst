@@ -1,9 +1,16 @@
+2017.07.30 v0.7.0
+=================
+
+* Drop celery, `commit <https://github.com/lord63/flask_toolbox/commit/577269a84b5cafca2c11af0f70422877df44b262>`_
+* Sync data between packages.yml and database, `#31 <https://github.com/lord63/flask_toolbox/issues/31>`_
+* How to update package data, `#32 <https://github.com/lord63/flask_toolbox/issues/32>`_
+
 2017.07.22 v0.6.0
 =================
 
-* support search, `#28 <https://github.com/lord63/flask_toolbox/issues/28>`_
-* upgrade packages, drop flask-script, `#29 <https://github.com/lord63/flask_toolbox/issues/29>`_
-* normalize the category name, `#27 <https://github.com/lord63/flask_toolbox/issues/27>`_
+* Support search, `#28 <https://github.com/lord63/flask_toolbox/issues/28>`_
+* Upgrade packages, drop flask-script, `#29 <https://github.com/lord63/flask_toolbox/issues/29>`_
+* Normalize the category name, `#27 <https://github.com/lord63/flask_toolbox/issues/27>`_
 
 2016.03.03 v0.5.0
 =================
