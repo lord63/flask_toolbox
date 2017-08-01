@@ -38,7 +38,9 @@ def create_app(config):
 
     @app.context_processor
     def inject_statics():
-        return dict(package_num=Package.query.count(),
+        # FIXME: find a better way to exclude packages that don't have package_id.
+        # Duplicated code in packages.py and home.py
+        return dict(package_num=Package.query.filter(Package.category_id != None).count(),
                     category_num=Category.query.count())
 
     return app

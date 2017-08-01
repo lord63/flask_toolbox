@@ -14,7 +14,7 @@ packages_page = Blueprint('packages_page', __name__,
 
 @packages_page.route('/packages')
 def index():
-    packages = Package.query.order_by(Package.name).all()
+    packages = Package.query.order_by(Package.name).filter(Package.category_id != None).all()
     sidebar_title = "All the packages"
     package_list = [package.name for package in packages]
     print(len(package_list))

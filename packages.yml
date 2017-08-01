@@ -108,6 +108,12 @@ packages:
     documentation_url: https://authomatic.github.io/authomatic/index.html
     source_code_url: https://github.com/authomatic/authomatic
     bug_tracker_url: https://github.com/authomatic/authomatic/issues
+  Flask:
+    description: A microframework based on Werkzeug, Jinja2 and good intentions.
+    pypi_url: https://pypi.python.org/pypi/Flask
+    documentation_url: http://flask.pocoo.org/docs
+    source_code_url: https://github.com/pallets/flask
+    bug_tracker_url: https://github.com/pallets/flask/issues
   Flask-Admin:
     description: Simple and extensible administrative interface framework for Flask.
     pypi_url: https://pypi.python.org/pypi/Flask-Admin
