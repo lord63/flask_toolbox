@@ -20,26 +20,26 @@ def update_pypi_info():
 
 def update_package_pypi_info(package_id):
     package = Package.query.get(package_id)
-    pakcage_info = Crawler().get_pypi_info(package.pypi_url)
+    package_info = Crawler().get_pypi_info(package.pypi_url)
     pypi = PyPI.query.filter_by(package_id=package.id).first()
     if pypi:
-        pypi.download_num = pakcage_info.download_num
-        pypi.release_num = pakcage_info.release_num
-        pypi.current_version = pakcage_info.current_version
-        pypi.released_date = pakcage_info.released_date
-        pypi.first_release = pakcage_info.first_release
-        pypi.python_version = pakcage_info.python_version
+        pypi.download_num = package_info.download_num
+        pypi.release_num = package_info.release_num
+        pypi.current_version = package_info.current_version
+        pypi.released_date = package_info.released_date
+        pypi.first_release = package_info.first_release
+        pypi.python_version = package_info.python_version
         db.session.add(pypi)
         db.session.commit()
     else:
         new_pypi = PyPI(
             package_id=package.id,
-            download_num=pakcage_info.download_num,
-            release_num=pakcage_info.release_num,
-            current_version=pakcage_info.current_version,
-            released_date=pakcage_info.released_date,
-            first_release=pakcage_info.first_release,
-            python_version=pakcage_info.python_version
+            download_num=package_info.download_num,
+            release_num=package_info.release_num,
+            current_version=package_info.current_version,
+            released_date=package_info.released_date,
+            first_release=package_info.first_release,
+            python_version=package_info.python_version
         )
         db.session.add(new_pypi)
         db.session.commit()
