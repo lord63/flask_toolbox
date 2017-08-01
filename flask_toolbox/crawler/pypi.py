@@ -14,7 +14,7 @@ class PyPIMeta(object):
     @property
     def download_num(self):
         """The total download num of current version."""
-        return sum(release['downloads'] for release in self.response['urls'])
+        return sum(sum(package['downloads'] for package in release) for release in self.response["releases"].values())
 
     @property
     def release_num(self):
