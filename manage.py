@@ -50,6 +50,7 @@ def init_data():
     flask_info = data['packages']['Flask']
     flask = Package(
         name='Flask',
+        score=100.0,
         description=flask_info['description'],
         pypi_url=flask_info['pypi_url'],
         documentation_url=flask_info['documentation_url'],

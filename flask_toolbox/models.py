@@ -21,6 +21,7 @@ class Package(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     name = db.Column(db.String(40))
     description = db.Column(db.Text)
+    score = db.Column(db.Float)
     pypi_url = db.Column(db.String(80))
     documentation_url = db.Column(db.String(80))
     source_code_url = db.Column(db.String(80))
