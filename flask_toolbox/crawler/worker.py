@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
+from __future__ import absolute_import, division
 
 import time
 
@@ -10,6 +10,19 @@ from flask_toolbox.models import PyPI, Github, Package
 from flask_toolbox.crawler.crawler import Crawler
 from flask_toolbox.crawler.github import (get_first_commit,
                                           get_development_activity)
+
+
+def calculate_package_score():
+    flask = Package.query.filter_by(name='Flask').first()
+    for package in Package.query.filter(Package.category_id != None).all():
+        watch_score = package.github_info.watchers / flask.github_info.watchers * 0.45
+        fork_score = package.github_info.forks / flask.github_info.forks * 0.55
+        download_score = package.pypi_info.download_num / flask.pypi_info.download_num
+        score = ((watch_score + fork_score) / 2 + download_score) / 2
+        package.score = round(score * 100, 3)
+        db.session.add(package)
+    db.session.commit()
+
 
 
 def update_pypi_info():
