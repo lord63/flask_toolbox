@@ -11,7 +11,7 @@ from flask.cli import FlaskGroup
 from livereload import Server
 import yaml
 
-from flask_toolbox.crawler.worker import update_pypi_info, update_github_info
+from flask_toolbox.crawler.worker import update_pypi_info, update_github_info, calculate_package_score
 from flask_toolbox.app import create_app
 from flask_toolbox.configs import ProductionConfig, DevelopmentConfig
 from flask_toolbox.extensions import db
@@ -125,4 +125,6 @@ def update_data():
     update_pypi_info()
     print('Update Github info...')
     update_github_info()
+    print('Calculate Package score...')
+    calculate_package_score()
     print('Done.')
