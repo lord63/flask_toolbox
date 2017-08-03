@@ -11,8 +11,11 @@
   {% for package in related_packages %}
   <div class="package-info well">
     <div class="row package-header">
-      <div class="col-md-12">
+      <div class="col-md-10">
         <h4><a href="{{ url_for('package_page.index', package=package.name) }}">{{ package.name }}</a></h4>
+      </div>
+      <div class="col-md-2">
+        <h4><i class="fa fa-trophy"></i> {{ package.score }}</h4>
       </div>
       <div class="col-md-12">
         <p>{{ package.description }}</p>
