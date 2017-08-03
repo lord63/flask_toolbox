@@ -47,13 +47,24 @@ def init_data():
     with open('packages.yml') as f:
         data = yaml.load(f)
 
+    flask_info = data['packages']['Flask']
+    flask = Package(
+        name='Flask',
+        score=100.0,
+        description=flask_info['description'],
+        pypi_url=flask_info['pypi_url'],
+        documentation_url=flask_info['documentation_url'],
+        source_code_url=flask_info['source_code_url'],
+        bug_tracker_url=flask_info['bug_tracker_url'],
+    )
+    db.session.add(flask)
+
     for category_name, category_info in data['categories'].items():
         new_category = Category(
             name=category_name,
             description=category_info['description']
         )
         db.session.add(new_category)
-        db.session.commit()
 
         for package_name in category_info['packages']:
             package_info = data['packages'][package_name]
@@ -67,7 +78,7 @@ def init_data():
                 bug_tracker_url=package_info['bug_tracker_url'],
             )
             db.session.add(new_package)
-            db.session.commit()
+    db.session.commit()
 
 
 @app.cli.command()

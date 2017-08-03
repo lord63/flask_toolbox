@@ -31,5 +31,5 @@ def search():
     name_query = [Package.name.ilike('%{0}%'.format(word)) for word in keywords]
     description_query = [Package.description.ilike('%{0}%'.format(word)) for word in keywords]
     query = name_query + description_query
-    packages = Package.query.filter(or_(*query)).all()
+    packages = Package.query.filter(Package.category_id != None).filter(or_(*query)).all()
     return render_template('search.html', packages=packages, keywords=request.form['keywords'] )

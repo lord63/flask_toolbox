@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
+from __future__ import absolute_import, division
 
 import time
 
@@ -12,6 +12,19 @@ from flask_toolbox.crawler.github import (get_first_commit,
                                           get_development_activity)
 
 
+def calculate_package_score():
+    flask = Package.query.filter_by(name='Flask').first()
+    for package in Package.query.filter(Package.category_id != None).all():
+        watch_score = package.github_info.watchers / flask.github_info.watchers * 0.45
+        fork_score = package.github_info.forks / flask.github_info.forks * 0.55
+        download_score = package.pypi_info.download_num / flask.pypi_info.download_num
+        score = ((watch_score + fork_score) / 2 + download_score) / 2
+        package.score = round(score * 100, 3)
+        db.session.add(package)
+    db.session.commit()
+
+
+
 def update_pypi_info():
     for package in Package.query.all():
         time.sleep(0.3)
@@ -20,26 +33,26 @@ def update_pypi_info():
 
 def update_package_pypi_info(package_id):
     package = Package.query.get(package_id)
-    pakcage_info = Crawler().get_pypi_info(package.pypi_url)
+    package_info = Crawler().get_pypi_info(package.pypi_url)
     pypi = PyPI.query.filter_by(package_id=package.id).first()
     if pypi:
-        pypi.download_num = pakcage_info.download_num
-        pypi.release_num = pakcage_info.release_num
-        pypi.current_version = pakcage_info.current_version
-        pypi.released_date = pakcage_info.released_date
-        pypi.first_release = pakcage_info.first_release
-        pypi.python_version = pakcage_info.python_version
+        pypi.download_num = package_info.download_num
+        pypi.release_num = package_info.release_num
+        pypi.current_version = package_info.current_version
+        pypi.released_date = package_info.released_date
+        pypi.first_release = package_info.first_release
+        pypi.python_version = package_info.python_version
         db.session.add(pypi)
         db.session.commit()
     else:
         new_pypi = PyPI(
             package_id=package.id,
-            download_num=pakcage_info.download_num,
-            release_num=pakcage_info.release_num,
-            current_version=pakcage_info.current_version,
-            released_date=pakcage_info.released_date,
-            first_release=pakcage_info.first_release,
-            python_version=pakcage_info.python_version
+            download_num=package_info.download_num,
+            release_num=package_info.release_num,
+            current_version=package_info.current_version,
+            released_date=package_info.released_date,
+            first_release=package_info.first_release,
+            python_version=package_info.python_version
         )
         db.session.add(new_pypi)
         db.session.commit()

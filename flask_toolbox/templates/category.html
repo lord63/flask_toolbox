@@ -4,15 +4,20 @@
 {% block body %}
 <div class="well">
   <span class="category-name">{{ category.name }}</span>
-  <span class="category-stats">Stats</span>
-  <span class="category-description">{{ category.description }}</span>
+  {% if category.description %}
+    <span class="category-description">{{ category.description }}</span>
+  {% endif %}
+  <span class="category-package-chart text-center"><canvas id="myChart" width="1100" height="400"></canvas></span>
 </div>
 <div class="col-md-9 package">
   {% for package in related_packages %}
   <div class="package-info well">
     <div class="row package-header">
-      <div class="col-md-12">
+      <div class="col-md-10">
         <h4><a href="{{ url_for('package_page.index', package=package.name) }}">{{ package.name }}</a></h4>
+      </div>
+      <div class="col-md-2">
+        <h4><i class="fa fa-trophy"></i> {{ package.score }}</h4>
       </div>
       <div class="col-md-12">
         <p>{{ package.description }}</p>
@@ -23,4 +28,54 @@
   {% endfor %}
 </div>
 {{ sidebar.sidebar(sidebar_title, packages_list, 'package')}}
+{% endblock %}
+
+{% block script %}
+  <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
+  <script>
+    // From: http://www.patricksoftwareblog.com/creating-charts-with-chart-js-in-a-flask-application/
+    // Global parameters:
+    // do not resize the chart canvas when its container does (keep at 600x400px)
+    Chart.defaults.global.responsive = false;
+
+    // define the chart data
+    var chartData = {
+      labels : [{% for package in related_packages %}
+                 "{{package.name}}",
+                {% endfor %}],
+      datasets : [{
+        label: 'package score',
+        fill: true,
+        lineTension: 0.1,
+        backgroundColor: "rgba(75,192,192,0.4)",
+        borderColor: "rgba(75,192,192,1)",
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "rgba(75,192,192,1)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+        pointHoverBorderColor: "rgba(220,220,220,1)",
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data : [{% for package in related_packages %}
+                  {{package.score}},
+                {% endfor %}],
+        spanGaps: false
+      }]
+    }
+
+    // get chart canvas
+    var ctx = document.getElementById("myChart").getContext("2d");
+
+    // create the chart using the chart canvas
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: chartData,
+    });
+  </script>
 {% endblock %}

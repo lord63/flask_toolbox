@@ -42,7 +42,7 @@ class GithubMeta(object):
 
     @property
     def watchers(self):
-        return self._get_num('.social-count', 0)
+        return self._get_num('.social-count', 1)
 
     @property
     def forks(self):
