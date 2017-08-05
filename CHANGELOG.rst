@@ -1,7 +1,13 @@
+2017.08.05 v0.8.0
+=================
+
+* design a rank rule, `#33 <https://github.com/lord63/flask_toolbox/issues/33>`_
+* finish the intro page, `2f8e6469 <https://github.com/lord63/flask_toolbox/commit/2f8e6469fa4144ba471488cbd374e0e84a8f9568>`_
+
 2017.07.30 v0.7.0
 =================
 
-* Drop celery, `commit <https://github.com/lord63/flask_toolbox/commit/577269a84b5cafca2c11af0f70422877df44b262>`_
+* Drop celery, `577269a8 <https://github.com/lord63/flask_toolbox/commit/577269a84b5cafca2c11af0f70422877df44b262>`_
 * Sync data between packages.yml and database, `#31 <https://github.com/lord63/flask_toolbox/issues/31>`_
 * How to update package data, `#32 <https://github.com/lord63/flask_toolbox/issues/32>`_
 
