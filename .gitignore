@@ -2,8 +2,7 @@
 ####################
 
 # virtualenv folder
-venv/
-venv33/
+venv*/
 
 # pycharm
 .idea/
@@ -14,6 +13,9 @@ tmp/
 # database
 *.db
 *.rdb
+
+.vagrant/
+Vagrantfile
 
 # Belows are from https://github.com/github/gitignore/blob/master/Python.gitignore
 ####################
@@ -72,3 +74,4 @@ docs/_build/
 # PyBuilder
 target/
 
+.DS_Store

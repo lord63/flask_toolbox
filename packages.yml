@@ -67,7 +67,7 @@ categories:
     packages:
       - Flask-Marshmallow
       - Flask-Mako
-  Full-text-Searching:
+  Full-Text-Searching:
     description:
     packages:
       - Flask-PonyWhoosh
