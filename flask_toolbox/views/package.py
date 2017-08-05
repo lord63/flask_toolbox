@@ -16,7 +16,7 @@ package_page = Blueprint('package_page', __name__,
 def index(package):
     the_package = Package.query.filter_by(name=package).first_or_404()
     category = the_package.category
-    related_packages = [item.name for item in category.packages.all()
+    related_packages = [item.name for item in category.packages.order_by(Package.score.desc()).all()
                         if item.name != package]
     sidebar_title = (
         "Other related packages in the {0} category".format(category.name)
