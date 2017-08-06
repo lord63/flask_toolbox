@@ -5,9 +5,11 @@
 #    pip-compile --output-file requirements/requirements.txt requirements/requirements.in
 #
 alembic==0.9.3            # via flask-migrate
+blinker==1.4              # via raven
 certifi==2017.4.17        # via requests
 chardet==3.0.4            # via requests
 click==6.7                # via flask
+contextlib2==0.5.5        # via raven
 cssselect==1.0.1
 flask-admin==1.5.0
 flask-migrate==2.0.4
@@ -25,6 +27,7 @@ markupsafe==1.0           # via jinja2, mako
 python-dateutil==2.6.1    # via alembic
 python-editor==1.0.3      # via alembic
 pyyaml==3.12
+raven[flask]==6.1.0
 requests==2.18.1
 six==1.10.0               # via livereload, python-dateutil
 sqlalchemy==1.1.11        # via alembic, flask-sqlalchemy

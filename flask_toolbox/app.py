@@ -6,7 +6,7 @@ from __future__ import absolute_import
 from flask import Flask
 from werkzeug.utils import import_string
 
-from flask_toolbox.extensions import db, admin
+from flask_toolbox.extensions import db, admin, sentry
 from flask_toolbox.models import Category, Package, PyPI, Github
 from flask_toolbox.admin import (CategoryView, PackageView, PyPIView,
                                      GithubView)
@@ -32,6 +32,7 @@ def create_app(config):
 
     db.init_app(app)
     admin.init_app(app)
+    sentry.init_app(app)
 
     for blueprint in blueprints:
         app.register_blueprint(import_string(blueprint))

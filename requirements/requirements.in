@@ -8,3 +8,4 @@ livereload
 lxml
 pyyaml
 requests
+raven[flask]
