@@ -3,7 +3,7 @@
 
 from __future__ import absolute_import
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, Markup, url_for
 
 from flask_toolbox.models import Package
 
@@ -19,7 +19,10 @@ def index(package):
     related_packages = [item.name for item in category.packages.order_by(Package.score.desc()).all()
                         if item.name != package]
     sidebar_title = (
-        "Other related packages in the {0} category".format(category.name)
+        Markup("Other related packages in the <a href='{0}'>{1}</a> category".format(
+             url_for('category_page.index', category=category.name),
+             category.name
+        ))
     )
     return render_template(
         'package.html', package=the_package,
