@@ -1,8 +1,18 @@
+2017.08.12 v0.9.0
+=================
+
+* Sentry integration, `907009b <https://github.com/lord63/flask_toolbox/commit/907009b91ef94918f4b53cf5101b960ff97b598c>`_
+* Go to category in package page, `20b6419 <https://github.com/lord63/flask_toolbox/commit/20b641926a9ff5b3bd0a8842f44274bcde898bd9>`
+* Add readme and contributing guide
+* Https website
+* A simple status page powered by apex ping
+* Add admin interface auth with nginx http auth
+
 2017.08.05 v0.8.0
 =================
 
-* design a rank rule, `#33 <https://github.com/lord63/flask_toolbox/issues/33>`_
-* finish the intro page, `2f8e6469 <https://github.com/lord63/flask_toolbox/commit/2f8e6469fa4144ba471488cbd374e0e84a8f9568>`_
+* Design a rank rule, `#33 <https://github.com/lord63/flask_toolbox/issues/33>`_
+* Finish the intro page, `2f8e6469 <https://github.com/lord63/flask_toolbox/commit/2f8e6469fa4144ba471488cbd374e0e84a8f9568>`_
 
 2017.07.30 v0.7.0
 =================
