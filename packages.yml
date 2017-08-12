@@ -1,19 +1,19 @@
 # Category information style guide:
 #
-# Category Name(titlecased, join with one dash):
-#   description: optional, short description of the category
-#   packages:
-#     - Package-Name
-#     - Package-Name
+#   Category-Name(e.g. Data-Validation, titlecased, join with a dash):
+#     description: Short description of the category, end with a dot.
+#     packages:
+#       - Package-Name-One
+#       - Package-Name-Two
 #
 # Package information style guide:
 #
-# name(e.g. Flask-Admin, titlecased, join with a dash):
-#   description: package description, end with a dot
-#   pypi_url: the pypi url for the package
-#   documentation_url: the documentation url for the package
-#   source_code_url: the source_code url for the package
-#   bug_tracker_url: the bug_tracker url for the package
+#   Package-Name(e.g. Flask-Admin, titlecased, join with a dash):
+#     description: Package description, end with a dot.
+#     pypi_url: the pypi url for the package
+#     documentation_url: the documentation url for the package, if it has
+#     source_code_url: the source_code url for the package
+#     bug_tracker_url: the bug_tracker url for the package
 #
 # One more note: packages and categories are sorted by alphabet.
 
