@@ -4,7 +4,11 @@
 {% block body %}
 <div class="well">
   <span class="package-name">{{ package.name }}</span>
-  <span class="package-stats"><i class="fa fa-trophy"></i> {{ package.score }}</span>
+  <span class="package-stats">
+    <a href={{ url_for("package_page.score", package=package.name) }}>
+      <i class="fa fa-trophy"></i> {{ package.score }}
+    </a>
+  </span>
   <span class="package-description">{{ package.description }}</span>
 </div>
 <div class="col-md-9 package">

@@ -122,3 +122,21 @@
 .search-form h1 {
   margin-bottom: 30px;
 }
+
+/* score page */
+.score-explain {
+  text-align: center;
+}
+
+.score-explain th {
+  text-align: center;
+}
+
+.calculation .table {
+  margin-bottom: 0px;
+}
+
+.calculation .table>tbody>tr:first-child>td {
+  border-top: 0px;
+  vertical-align: middle;
+}

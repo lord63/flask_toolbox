@@ -17,7 +17,11 @@
         <h4><a href="{{ url_for('package_page.show', package=package.name) }}">{{ package.name }}</a></h4>
       </div>
       <div class="col-md-2">
-        <h4><i class="fa fa-trophy"></i> {{ package.score }}</h4>
+        <h4>
+          <a href={{ url_for("package_page.score", package=package.name) }}>
+            <i class="fa fa-trophy"></i> {{ package.score }}
+          </a>
+        </h4>
       </div>
       <div class="col-md-12">
         <p>{{ package.description }}</p>

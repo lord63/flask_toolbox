@@ -1,0 +1,92 @@
+{% import "macros/sidebar.html" as sidebar %}
+{% extends 'base.html' %}
+{% block body %}
+<div class="col-md-9 package">
+  <table class="table table-striped score-explain">
+    <thead>
+      <th colspan="2">
+        <h3>The popularity rating of <a href={{ url_for('package_page.show', package=package.name) }}>{{package.name}}</a> explained
+        </h3>
+      </th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Github Repository</td>
+        <td>PyPI</td>
+      </tr>
+      <tr>
+        <td>
+          The base rated repository is <a href="{{flask.source_code_url}}">Flask</a> with {{flask.github_info.watchers}} stars
+          and {{flask.github_info.forks}} forks, resulting in a Github score of 100.00
+        </td>
+        <td>
+          The base rated PyPI package is <a href="{{flask.pypi_url}}">Flask</a> with {{flask.pypi_info.download_num}} total downloads
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">These are the references for the score, marking the popularity of 100%</td>
+      </tr>
+
+      <tr>
+        <td>
+          Now, the repository for {{package.name}} has got {{package.github_info.watchers}} watchers and {{package.github_info.forks}} forks
+        </td>
+        <td>
+          Now, the package {{package.name}} has got {{package.pypi_info.download_num}} total downloads
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Therefore, the relative popularity percentage can be calculated for {{package.name}}
+        </td>
+      </tr>
+
+      <tr class="calculation">
+        <td>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                  {{package.github_info.watchers}} / {{flask.github_info.watchers}} * 100 * 45% +
+                  {{package.github_info.forks}} / {{flask.github_info.forks}} * 100 * 55%
+                </td>
+                <td rowspan="2">
+                  = {{ ((package.github_info.watchers / flask.github_info.watchers * 45 + package.github_info.forks / flask.github_info.forks * 55) / 2) | round(3)  }}
+                </td>
+              </tr>
+              <tr>
+                <td>2 * 100</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+
+        <td>
+          <table class="table calculation">
+            <tbody>
+              <tr>
+                <td>
+                  {{package.pypi_info.download_num}} / {{flask.pypi_info.download_num}} * 100
+                </td>
+                <td rowspan="2">
+                  = {{ (package.pypi_info.download_num / flask.pypi_info.download_num * 100) | round(3) }}
+                </td>
+              </tr>
+              <tr>
+                <td>100</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          The average of those two values results in the score: {{package.score}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{{ sidebar.sidebar(sidebar_title, related_packages, 'package')}}
+{% endblock %}
