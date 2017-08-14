@@ -17,9 +17,9 @@
       <ul class="list-group">
       {% for package in packages %}
         <li class="list-group-item">
-          <a href="{{ url_for('package_page.index', package=package.name) }}">{{ package.name }}</a>
+          <a href="{{ url_for('package_page.show', package=package.name) }}">{{ package.name }}</a>
           <span class="badge packages-category">
-            <a href="{{ url_for('category_page.index', category=package.category.name) }}">
+            <a href="{{ url_for('category_page.show', category=package.category.name) }}">
               {{ package.category.name }}
             </a>
           </span>

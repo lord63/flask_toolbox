@@ -22,7 +22,7 @@
         <div class="list-group">
         {% for package in category.packages %}
           <li class="list-group-item">
-            <a href="{{ url_for('package_page.index', package=package.name) }}">{{ package.name }}</a>
+            <a href="{{ url_for('package_page.show', package=package.name) }}">{{ package.name }}</a>
           </li>
         {% endfor %}
         </div>

@@ -8,9 +8,9 @@
       {% for item in item_list %}
         <li class="list-group-item">
           {% if list_type == 'package' %}
-            <a href="{{ url_for('package_page.index', package=item)}}">{{ item }}</a>
+            <a href="{{ url_for('package_page.show', package=item)}}">{{ item }}</a>
           {% else %}
-            <a href="{{ url_for('category_page.index', category=item)}}">{{ item }}</a>
+            <a href="{{ url_for('category_page.show', category=item)}}">{{ item }}</a>
           {% endif %}
         </li>
       {% endfor %}

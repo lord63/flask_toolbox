@@ -14,9 +14,7 @@ from flask_toolbox.admin import (CategoryView, PackageView, PyPIView,
 blueprints = [
     'flask_toolbox.views.home:home_page',
     'flask_toolbox.views.category:category_page',
-    'flask_toolbox.views.categories:categories_page',
     'flask_toolbox.views.package:package_page',
-    'flask_toolbox.views.packages:packages_page',
 ]
 
 
