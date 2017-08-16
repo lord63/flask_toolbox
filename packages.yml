@@ -27,7 +27,6 @@ categories:
     description:
     packages:
       - Authomatic
-      - Flask-Bouncer
       - Flask-Dance
       - Flask-Googlefed
       - Flask-HTTPAuth
@@ -44,12 +43,22 @@ categories:
   Authorization:
     description:
     packages:
+      - Flask-Bouncer
       - Flask-Pundit
   Database-ORM-ODM:
     description:
     packages:
+      - Flask-And-Redis
+      - Flask-CouchDBKit
+      - Flask-MongoAlchemy
       - Flask-MongoEngine
+      - Flask-MongoKit
+      - Flask-Orator
+      - Flask-OrientDB
+      - Flask-PyMongo
+      - Flask-Redis
       - Flask-SQLAlchemy
+      - Flask-Z3950
   Data-Validation:
     description:
     packages:
@@ -157,6 +166,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/citruspi/Flask-Analytics
     bug_tracker_url: https://github.com/citruspi/Flask-Analytics/issues
+  Flask-And-Redis:
+    description: Simple as dead support of Redis database for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-And-Redis
+    documentation_url: http://flask-and-redis.readthedocs.io
+    source_code_url: https://github.com/playpauseandstop/Flask-And-Redis
+    bug_tracker_url: https://github.com/playpauseandstop/Flask-And-Redis/issues
   Flask-Babel:
     description: i18n and l10n support for Flask based on Babel and pytz.
     pypi_url: https://pypi.python.org/pypi/Flask-Babel
@@ -181,6 +196,12 @@ packages:
     documentation_url: http://flask-cors.readthedocs.org/en/latest
     source_code_url: https://github.com/corydolphin/flask-cors
     bug_tracker_url: https://github.com/corydolphin/flask-cors/issues
+  Flask-CouchDBKit:
+    description: Flask extension that provides integration with CouchDBKit.
+    pypi_url: https://pypi.python.org/pypi/Flask-CouchDBKit
+    documentation_url:
+    source_code_url: https://github.com/sirn/flask-couchdbkit
+    bug_tracker_url: https://github.com/sirn/flask-couchdbkit/issues
   Flask-Dance:
     description: Doing the OAuth dance with style using Flask, requests, and oauthlib.
     pypi_url: https://pypi.python.org/pypi/Flask-Dance
@@ -247,12 +268,24 @@ packages:
     documentation_url:
     source_code_url: https://github.com/miguelgrinberg/Flask-Moment
     bug_tracker_url: https://github.com/miguelgrinberg/Flask-Moment/issues
+  Flask-MongoAlchemy:
+    description: Flask support for MongoDB using MongoAlchemy.
+    pypi_url: https://pypi.python.org/pypi/Flask-MongoAlchemy
+    documentation_url: https://pythonhosted.org/Flask-MongoAlchemy
+    source_code_url: https://github.com/cobrateam/flask-mongoalchemy
+    bug_tracker_url: https://github.com/cobrateam/flask-mongoalchemy/issues
   Flask-MongoEngine:
     description: MongoEngine flask extension with WTF model forms support.
     pypi_url: https://pypi.python.org/pypi/flask-mongoengine
     documentation_url: https://flask-mongoengine.readthedocs.org
     source_code_url: https://github.com/MongoEngine/flask-mongoengine
     bug_tracker_url: https://github.com/MongoEngine/flask-mongoengine/issues
+  Flask-MongoKit:
+    description: Flask-MongoKit simplifies the use of MongoKit (a powerful MongoDB ORM for Python) within Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-MongoKit
+    documentation_url: https://pythonhosted.org/Flask-MongoKit
+    source_code_url: https://github.com/jarus/flask-mongokit
+    bug_tracker_url: https://github.com/jarus/flask-mongokit/issues
   Flask-MongoREST:
     description: Restful API framework wrapped around MongoEngine.
     pypi_url: https://pypi.python.org/pypi/Flask-MongoRest
@@ -277,6 +310,18 @@ packages:
     documentation_url: http://pythonhosted.org/Flask-OpenID/
     source_code_url: https://github.com/mitsuhiko/flask-openid
     bug_tracker_url: https://github.com/mitsuhiko/flask-openid/issues
+  Flask-Orator:
+    description: Adds Orator support to your Flask application.
+    pypi_url: https://pypi.python.org/pypi/flask-orator
+    documentation_url: http://flask-orator.readthedocs.org
+    source_code_url: https://github.com/sdispater/flask-orator
+    bug_tracker_url: https://github.com/sdispater/flask-orator/issues
+  Flask-OrientDB:
+    description: Flask-OrientDB simplifies using OrientDB with Flask by providing an interface between Flask and Pyorient, a Python driver for OrientDB.
+    pypi_url: https://pypi.python.org/pypi/flask-orientdb
+    documentation_url:
+    source_code_url: https://github.com/calthoff/flask-orientdb
+    bug_tracker_url: https://github.com/calthoff/flask-orientdb/issues
   Flask-Paginate:
     description: Pagination support for flask.
     pypi_url: https://pypi.python.org/pypi/Flask-paginate
@@ -313,6 +358,18 @@ packages:
     documentation_url:
     source_code_url: https://github.com/anurag90x/flask-pundit
     bug_tracker_url: https://github.com/anurag90x/flask-pundit/issues
+  Flask-PyMongo:
+    description: PyMongo support for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/pymongo
+    documentation_url: http://flask-pymongo.readthedocs.org/
+    source_code_url: https://github.com/dcrosta/flask-pymongo
+    bug_tracker_url: https://github.com/dcrosta/flask-pymongo/issues
+  Flask-Redis:
+    description: A Flask extension for using Redis.
+    pypi_url: https://pypi.python.org/pypi/Flask-Redis
+    documentation_url:
+    source_code_url: https://github.com/underyx/Flask-Redis
+    bug_tracker_url: https://github.com/underyx/Flask-Redis/issues
   Flask-RESTful:
     description: Simple framework for creating REST APIs.
     pypi_url: https://pypi.python.org/pypi/Flask-RESTful
@@ -335,8 +392,8 @@ packages:
     description: Fully featured framework for fast, easy and documented API development with Flask.
     pypi_url: https://pypi.python.org/pypi/flask-restplus
     documentation_url: http://flask-restplus.readthedocs.org
-    source_code_url: https://pypi.python.org/pypi/Flask-Restless
-    bug_tracker_url: https://pypi.python.org/pypi/Flask-Restless/issues
+    source_code_url: https://github.com/noirbizarre/flask-restplus/Flask-Restless
+    bug_tracker_url: https://github.com/noirbizarre/flask-restplus/issues
   Flask-RQ:
     description: RQ (Redis Queue) integration for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-RQ
@@ -415,6 +472,12 @@ packages:
     documentation_url: https://flask-wtf.readthedocs.org
     source_code_url: https://github.com/lepture/flask-wtf
     bug_tracker_url: https://github.com/lepture/flask-wtf/issues
+  Flask-Z3950:
+    description: Z39.50 integration for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-Z3950
+    documentation_url: https://pythonhosted.org/Flask-Z3950
+    source_code_url: https://github.com/alexandermendes/Flask-Z3950
+    bug_tracker_url: https://github.com/alexandermendes/Flask-Z3950/issues
   GitHub-Flask:
     description: Flask extension for authenticating users with GitHub and making requests to the API.
     pypi_url: https://pypi.python.org/pypi/GitHub-Flask
