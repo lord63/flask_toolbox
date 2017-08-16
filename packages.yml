@@ -62,6 +62,19 @@ categories:
     description:
     packages:
       - Flask-Mail
+  Framework:
+    description:
+    packages:
+      - Connexion
+      - Eve
+      - Flasgger
+      - Flask-MongoREST
+      - Flask-Peewee
+      - Flask-Potion
+      - Flask-RESTful
+      - Flask-RESTful-Swagger
+      - Flask-RESTless
+      - Flask-RESTplus
   Frontend:
     description:
     packages:
@@ -108,6 +121,24 @@ packages:
     documentation_url: https://authomatic.github.io/authomatic/index.html
     source_code_url: https://github.com/authomatic/authomatic
     bug_tracker_url: https://github.com/authomatic/authomatic/issues
+  Connexion:
+    description: Swagger/OpenAPI First framework for Python on top of Flask with automatic endpoint validation & OAuth2 support.
+    pypi_url: https://pypi.python.org/pypi/connexion
+    documentation_url: https://connexion.readthedocs.io/en/latest/
+    source_code_url: https://github.com/zalando/connexion
+    bug_tracker_url: https://github.com/zalando/connexion/issues
+  Eve:
+    description: REST API framework designed for human beings.
+    pypi_url: https://pypi.python.org/pypi/eve
+    documentation_url: http://python-eve.org/
+    source_code_url: https://github.com/pyeve/eve
+    bug_tracker_url: https://github.com/pyeve/eve/issues
+  Flasgger:
+    description: Easy Swagger UI for your Flask API.
+    pypi_url: https://pypi.python.org/pypi/flasgger
+    documentation_url:
+    source_code_url: https://github.com/rochacbruno/flasgger
+    bug_tracker_url: https://github.com/rochacbruno/flasgger/issues
   Flask:
     description: A microframework based on Werkzeug, Jinja2 and good intentions.
     pypi_url: https://pypi.python.org/pypi/Flask
@@ -222,6 +253,12 @@ packages:
     documentation_url: https://flask-mongoengine.readthedocs.org
     source_code_url: https://github.com/MongoEngine/flask-mongoengine
     bug_tracker_url: https://github.com/MongoEngine/flask-mongoengine/issues
+  Flask-MongoREST:
+    description: Restful API framework wrapped around MongoEngine.
+    pypi_url: https://pypi.python.org/pypi/Flask-MongoRest
+    documentation_url:
+    source_code_url: https://github.com/closeio/flask-mongorest
+    bug_tracker_url: https://github.com/closeio/flask-mongorest/issues
   Flask-OAuth:
     description: OAuth Support for Flask.
     pypi_url: https://pypi.python.org/pypi/Flask-OAuth
@@ -246,12 +283,24 @@ packages:
     documentation_url: http://pythonhosted.org/Flask-paginate
     source_code_url: https://github.com/lixxu/flask-paginate
     bug_tracker_url: https://github.com/lixxu/flask-paginate/issues
+  Flask-Peewee:
+    description: Flask integration for peewee, including admin, authentication, rest api and more.
+    pypi_url: https://pypi.python.org/pypi/flask-peewee
+    documentation_url: http://flask-peewee.readthedocs.org
+    source_code_url: https://github.com/coleifer/flask-peewee
+    bug_tracker_url: https://github.com/coleifer/flask-peewee/issues
   Flask-PonyWhoosh:
     description: Make your Flask App and your database PonyORM searchable.
     pypi_url: https://pypi.python.org/pypi/flask-ponywhoosh
     documentation_url: A search engine for flask using pony orm and whoosh.
     source_code_url: https://github.com/jonaprieto/flask-ponywhoosh
     bug_tracker_url: https://github.com/jonaprieto/flask-ponywhoosh/issues
+  Flask-Potion:
+    description: Flask-Potion is a RESTful API framework for Flask and SQLAlchemy, Peewee or MongoEngine.
+    pypi_url: https://pypi.python.org/pypi/Flask-Potion
+    documentation_url: http://potion.readthedocs.io
+    source_code_url: https://github.com/biosustain/potion
+    bug_tracker_url: https://github.com/biosustain/potion/issues
   Flask-Principal:
     description: Identity management for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-Principal
@@ -264,6 +313,30 @@ packages:
     documentation_url:
     source_code_url: https://github.com/anurag90x/flask-pundit
     bug_tracker_url: https://github.com/anurag90x/flask-pundit/issues
+  Flask-RESTful:
+    description: Simple framework for creating REST APIs.
+    pypi_url: https://pypi.python.org/pypi/Flask-RESTful
+    documentation_url: http://flask-restful.readthedocs.io
+    source_code_url: https://github.com/flask-restful/flask-restful
+    bug_tracker_url: https://github.com/flask-restful/flask-restful/issues
+  Flask-RESTful-Swagger:
+    description: A Swagger spec extractor for flask-restful.
+    pypi_url: https://pypi.python.org/pypi/flask-restful-swagger
+    documentation_url:
+    source_code_url: https://github.com/rantav/flask-restful-swagger
+    bug_tracker_url: https://github.com/rantav/flask-restful-swagger/issues
+  Flask-RESTless:
+    description: A Flask extension for creating simple ReSTful JSON APIs from SQLAlchemy models.
+    pypi_url: https://pypi.python.org/pypi/Flask-Restless
+    documentation_url: https://flask-restless.readthedocs.io
+    source_code_url: https://github.com/jfinkels/flask-restless
+    bug_tracker_url: https://github.com/jfinkels/flask-restless/issues
+  Flask-RESTplus:
+    description: Fully featured framework for fast, easy and documented API development with Flask.
+    pypi_url: https://pypi.python.org/pypi/flask-restplus
+    documentation_url: http://flask-restplus.readthedocs.org
+    source_code_url: https://pypi.python.org/pypi/Flask-Restless
+    bug_tracker_url: https://pypi.python.org/pypi/Flask-Restless/issues
   Flask-RQ:
     description: RQ (Redis Queue) integration for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-RQ
