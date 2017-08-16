@@ -76,6 +76,7 @@ def init_data():
                 documentation_url=package_info['documentation_url'],
                 source_code_url=package_info['source_code_url'],
                 bug_tracker_url=package_info['bug_tracker_url'],
+                score=0.0,
             )
             db.session.add(new_package)
     db.session.commit()
@@ -113,6 +114,7 @@ def sync_data():
                     documentation_url=package_info['documentation_url'],
                     source_code_url=package_info['source_code_url'],
                     bug_tracker_url=package_info['bug_tracker_url'],
+                    score=0.0,
                 )
             db.session.add(package)
     db.session.commit()
