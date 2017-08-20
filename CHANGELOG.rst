@@ -1,3 +1,11 @@
+2017.08.20 v0.10.0
+==================
+
+* We have 80 packages now
+* Support backup the dababase, `#7 <https://github.com/lord63/flask_toolbox/issues/7>`_
+* Explain the package score, `ebd859 <https://github.com/lord63/flask_toolbox/commit/ebd859cc7885431ca44c152a52507616f2ca7e3e>`_
+* Reorganize the views
+
 2017.08.12 v0.9.0
 =================
 
