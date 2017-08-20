@@ -100,8 +100,12 @@ categories:
   Frontend:
     description:
     packages:
-      - Flask-Marshmallow
+      - Flask-Genshi
       - Flask-Mako
+      - Flask-Markdown
+      - Flask-Marshmallow
+      - Flask-MustacheJS
+      - Flask-Sijax
   Full-Text-Searching:
     description:
     packages:
@@ -117,10 +121,17 @@ categories:
     description:
     packages:
       - Flask-Analytics
+      - Flask-Stathat
+      - Flask-Track-Usage
   Other-SDK:
     description:
     packages:
+      - Flask-Dropbox
       - Flask-GoogleMaps
+      - Flask-Gravatar
+      - Flask-Pusher
+      - FlaskPusher
+      - Flask-WeasyPrint
   Queue:
     description:
     packages:
@@ -247,6 +258,12 @@ packages:
     documentation_url: http://flask-debugtoolbar.rtfd.org
     source_code_url: https://github.com/mgood/flask-debugtoolbar
     bug_tracker_url: https://github.com/mgood/flask-debugtoolbar/issues
+  Flask-Dropbox:
+    description: Dropbox Python SDK support for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-Dropbox
+    documentation_url:
+    source_code_url: https://github.com/playpauseandstop/Flask-Dropbox
+    bug_tracker_url: https://github.com/playpauseandstop/Flask-Dropbox/issues
   Flask-Googlefed:
     description: Google Federated Logins for Flask.
     pypi_url: http://pypi.python.org/pypi/Flask-GoogleFed
@@ -259,6 +276,18 @@ packages:
     documentation_url:
     source_code_url: https://github.com/rochacbruno/Flask-GoogleMaps
     bug_tracker_url: https://github.com/rochacbruno/Flask-GoogleMaps/issues
+  Flask-Gravatar:
+    description: Small and simple gravatar usage in Flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-Gravatar
+    documentation_url:
+    source_code_url: https://github.com/zzzsochi/Flask-Gravatar
+    bug_tracker_url: https://github.com/zzzsochi/Flask-Gravatar/issues
+  Flask-Genshi:
+    description: Genshi templating for Flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-Genshi
+    documentation_url: http://packages.python.org/Flask-Genshi/
+    source_code_url: https://github.com/dag/flask-genshi
+    bug_tracker_url: https://github.com/dag/flask-genshi/issues
   Flask-Heroku-Cacheify:
     description: Automatic Flask cache configuration on Heroku.
     pypi_url: https://pypi.python.org/pypi/Flask-Heroku-Cacheify
@@ -301,6 +330,12 @@ packages:
     documentation_url: http://packages.python.org/Flask-Mako
     source_code_url: https://github.com/benselme/flask-mako
     bug_tracker_url: https://github.com/benselme/flask-mako/issues
+  Flask-Markdown:
+    description: Markdown jinja2 extension for Flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-Markdown
+    documentation_url: http://packages.python.org/Flask-Markdown
+    source_code_url: https://github.com/dcolish/flask-markdown
+    bug_tracker_url: https://github.com/dcolish/flask-markdown/issues
   Flask-Marshmallow:
     description: Flask + marshmallow for beautiful APIs.
     pypi_url: https://pypi.python.org/pypi/flask-marshmallow
@@ -343,6 +378,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/closeio/flask-mongorest
     bug_tracker_url: https://github.com/closeio/flask-mongorest/issues
+  Flask-MustacheJS:
+    description: Mustache template integration with Flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-MustacheJS
+    documentation_url:
+    source_code_url: https://github.com/bradwright/flask-mustachejs
+    bug_tracker_url: https://github.com/bradwright/flask-mustachejs/issues
   Flask-OAuth:
     description: OAuth Support for Flask.
     pypi_url: https://pypi.python.org/pypi/Flask-OAuth
@@ -409,6 +450,18 @@ packages:
     documentation_url:
     source_code_url: https://github.com/anurag90x/flask-pundit
     bug_tracker_url: https://github.com/anurag90x/flask-pundit/issues
+  Flask-Pusher:
+    description: Flask extension for Pusher.
+    pypi_url: https://pypi.python.org/pypi/Flask-Pusher
+    documentation_url:
+    source_code_url: https://github.com/iurisilvio/Flask-Pusher
+    bug_tracker_url: https://github.com/iurisilvio/Flask-Pusher/issues
+  FlaskPusher:
+    description: Pusher support for your Flask application.
+    pypi_url: https://pypi.python.org/pypi/FlaskPusher
+    documentation_url: http://flask-pusher.readthedocs.org/en/latest/
+    source_code_url: https://github.com/Bekt/flask-pusher
+    bug_tracker_url: https://github.com/Bekt/flask-pusher/issues
   Flask-PyMongo:
     description: PyMongo support for Flask applications.
     pypi_url: https://pypi.python.org/pypi/pymongo
@@ -475,6 +528,12 @@ packages:
     documentation_url: https://pythonhosted.org/Flask-Session
     source_code_url: https://github.com/fengsp/flask-session
     bug_tracker_url: https://github.com/fengsp/flask-session/issues
+  Flask-Sijax:
+    description: An extension for the Flask microframework that adds Sijax support.
+    pypi_url: https://pypi.python.org/pypi/Flask-Sijax
+    documentation_url: http://packages.python.org/Flask-Sijax
+    source_code_url: https://github.com/spantaleev/flask-sijax
+    bug_tracker_url: https://github.com/spantaleev/flask-sijax/issues
   Flask-Social:
     description: OAuth Provider Integration for Flask-Security.
     pypi_url: https://pypi.python.org/pypi/Flask-Social
@@ -499,12 +558,24 @@ packages:
     documentation_url: http://flask-sqlalchemy.pocoo.org
     source_code_url: https://github.com/mitsuhiko/flask-sqlalchemy
     bug_tracker_url: https://github.com/mitsuhiko/flask-sqlalchemy/issues
+  Flask-Stathat:
+    description: StatHat extension for Flask.
+    pypi_url: http://pypi.python.org/pypi/Flask-StatHat
+    documentation_url:
+    source_code_url: https://github.com/marksteve/flask-stathat
+    bug_tracker_url: https://github.com/marksteve/flask-stathat/issues
   Flask-SuperAdmin:
     description: The best admin interface framework for Flask. With scaffolding for MongoEngine, Django and SQLAlchemy.
     pypi_url: https://pypi.python.org/pypi/Flask-SuperAdmin
     documentation_url: http://flask-superadmin.readthedocs.org
     source_code_url: https://github.com/SyrusAkbary/Flask-SuperAdmin
     bug_tracker_url: https://github.com/SyrusAkbary/Flask-SuperAdmin/issues
+  Flask-Track-Usage:
+    description: Basic metrics tracking for the Flask framework.
+    pypi_url: https://pypi.python.org/pypi/Flask-Track-Usage
+    documentation_url: http://pythonhosted.org/Flask-Track-Usage
+    source_code_url: https://github.com/ashcrow/flask-track-usage
+    bug_tracker_url: https://github.com/ashcrow/flask-track-usage/issues
   Flask-User:
     description: 'Customizable User Account Management for Flask: Register, Confirm email, Login, Change username, Change password, Forgot password and more.'
     pypi_url: https://pypi.python.org/pypi/Flask-User
@@ -517,6 +588,12 @@ packages:
     documentation_url: http://flask-validator.readthedocs.org
     source_code_url: https://github.com/xeBuz/Flask-Validator
     bug_tracker_url: https://github.com/xeBuz/Flask-Validator/issues
+  Flask-WeasyPrint:
+    description: Make PDF in your Flask app with WeasyPrint.
+    pypi_url: http://pypi.python.org/pypi/Flask-WeasyPrint
+    documentation_url: http://packages.python.org/Flask-WeasyPrint
+    source_code_url: https://github.com/Kozea/Flask-WeasyPrint
+    bug_tracker_url: https://github.com/Kozea/Flask-WeasyPrint/issues
   Flask-Webcache:
     description: A Flask extension that adds HTTP based caching to Flask apps.
     pypi_url: https://pypi.python.org/pypi/Flask-WebCache
