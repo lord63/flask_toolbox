@@ -100,12 +100,22 @@ categories:
   Frontend:
     description:
     packages:
+      - Flask-APIspec
+      - Flask-Assets
+      - Flask-Azure-Storage
+      - Flask-Funnel
       - Flask-Genshi
+      - Flask-Gzip
+      - Flask-HTMLmin
       - Flask-Mako
       - Flask-Markdown
       - Flask-Marshmallow
       - Flask-MustacheJS
+      - Flask-S3
       - Flask-Sijax
+      - Flask-SSLify
+      - Flask-UtilJs
+      - Jinja-Assets-Compressor
   Full-Text-Searching:
     description:
     packages:
@@ -151,10 +161,10 @@ categories:
       - Flask-CORS
       - Flask-JSONRPC
       - Flask-Moment
+      - Flask-Paginate
       - Flask-Principal
       - Flask-Script
       - Flask-SocketIO
-      - Flask-Paginate
 packages:
   Authomatic:
     description: Authomatic provides out of the box support for a number of providers using OAuth 1.0a (Twitter, Tumblr and more) and OAuth 2.0 (Facebook, Foursquare, GitHub, Google, LinkedIn, PayPal and more).
@@ -210,6 +220,24 @@ packages:
     documentation_url: http://flask-and-redis.readthedocs.io
     source_code_url: https://github.com/playpauseandstop/Flask-And-Redis
     bug_tracker_url: https://github.com/playpauseandstop/Flask-And-Redis/issues
+  Flask-APIspec:
+    description: flask-apispec is a lightweight tool for building REST APIs in Flask.
+    pypi_url: https://pypi.python.org/pypi/flask-apispec
+    documentation_url: https://flask-apispec.readthedocs.io
+    source_code_url: https://github.com/jmcarp/flask-apispec
+    bug_tracker_url: https://github.com/jmcarp/flask-apispec/issues
+  Flask-Assets:
+    description: Flask webassets integration.
+    pypi_url: https://pypi.python.org/pypi/Flask-Assets
+    documentation_url: https://flask-assets.readthedocs.io
+    source_code_url: https://github.com/miracle2k/flask-assets
+    bug_tracker_url: https://github.com/miracle2k/flask-assets/issues
+  Flask-Azure-Storage:
+    description: Flask extension that provides integration with Azure Storage.
+    pypi_url: https://pypi.python.org/pypi/Flask-Azure-Storage
+    documentation_url:
+    source_code_url: https://github.com/alejoar/Flask-Azure-Storage
+    bug_tracker_url: https://github.com/alejoar/Flask-Azure-Storage/issues
   Flask-Babel:
     description: i18n and l10n support for Flask based on Babel and pytz.
     pypi_url: https://pypi.python.org/pypi/Flask-Babel
@@ -264,6 +292,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/playpauseandstop/Flask-Dropbox
     bug_tracker_url: https://github.com/playpauseandstop/Flask-Dropbox/issues
+  Flask-Funnel:
+    description: A Flask extension for compressing/minifying assets.
+    pypi_url: https://pypi.python.org/pypi/Flask-Funnel
+    documentation_url: http://flask-funnel.readthedocs.org/en/latest/
+    source_code_url: https://github.com/rehandalal/flask-funnel
+    bug_tracker_url: https://github.com/rehandalal/flask-funnel/issues
   Flask-Googlefed:
     description: Google Federated Logins for Flask.
     pypi_url: http://pypi.python.org/pypi/Flask-GoogleFed
@@ -288,12 +322,24 @@ packages:
     documentation_url: http://packages.python.org/Flask-Genshi/
     source_code_url: https://github.com/dag/flask-genshi
     bug_tracker_url: https://github.com/dag/flask-genshi/issues
+  Flask-Gzip:
+    description: Compress responses in your Flask app with gzip.
+    pypi_url: https://pypi.python.org/pypi/Flask-gzip
+    documentation_url:
+    source_code_url: https://github.com/closeio/Flask-gzip
+    bug_tracker_url: https://github.com/closeio/Flask-gzip/issues
   Flask-Heroku-Cacheify:
     description: Automatic Flask cache configuration on Heroku.
     pypi_url: https://pypi.python.org/pypi/Flask-Heroku-Cacheify
     documentation_url:
     source_code_url: https://github.com/rdegges/flask-heroku-cacheify
     bug_tracker_url: https://github.com/rdegges/flask-heroku-cacheify/issues
+  Flask-HTMLmin:
+    description: Flask html response minifier.
+    pypi_url: https://pypi.python.org/pypi/Flask-HTMLmin
+    documentation_url:
+    source_code_url: https://github.com/hamidfzm/Flask-HTMLmin
+    bug_tracker_url: https://github.com/hamidfzm/Flask-HTMLmin/issues
   Flask-HTTPAuth:
     description: Simple extension that provides Basic and Digest HTTP authentication for Flask routes.
     pypi_url: https://pypi.python.org/pypi/Flask-HTTPAuth
@@ -504,6 +550,12 @@ packages:
     documentation_url: http://packages.python.org/Flask-RQ/
     source_code_url: https://github.com/mattupstate/flask-rq
     bug_tracker_url: https://github.com/mattupstate/flask-rq/issues
+  Flask-S3:
+    description: Seamlessly serve your static assets of your Flask app from Amazon S3.
+    pypi_url: https://pypi.python.org/pypi/Flask-S3
+    documentation_url: http://flask-s3.readthedocs.org/en/latest
+    source_code_url: https://github.com/e-dard/flask-s3
+    bug_tracker_url: https://github.com/e-dard/flask-s3/issues
   Flask-Script:
     description: Flask extension to help writing external scripts for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-Script
@@ -558,6 +610,12 @@ packages:
     documentation_url: http://flask-sqlalchemy.pocoo.org
     source_code_url: https://github.com/mitsuhiko/flask-sqlalchemy
     bug_tracker_url: https://github.com/mitsuhiko/flask-sqlalchemy/issues
+  Flask-SSLify:
+    description: Force SSL on your Flask app.
+    pypi_url: https://pypi.python.org/pypi/Flask-SSLify
+    documentation_url:
+    source_code_url: https://github.com/kennethreitz/flask-sslify
+    bug_tracker_url: https://github.com/kennethreitz/flask-sslify/issues
   Flask-Stathat:
     description: StatHat extension for Flask.
     pypi_url: http://pypi.python.org/pypi/Flask-StatHat
@@ -582,6 +640,12 @@ packages:
     documentation_url: https://pythonhosted.org/Flask-User
     source_code_url: https://github.com/lingthio/Flask-User
     bug_tracker_url: https://github.com/lingthio/Flask-User/issues
+  Flask-UtilJs:
+    description: Flask's util in javascript, such as url_for etc.
+    pypi_url: https://pypi.python.org/pypi/flask_util_js
+    documentation_url:
+    source_code_url: https://github.com/dantezhu/flask_util_js
+    bug_tracker_url: https://github.com/dantezhu/flask_util_js/issues
   Flask-Validator:
     description: Validator for SQLAlchemy Models.
     pypi_url: https://pypi.python.org/pypi/Flask-Validator
@@ -636,6 +700,12 @@ packages:
     documentation_url: http://github-flask.readthedocs.org
     source_code_url: https://github.com/cenkalti/github-flask
     bug_tracker_url: https://github.com/cenkalti/github-flask/issues
+  Jinja-Assets-Compressor:
+    description: A Jinja extension (compatible with Flask and other frameworks) to compile and/or compress your assets.
+    pypi_url: https://pypi.python.org/pypi/jac
+    documentation_url:
+    source_code_url: https://github.com/jaysonsantos/jinja-assets-compressor
+    bug_tracker_url: https://github.com/jaysonsantos/jinja-assets-compressor/issues
   Python-Social-Auth:
     description: Python Social Auth is an easy-to-setup social authentication/registration mechanism with support for several frameworks and auth providers.
     pypi_url: https://pypi.python.org/pypi/python-social-auth
