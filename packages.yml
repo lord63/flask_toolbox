@@ -542,7 +542,7 @@ packages:
     description: Fully featured framework for fast, easy and documented API development with Flask.
     pypi_url: https://pypi.python.org/pypi/flask-restplus
     documentation_url: http://flask-restplus.readthedocs.org
-    source_code_url: https://github.com/noirbizarre/flask-restplus/Flask-Restless
+    source_code_url: https://github.com/noirbizarre/flask-restplus
     bug_tracker_url: https://github.com/noirbizarre/flask-restplus/issues
   Flask-RQ:
     description: RQ (Redis Queue) integration for Flask applications.
