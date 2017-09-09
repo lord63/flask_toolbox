@@ -73,6 +73,7 @@ categories:
     description:
     packages:
       - Colander
+      - Flask-Docjson
       - Flask-SeaSurf
       - Flask-Validator
       - Flask-WTF
@@ -120,6 +121,7 @@ categories:
       - Flask-S3
       - Flask-Sijax
       - Flask-SSLify
+      - Flask-Turbolinks
       - Flask-UtilJs
       - Jinja-Assets-Compressor
   Full-Text-Searching:
@@ -166,8 +168,10 @@ categories:
       - Flask-AppBuilder
       - Flask-Bcrypt
       - Flask-Classy
+      - Flask-Common
       - Flask-CORS
       - Flask-FeatureFlags
+      - Flask-Heroku
       - Flask-JSONRPC
       - Flask-Moment
       - Flask-Paginate
@@ -176,9 +180,11 @@ categories:
       - Flask-Script
       - Flask-Shorturl
       - Flask-SocketIO
+      - Flask-Sockets
       - Flask-Split
       - Flask-Styleguide
       - Flask-UUID
+      - Flask-Weixin
       - Frozen-Flask
 packages:
   Authomatic:
@@ -295,6 +301,12 @@ packages:
     documentation_url: http://packages.python.org/Flask-Classy
     source_code_url: https://github.com/apiguy/flask-classy
     bug_tracker_url: https://github.com/apiguy/flask-classy/issues
+  Flask-Common:
+    description: A Flask extension with lots of common time-savers (file-serving, favicons, etc).
+    pypi_url: https://pypi.python.org/pypi/Flask-Common
+    documentation_url:
+    source_code_url: https://github.com/kennethreitz/flask-common
+    bug_tracker_url: https://github.com/kennethreitz/flask-common/issues
   Flask-CORS:
     description: A Flask extension for handling Cross Origin Resource Sharing (CORS), making cross-origin AJAX possible.
     pypi_url: https://pypi.python.org/pypi/Flask-Cors
@@ -325,6 +337,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/jlfwong/flask_debugtoolbar_lineprofilerpanel
     bug_tracker_url: https://github.com/jlfwong/flask_debugtoolbar_lineprofilerpanel/issues
+  Flask-Docjson:
+    description: A micro module to validate flask request and response json schemas via view function docstrings.
+    pypi_url: https://pypi.python.org/pypi/flask-docjson
+    documentation_url:
+    source_code_url: https://github.com/elemepi/flask-docjson
+    bug_tracker_url: https://github.com/elemepi/flask-docjson/issues
   Flask-Dropbox:
     description: Dropbox Python SDK support for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-Dropbox
@@ -373,6 +391,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/closeio/Flask-gzip
     bug_tracker_url: https://github.com/closeio/Flask-gzip/issues
+  Flask-Heroku:
+    description: Heroku environment variable configurations for Flask.
+    pypi_url: http://pypi.python.org/pypi/flask-heroku/
+    documentation_url:
+    source_code_url: https://github.com/kennethreitz/flask-heroku
+    bug_tracker_url: https://github.com/kennethreitz/flask-heroku/issues
   Flask-Heroku-Cacheify:
     description: Automatic Flask cache configuration on Heroku.
     pypi_url: https://pypi.python.org/pypi/Flask-Heroku-Cacheify
@@ -667,6 +691,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/wooyek/flask-social-blueprint
     bug_tracker_url: https://github.com/wooyek/flask-social-blueprint/issues
+  Flask-Sockets:
+    description: Elegant WebSockets for your Flask apps.
+    pypi_url: https://pypi.python.org/pypi/Flask-Sockets
+    documentation_url:
+    source_code_url: https://github.com/kennethreitz/flask-sockets
+    bug_tracker_url: https://github.com/kennethreitz/flask-sockets/issues
   Flask-SocketIO:
     description: Socket.IO integration for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-SocketIO
@@ -721,6 +751,12 @@ packages:
     documentation_url: http://pythonhosted.org/Flask-Track-Usage
     source_code_url: https://github.com/ashcrow/flask-track-usage
     bug_tracker_url: https://github.com/ashcrow/flask-track-usage/issues
+  Flask-Turbolinks:
+    description: Turbolinks for Flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-Turbolinks
+    documentation_url:
+    source_code_url: https://github.com/lepture/flask-turbolinks
+    bug_tracker_url: https://github.com/lepture/flask-turbolinks/issues
   Flask-User:
     description: 'Customizable User Account Management for Flask: Register, Confirm email, Login, Change username, Change password, Forgot password and more.'
     pypi_url: https://pypi.python.org/pypi/Flask-User
@@ -757,6 +793,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/fusic-com/flask-webcache
     bug_tracker_url: https://github.com/fusic-com/flask-webcache/issues
+  Flask-Weixin:
+    description: Weixin implementation in Flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-Weixin/
+    documentation_url:
+    source_code_url: https://github.com/lepture/flask-weixin
+    bug_tracker_url: https://github.com/lepture/flask-weixin/issues
   Flask-WhooshAlchemy:
     description: Whoosh indexing capabilities for Flask-SQLAlchemy.
     pypi_url: https://pypi.python.org/pypi/Flask-WhooshAlchemy
