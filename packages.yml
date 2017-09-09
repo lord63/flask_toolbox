@@ -79,7 +79,12 @@ categories:
   Development:
     description:
     packages:
+      - Flask2postman
       - Flask-DebugToolbar
+      - Flask-DebugToolbar-LineProfilerPanel
+      - Flask-Profiler
+      - Flask-Testing
+      - Pytest-Flask
   Email:
     description:
     packages:
@@ -157,14 +162,19 @@ categories:
   Utils:
     description:
     packages:
+      - Flask-AppBuilder
       - Flask-Bcrypt
+      - Flask-Classy
       - Flask-CORS
+      - Flask-FeatureFlags
       - Flask-JSONRPC
       - Flask-Moment
       - Flask-Paginate
       - Flask-Principal
       - Flask-Script
+      - Flask-Shorturl
       - Flask-SocketIO
+      - Flask-Split
 packages:
   Authomatic:
     description: Authomatic provides out of the box support for a number of providers using OAuth 1.0a (Twitter, Tumblr and more) and OAuth 2.0 (Facebook, Foursquare, GitHub, Google, LinkedIn, PayPal and more).
@@ -202,6 +212,12 @@ packages:
     documentation_url: http://flask.pocoo.org/docs
     source_code_url: https://github.com/pallets/flask
     bug_tracker_url: https://github.com/pallets/flask/issues
+  Flask2postman:
+    description: Generate a Postman collection from your Flask application.
+    pypi_url: https://pypi.python.org/pypi/flask2postman
+    documentation_url:
+    source_code_url: https://github.com/numberly/flask2postman
+    bug_tracker_url: https://github.com/numberly/flask2postman/issues
   Flask-Admin:
     description: Simple and extensible administrative interface framework for Flask.
     pypi_url: https://pypi.python.org/pypi/Flask-Admin
@@ -226,6 +242,12 @@ packages:
     documentation_url: https://flask-apispec.readthedocs.io
     source_code_url: https://github.com/jmcarp/flask-apispec
     bug_tracker_url: https://github.com/jmcarp/flask-apispec/issues
+  Flask-AppBuilder:
+    description: Simple and rapid application development framework, built on top of Flask. includes detailed security, auto CRUD generation for your models, google charts and much more.
+    pypi_url: https://pypi.python.org/pypi/Flask-AppBuilder
+    documentation_url: http://flask-appbuilder.readthedocs.org/en/latest
+    source_code_url: https://github.com/dpgaspar/Flask-AppBuilder
+    bug_tracker_url: https://github.com/dpgaspar/Flask-AppBuilder/issues
   Flask-Assets:
     description: Flask webassets integration.
     pypi_url: https://pypi.python.org/pypi/Flask-Assets
@@ -262,6 +284,12 @@ packages:
     documentation_url: http://packages.python.org/Flask-Cache
     source_code_url: https://github.com/thadeusb/flask-cache
     bug_tracker_url: https://github.com/thadeusb/flask-cache/issues
+  Flask-Classy:
+    description: Class based views for Flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-Classy
+    documentation_url: http://packages.python.org/Flask-Classy
+    source_code_url: https://github.com/apiguy/flask-classy
+    bug_tracker_url: https://github.com/apiguy/flask-classy/issues
   Flask-CORS:
     description: A Flask extension for handling Cross Origin Resource Sharing (CORS), making cross-origin AJAX possible.
     pypi_url: https://pypi.python.org/pypi/Flask-Cors
@@ -286,12 +314,24 @@ packages:
     documentation_url: http://flask-debugtoolbar.rtfd.org
     source_code_url: https://github.com/mgood/flask-debugtoolbar
     bug_tracker_url: https://github.com/mgood/flask-debugtoolbar/issues
+  Flask-DebugToolbar-LineProfilerPanel:
+    description: Line Profiler Panel for Flask Debug Toolbar.
+    pypi_url: https://pypi.python.org/pypi/Flask-DebugToolbar-LineProfilerPanel
+    documentation_url:
+    source_code_url: https://github.com/jlfwong/flask_debugtoolbar_lineprofilerpanel
+    bug_tracker_url: https://github.com/jlfwong/flask_debugtoolbar_lineprofilerpanel/issues
   Flask-Dropbox:
     description: Dropbox Python SDK support for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-Dropbox
     documentation_url:
     source_code_url: https://github.com/playpauseandstop/Flask-Dropbox
     bug_tracker_url: https://github.com/playpauseandstop/Flask-Dropbox/issues
+  Flask-FeatureFlags:
+    description: A Flask extension that enables or disables features based on configuration.
+    pypi_url: https://pypi.python.org/pypi/Flask-FeatureFlags
+    documentation_url: https://flask-featureflags.readthedocs.org/en/latest
+    source_code_url: https://github.com/trustrachel/Flask-FeatureFlags
+    bug_tracker_url: https://github.com/trustrachel/Flask-FeatureFlags/issues
   Flask-Funnel:
     description: A Flask extension for compressing/minifying assets.
     pypi_url: https://pypi.python.org/pypi/Flask-Funnel
@@ -490,6 +530,12 @@ packages:
     documentation_url: http://packages.python.org/Flask-Principal
     source_code_url: https://github.com/mattupstate/flask-principal
     bug_tracker_url: https://github.com/mattupstate/flask-principal/issues
+  Flask-Profiler:
+    description: A flask profiler which watches endpoint calls and tries to make some analysis.
+    pypi_url: https://pypi.python.org/pypi/flask_profiler
+    documentation_url:
+    source_code_url: https://github.com/muatik/flask-profiler
+    bug_tracker_url: https://github.com/muatik/flask-profiler/issues
   Flask-Pundit:
     description: A flask extension for managing permissions and scopes.
     pypi_url: https://pypi.python.org/pypi/flask-pundit
@@ -580,6 +626,12 @@ packages:
     documentation_url: https://pythonhosted.org/Flask-Session
     source_code_url: https://github.com/fengsp/flask-session
     bug_tracker_url: https://github.com/fengsp/flask-session/issues
+  Flask-Shorturl:
+    description: Short URL generator for Flask.
+    pypi_url: https://pypi.python.org/pypi/flask-shorturl
+    documentation_url:
+    source_code_url: https://github.com/lepture/flask-shorturl
+    bug_tracker_url: https://github.com/lepture/flask-shorturl/issues
   Flask-Sijax:
     description: An extension for the Flask microframework that adds Sijax support.
     pypi_url: https://pypi.python.org/pypi/Flask-Sijax
@@ -604,6 +656,12 @@ packages:
     documentation_url: http://pythonhosted.org/Flask-SocketIO
     source_code_url: https://github.com/miguelgrinberg/Flask-SocketIO
     bug_tracker_url: https://github.com/miguelgrinberg/Flask-SocketIO/issues
+  Flask-Split:
+    description: A/B testing for your Flask application.
+    pypi_url: https://pypi.python.org/pypi/Flask-Split
+    documentation_url: https://flask-split.readthedocs.io
+    source_code_url: https://github.com/jpvanhal/flask-split
+    bug_tracker_url: https://github.com/jpvanhal/flask-split/issues
   Flask-SQLAlchemy:
     description: Adds SQLAlchemy support to Flask.
     pypi_url: https://pypi.python.org/pypi/Flask-SQLAlchemy
@@ -628,6 +686,12 @@ packages:
     documentation_url: http://flask-superadmin.readthedocs.org
     source_code_url: https://github.com/SyrusAkbary/Flask-SuperAdmin
     bug_tracker_url: https://github.com/SyrusAkbary/Flask-SuperAdmin/issues
+  Flask-Testing:
+    description: Unittest extensions for Flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-Testing
+    documentation_url: https://flask-testing.readthedocs.io/en/latest
+    source_code_url: https://github.com/jarus/flask-testing
+    bug_tracker_url: https://github.com/jarus/flask-testing/issues
   Flask-Track-Usage:
     description: Basic metrics tracking for the Flask framework.
     pypi_url: https://pypi.python.org/pypi/Flask-Track-Usage
@@ -706,6 +770,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/jaysonsantos/jinja-assets-compressor
     bug_tracker_url: https://github.com/jaysonsantos/jinja-assets-compressor/issues
+  Pytest-Flask:
+    description: A set of pytest fixtures to test Flask applications.
+    pypi_url: https://pypi.python.org/pypi/pytest-flask
+    documentation_url: http://pytest-flask.readthedocs.org/en/latest
+    source_code_url: https://github.com/pytest-dev/pytest-flask
+    bug_tracker_url: https://github.com/pytest-dev/pytest-flask/issues
   Python-Social-Auth:
     description: Python Social Auth is an easy-to-setup social authentication/registration mechanism with support for several frameworks and auth providers.
     pypi_url: https://pypi.python.org/pypi/python-social-auth
