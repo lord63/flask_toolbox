@@ -116,6 +116,7 @@ categories:
       - Flask-Markdown
       - Flask-Marshmallow
       - Flask-MustacheJS
+      - Flask-Rev
       - Flask-S3
       - Flask-Sijax
       - Flask-SSLify
@@ -171,10 +172,14 @@ categories:
       - Flask-Moment
       - Flask-Paginate
       - Flask-Principal
+      - Flask-Reggie
       - Flask-Script
       - Flask-Shorturl
       - Flask-SocketIO
       - Flask-Split
+      - Flask-Styleguide
+      - Flask-UUID
+      - Frozen-Flask
 packages:
   Authomatic:
     description: Authomatic provides out of the box support for a number of providers using OAuth 1.0a (Twitter, Tumblr and more) and OAuth 2.0 (Facebook, Foursquare, GitHub, Google, LinkedIn, PayPal and more).
@@ -566,6 +571,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/underyx/Flask-Redis
     bug_tracker_url: https://github.com/underyx/Flask-Redis/issues
+  Flask-Reggie:
+    description: Regex Converter for Flask URL Routes.
+    pypi_url: https://pypi.python.org/pypi/Flask-Reggie
+    documentation_url:
+    source_code_url: https://github.com/rhyselsmore/flask-reggie
+    bug_tracker_url: https://github.com/rhyselsmore/flask-reggie/issues
   Flask-RESTful:
     description: Simple framework for creating REST APIs.
     pypi_url: https://pypi.python.org/pypi/Flask-RESTful
@@ -590,6 +601,12 @@ packages:
     documentation_url: http://flask-restplus.readthedocs.org
     source_code_url: https://github.com/noirbizarre/flask-restplus
     bug_tracker_url: https://github.com/noirbizarre/flask-restplus/issues
+  Flask-Rev:
+    description: Add revision awareness to static files.
+    pypi_url: https://pypi.python.org/pypi/Flask-Rev
+    documentation_url:
+    source_code_url: https://github.com/italomaia/flask-rev
+    bug_tracker_url: https://github.com/italomaia/flask-rev/issues
   Flask-RQ:
     description: RQ (Redis Queue) integration for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-RQ
@@ -680,6 +697,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/marksteve/flask-stathat
     bug_tracker_url: https://github.com/marksteve/flask-stathat/issues
+  Flask-Styleguide:
+    description: A living Styleguide for your Flask application.
+    pypi_url: https://pypi.python.org/pypi/Flask-Styleguide
+    documentation_url: http://flask-styleguide.readthedocs.org/
+    source_code_url: https://github.com/vitalk/flask-styleguide
+    bug_tracker_url: https://github.com/vitalk/flask-styleguide/issues
   Flask-SuperAdmin:
     description: The best admin interface framework for Flask. With scaffolding for MongoEngine, Django and SQLAlchemy.
     pypi_url: https://pypi.python.org/pypi/Flask-SuperAdmin
@@ -710,6 +733,12 @@ packages:
     documentation_url:
     source_code_url: https://github.com/dantezhu/flask_util_js
     bug_tracker_url: https://github.com/dantezhu/flask_util_js/issues
+  Flask-UUID:
+    description: UUID url converter for Flask routes.
+    pypi_url: https://pypi.python.org/pypi/Flask-UUID
+    documentation_url:
+    source_code_url: https://github.com/wbolster/flask-uuid
+    bug_tracker_url: https://github.com/wbolster/flask-uuid/issues
   Flask-Validator:
     description: Validator for SQLAlchemy Models.
     pypi_url: https://pypi.python.org/pypi/Flask-Validator
@@ -758,6 +787,12 @@ packages:
     documentation_url: https://pythonhosted.org/Flask-Z3950
     source_code_url: https://github.com/alexandermendes/Flask-Z3950
     bug_tracker_url: https://github.com/alexandermendes/Flask-Z3950/issues
+  Frozen-Flask:
+    description: Freezes a Flask application into a set of static files.
+    pypi_url: https://pypi.python.org/pypi/Frozen-Flask
+    documentation_url: https://pythonhosted.org/Frozen-Flask
+    source_code_url: https://github.com/Frozen-Flask/Frozen-Flask
+    bug_tracker_url: https://github.com/Frozen-Flask/Frozen-Flask/issues
   GitHub-Flask:
     description: Flask extension for authenticating users with GitHub and making requests to the API.
     pypi_url: https://pypi.python.org/pypi/GitHub-Flask
