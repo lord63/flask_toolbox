@@ -33,5 +33,5 @@ six==1.10.0               # via livereload, python-dateutil
 sqlalchemy==1.1.11        # via alembic, flask-sqlalchemy
 tornado==4.5.1            # via livereload
 urllib3==1.21.1           # via requests
-werkzeug==0.12.2          # via flask
+werkzeug==0.15.3          # via flask
 wtforms==2.1              # via flask-admin, flask-wtf
