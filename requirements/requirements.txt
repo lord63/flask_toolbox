@@ -16,10 +16,10 @@ flask-migrate==2.0.4
 flask-script==2.0.5       # via flask-migrate
 flask-sqlalchemy==2.2
 flask-wtf==0.14.2
-flask==0.12.2
+flask==1.0
 idna==2.5                 # via requests
 itsdangerous==0.24        # via flask
-jinja2==2.9.6             # via flask
+jinja2==2.10.3            # via flask
 livereload==2.5.1
 lxml==3.8.0
 mako==1.0.6               # via alembic
@@ -33,5 +33,5 @@ six==1.10.0               # via livereload, python-dateutil
 sqlalchemy==1.1.11        # via alembic, flask-sqlalchemy
 tornado==4.5.1            # via livereload
 urllib3==1.21.1           # via requests
-werkzeug==0.12.2          # via flask
+werkzeug==0.16.0          # via flask
 wtforms==2.1              # via flask-admin, flask-wtf
