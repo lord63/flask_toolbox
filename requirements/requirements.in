@@ -3,7 +3,8 @@ flask
 flask-admin>=1.5.5
 flask-wtf
 flask-migrate
-flask-sqlalchemy>=1.3.0
+flask-sqlalchemy
+SQLAlchemy>=1.3.0
 livereload
 lxml
 pyyaml>=4.2b1
