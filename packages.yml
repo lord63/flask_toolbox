@@ -363,7 +363,7 @@ packages:
     bug_tracker_url: https://github.com/rehandalal/flask-funnel/issues
   Flask-Googlefed:
     description: Google Federated Logins for Flask.
-    pypi_url: http://pypi.python.org/pypi/Flask-GoogleFed
+    pypi_url: https://pypi.python.org/pypi/Flask-GoogleFed
     documentation_url:
     source_code_url: https://github.com/kennethreitz/flask-googlefed
     bug_tracker_url: https://github.com/kennethreitz/flask-googlefed/issues
@@ -393,7 +393,7 @@ packages:
     bug_tracker_url: https://github.com/closeio/Flask-gzip/issues
   Flask-Heroku:
     description: Heroku environment variable configurations for Flask.
-    pypi_url: http://pypi.python.org/pypi/flask-heroku/
+    pypi_url: https://pypi.python.org/pypi/flask-heroku/
     documentation_url:
     source_code_url: https://github.com/kennethreitz/flask-heroku
     bug_tracker_url: https://github.com/kennethreitz/flask-heroku/issues
@@ -441,7 +441,7 @@ packages:
     bug_tracker_url: https://github.com/mattupstate/flask-mail/issues
   Flask-Mako:
     description: Provides support for Mako Templates in Flask.
-    pypi_url: http://pypi.python.org/pypi/Flask-Mako/
+    pypi_url: https://pypi.python.org/pypi/Flask-Mako/
     documentation_url: http://packages.python.org/Flask-Mako
     source_code_url: https://github.com/benselme/flask-mako
     bug_tracker_url: https://github.com/benselme/flask-mako/issues
@@ -723,7 +723,7 @@ packages:
     bug_tracker_url: https://github.com/kennethreitz/flask-sslify/issues
   Flask-Stathat:
     description: StatHat extension for Flask.
-    pypi_url: http://pypi.python.org/pypi/Flask-StatHat
+    pypi_url: https://pypi.python.org/pypi/Flask-StatHat
     documentation_url:
     source_code_url: https://github.com/marksteve/flask-stathat
     bug_tracker_url: https://github.com/marksteve/flask-stathat/issues
@@ -783,7 +783,7 @@ packages:
     bug_tracker_url: https://github.com/xeBuz/Flask-Validator/issues
   Flask-WeasyPrint:
     description: Make PDF in your Flask app with WeasyPrint.
-    pypi_url: http://pypi.python.org/pypi/Flask-WeasyPrint
+    pypi_url: https://pypi.python.org/pypi/Flask-WeasyPrint
     documentation_url: http://packages.python.org/Flask-WeasyPrint
     source_code_url: https://github.com/Kozea/Flask-WeasyPrint
     bug_tracker_url: https://github.com/Kozea/Flask-WeasyPrint/issues
