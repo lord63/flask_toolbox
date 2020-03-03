@@ -1,11 +1,11 @@
 cssselect
 flask
-flask-admin
+flask-admin>=1.5.5
 flask-wtf
 flask-migrate
-flask-sqlalchemy
+flask-sqlalchemy>=1.3.0
 livereload
 lxml
-pyyaml
-requests
+pyyaml>=4.2b1
+requests>=2.20.0
 raven[flask]
