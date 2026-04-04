@@ -7,7 +7,7 @@ from flask_toolbox.crawler.github import GithubMeta
 
 class Crawler:
     def get_pypi_info(self, url):
-        response = requests.get('{0}/json'.format(url))
+        response = requests.get('{0}/json'.format(url.rstrip('/')))
         response.raise_for_status()
         package_name = urlparse(url).path.strip('/').split('/')[-1]
         download_response = requests.get(

@@ -20,12 +20,8 @@ API_ROOT = 'https://api.github.com'
 
 
 class GithubMeta:
-    def __init__(self, response_or_url, url=None):
-        if url is None:
-            self.url = response_or_url
-        else:
-            self.url = url
-
+    def __init__(self, url):
+        self.url = url
         owner, repo = _parse_repo_url(self.url)
         self.owner = owner
         self.repo = repo
@@ -105,8 +101,7 @@ def get_development_activity(url):
     if not commits:
         return 'Inactive'
 
-    epoch = datetime.datetime.fromtimestamp(
-        0, datetime.timezone.utc).replace(tzinfo=None)
+    epoch = datetime.datetime(1970, 1, 1)
     deltas = [_parse_date(commit['commit']['committer']['date']) - epoch
               for commit in commits]
     average_delta = (

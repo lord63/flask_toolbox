@@ -98,12 +98,16 @@ def update_package_github_info(package_id):
 
 
 def _normalize_ratio(value, baseline):
-    if not value or not baseline:
+    if value is None or baseline in (None, 0):
+        return 0
+    if value <= 0:
         return 0
     return min(value / baseline, 1)
 
 
 def _normalize_downloads(value, baseline):
-    if not value or not baseline:
+    if value is None or baseline in (None, 0):
+        return 0
+    if value <= 0:
         return 0
     return min(math.log1p(value) / math.log1p(baseline), 1)
