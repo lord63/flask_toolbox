@@ -148,7 +148,9 @@ def _get_last_page(response, payload):
     last_link = response.links.get('last')
     if last_link:
         query = parse_qs(urlparse(last_link['url']).query)
-        return int(query['page'][0])
+        page_values = query.get('page')
+        if page_values:
+            return int(page_values[0])
 
     if isinstance(payload, list):
         return len(payload)
