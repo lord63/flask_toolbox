@@ -3,7 +3,8 @@
 
 from __future__ import absolute_import
 
-from flask import Blueprint, render_template, Markup, url_for
+from flask import Blueprint, render_template, url_for
+from markupsafe import Markup
 
 from flask_toolbox.models import Package
 

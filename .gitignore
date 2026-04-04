@@ -3,6 +3,7 @@
 
 # virtualenv folder
 venv*/
+.venv/
 
 # pycharm
 .idea/
@@ -58,6 +59,7 @@ htmlcov/
 .tox/
 .coverage
 .cache
+uv.lock
 nosetests.xml
 coverage.xml
 

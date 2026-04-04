@@ -6,8 +6,7 @@ from __future__ import absolute_import, print_function
 import os
 
 import click
-from flask_migrate import Migrate, MigrateCommand
-from flask.cli import FlaskGroup
+from flask_migrate import Migrate
 from livereload import Server
 import yaml
 
@@ -45,7 +44,7 @@ def init_db():
 def init_data():
     """Seed the database with packages.yml"""
     with open('packages.yml') as f:
-        data = yaml.load(f)
+        data = yaml.safe_load(f)
 
     flask_info = data['packages']['Flask']
     flask = Package(
@@ -65,6 +64,7 @@ def init_data():
             description=category_info['description']
         )
         db.session.add(new_category)
+        db.session.flush()
 
         for package_name in category_info['packages']:
             package_info = data['packages'][package_name]
@@ -86,7 +86,7 @@ def init_data():
 def sync_data():
     """Sync the database with packages.yml"""
     with open('packages.yml') as f:
-        data = yaml.load(f)
+        data = yaml.safe_load(f)
 
     for category_name, category_info in data['categories'].items():
         category = Category.query.filter_by(name=category_name).first()
@@ -98,6 +98,7 @@ def sync_data():
                 description=category_info['description']
             )
         db.session.add(category)
+        db.session.flush()
 
         for package_name in category_info['packages']:
             package_info = data['packages'][package_name]
