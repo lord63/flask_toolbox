@@ -37,7 +37,7 @@ def init_db():
 @app.cli.command('init_data')
 def init_data():
     """Seed the database with packages.yml"""
-    with open('packages.yml') as f:
+    with open('packages.yml', encoding='utf-8') as f:
         data = yaml.safe_load(f)
 
     flask_info = data['packages']['Flask']
@@ -79,7 +79,7 @@ def init_data():
 @app.cli.command('sync_data')
 def sync_data():
     """Sync the database with packages.yml"""
-    with open('packages.yml') as f:
+    with open('packages.yml', encoding='utf-8') as f:
         data = yaml.safe_load(f)
 
     for category_name, category_info in data['categories'].items():

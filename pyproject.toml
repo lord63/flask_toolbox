@@ -31,8 +31,5 @@ dev = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
-[tool.setuptools]
-packages = ["flask_toolbox"]
-
 [tool.setuptools.packages.find]
 include = ["flask_toolbox*"]
