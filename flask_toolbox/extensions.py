@@ -1,15 +1,18 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-from __future__ import absolute_import
-
-import os
-
 from flask_admin import Admin
 from flask_sqlalchemy import SQLAlchemy
-from raven.contrib.flask import Sentry
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 
 
 admin = Admin()
 db = SQLAlchemy()
-sentry = Sentry(dsn=os.environ.get('FLASK_TOOLBOX_SENTRY_DSN'))
+
+
+class Sentry:
+    def init_app(self, app):
+        dsn = app.config.get('SENTRY_DSN')
+        if dsn:
+            sentry_sdk.init(dsn=dsn, integrations=[FlaskIntegration()])
+
+
+sentry = Sentry()

@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-from __future__ import absolute_import
-
 from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import or_
 

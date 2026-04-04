@@ -8,21 +8,19 @@ Clone the fresh source code::
 
     $ git clone https://github.com/lord63/flask_toolbox.git
 
-Install the dependencies, it's recommand to set up a virtual environment::
+Install the dependencies with uv::
 
-    $ virtualenv venv
-    $ . venv/bin/activate
-    (venv)$ pip install -r requirements/requirements.txt
+    $ uv sync
 
 Initialize the database::
 
-    (venv)$ export FLASK_APP=manage.py
-    (venv)$ flask init_db
-    (venv)$ flask init_data
+    $ export FLASK_APP=manage.py
+    $ uv run flask init_db
+    $ uv run flask init_data
 
 Run the server::
 
-    (venv)$ flask run
+    $ uv run flask run
 
 Run the crawler
 ---------------
@@ -33,4 +31,4 @@ set up a github token(in case that you may hit the github api rate limit)::
 
 start the crawler::
 
-    $ flask update_data
+    $ uv run flask update_data
