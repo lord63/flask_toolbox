@@ -1,11 +1,11 @@
 freeze:
-	@pip-compile --output-file requirements/requirements.txt requirements/requirements.in
+	@uv lock
 
 sync:
-	@pip-sync requirements/requirements.txt
+	@uv sync
 
 update:
-	@pip-compile --upgrade requirements/requirements.in
+	@uv lock --upgrade
 
 clean:
 	@find . -name "*.pyc" -exec rm -f {} \;

@@ -1,13 +1,9 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-from __future__ import absolute_import
-
 import os
 
 
-class Config(object):
+class Config:
     SECRET_KEY = '123456790'  # Create dummy secrey key so we can use sessions
+    SENTRY_DSN = os.environ.get('FLASK_TOOLBOX_SENTRY_DSN')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     ROOT = os.path.dirname(os.path.realpath(__file__))
     SQLALCHEMY_DATABASE_URI = 'sqlite:///{0}'.format(

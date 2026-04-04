@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flask-toolbox"
+version = "0.10.0"
+description = "Hopefully the missing toolbox for flask, find the flask extensions you want."
+readme = "README.rst"
+requires-python = ">=3.12"
+dependencies = [
+    "cssselect",
+    "flask",
+    "flask-admin",
+    "flask-migrate",
+    "flask-sqlalchemy",
+    "flask-wtf",
+    "livereload",
+    "lxml",
+    "pyyaml",
+    "requests",
+    "sentry-sdk[flask]",
+    "sqlalchemy",
+]
+
+[tool.setuptools.packages.find]
+include = ["flask_toolbox*"]
