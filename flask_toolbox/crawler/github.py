@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-from __future__ import absolute_import, division
-
 import datetime
 from functools import partial
 import math
@@ -22,7 +17,7 @@ else:
         'User-Agent': 'https://github.com/lord63/flask_toolbox'})
 
 
-class GithubMeta(object):
+class GithubMeta:
     def __init__(self, response, url):
         self.tree = html.fromstring(response.text)
         self.url = url
