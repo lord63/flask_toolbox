@@ -1,15 +1,15 @@
 import datetime
-import re
 
 
 class PyPIMeta:
-    def __init__(self, response):
+    def __init__(self, response, download_response):
         self.response = response
+        self.download_response = download_response
 
     @property
     def download_num(self):
-        """The total download num of current version."""
-        return sum(sum(package['downloads'] for package in release) for release in self.response["releases"].values())
+        """The total download num of the recent month."""
+        return self.download_response['data']['last_month']
 
     @property
     def release_num(self):
