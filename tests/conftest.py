@@ -7,6 +7,20 @@ from flask_toolbox.extensions import db
 from flask_toolbox.models import Category, Github, Package, PyPI
 
 
+class DummyResponse:
+    """Fake requests.Response for testing HTTP clients."""
+
+    def __init__(self, payload=None, links=None):
+        self._payload = payload or []
+        self.links = links or {}
+
+    def json(self):
+        return self._payload
+
+    def raise_for_status(self):
+        return None
+
+
 class TestConfig(object):
     SECRET_KEY = "test"
     SQLALCHEMY_DATABASE_URI = "sqlite://"

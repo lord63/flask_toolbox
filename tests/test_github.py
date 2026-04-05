@@ -1,31 +1,43 @@
 import datetime
 
+from conftest import DummyResponse
 from flask_toolbox.crawler import github
 
 
-class DummyResponse(object):
-    def __init__(self, text="", payload=None):
-        self.text = text
-        self._payload = payload or []
+def test_github_meta_properties(monkeypatch):
+    def fake_api_request(url, params=None):
+        if url.endswith("/repos/pallets/flask"):
+            return DummyResponse({
+                "watchers_count": 1234,
+                "forks_count": 56,
+                "open_issues_count": 17,
+            })
+        if url.endswith("/repos/pallets/flask/commits") and params == {"per_page": 1}:
+            return DummyResponse(
+                payload=[{
+                    "commit": {
+                        "committer": {
+                            "date": "2024-01-02T03:04:05Z",
+                        }
+                    }
+                }],
+                links={"last": {"url": "https://api.github.com/repos/pallets/flask/commits?page=2345&per_page=1"}},
+            )
+        if url.endswith("/repos/pallets/flask/contributors"):
+            return DummyResponse(
+                payload=[{"id": 1}],
+                links={"last": {"url": "https://api.github.com/repos/pallets/flask/contributors?page=67&per_page=1&anon=1"}},
+            )
+        if url.endswith("/repos/pallets/flask/pulls"):
+            return DummyResponse(
+                payload=[{"id": 1}],
+                links={"last": {"url": "https://api.github.com/repos/pallets/flask/pulls?page=9&per_page=1&state=open"}},
+            )
+        raise AssertionError("Unexpected request: {0} {1}".format(url, params))
 
-    def json(self):
-        return self._payload
+    monkeypatch.setattr(github, "api_request", fake_api_request)
 
-
-def test_github_meta_properties():
-    response = DummyResponse("""
-        <html>
-          <a class="social-count">ignored</a>
-          <a class="social-count">1,234</a>
-          <a class="social-count">56</a>
-          <relative-time datetime="2024-01-02T03:04:05Z"></relative-time>
-          <span class="text-emphasized">2,345</span>
-          <span class="text-emphasized">67</span>
-          <span class="Counter">8</span>
-          <span class="Counter">9</span>
-        </html>
-    """)
-    meta = github.GithubMeta(response, "https://github.com/pallets/flask")
+    meta = github.GithubMeta("https://github.com/pallets/flask")
 
     assert meta.watchers == 1234
     assert meta.forks == 56
@@ -36,25 +48,30 @@ def test_github_meta_properties():
     assert meta.pull_requests == 9
 
 
-def test_github_meta_contributors_falls_back_to_api(monkeypatch):
-    response = DummyResponse("""
-        <html>
-          <a class="social-count">ignored</a>
-          <a class="social-count">12</a>
-          <a class="social-count">3</a>
-          <relative-time datetime="2024-01-02T03:04:05Z"></relative-time>
-          <span class="text-emphasized">45</span>
-          <span class="text-emphasized"><span></span></span>
-          <span class="Counter">1</span>
-          <span class="Counter">2</span>
-        </html>
-    """)
-    monkeypatch.setattr(
-        github,
-        "api_request",
-        lambda url: DummyResponse(payload=[{"id": 1}, {"id": 2}, {"id": 3}]),
-    )
+def test_github_helpers(monkeypatch):
+    recent_dates = [
+        {"commit": {"committer": {"date": "2024-01-03T00:00:00Z"}}},
+        {"commit": {"committer": {"date": "2024-01-02T00:00:00Z"}}},
+        {"commit": {"committer": {"date": "2024-01-01T00:00:00Z"}}},
+    ]
 
-    meta = github.GithubMeta(response, "https://github.com/pallets/flask")
+    def fake_api_request(url, params=None):
+        if url.endswith("/repos/pallets/flask/commits") and params == {"page": 45, "per_page": 1}:
+            return DummyResponse(payload=[{
+                "commit": {
+                    "committer": {
+                        "date": "2010-04-01T00:00:00Z",
+                    }
+                }
+            }])
+        if url.endswith("/repos/pallets/flask/commits") and params == {"per_page": 100}:
+            return DummyResponse(payload=recent_dates)
+        raise AssertionError("Unexpected request: {0} {1}".format(url, params))
 
-    assert meta.contributors == 3
+    monkeypatch.setattr(github, "api_request", fake_api_request)
+
+    first_commit = github.get_first_commit("https://github.com/pallets/flask", 45)
+    activity = github.get_development_activity("https://github.com/pallets/flask")
+
+    assert first_commit == datetime.datetime(2010, 4, 1, 0, 0, 0)
+    assert activity == "Inactive"
