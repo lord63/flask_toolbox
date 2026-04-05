@@ -1,3 +1,5 @@
+import math
+
 from flask import Blueprint, render_template, url_for
 from markupsafe import Markup
 
@@ -49,6 +51,14 @@ def score(package):
              category.name
         ))
     )
+    download_score = 0
+    if flask.pypi_info and the_package.pypi_info:
+        flask_dl = flask.pypi_info.download_num or 0
+        pkg_dl = the_package.pypi_info.download_num or 0
+        if flask_dl > 0 and pkg_dl > 0:
+            download_score = round(
+                min(math.log1p(pkg_dl) / math.log1p(flask_dl), 1) * 100, 3)
     return render_template(
         'score.html', package=the_package, flask=flask,
+        download_score=download_score,
         related_packages=related_packages, sidebar_title=sidebar_title)

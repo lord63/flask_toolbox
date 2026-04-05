@@ -20,7 +20,7 @@
           and {{flask.github_info.forks}} forks, resulting in a Github score of 100.00
         </td>
         <td>
-          The base rated PyPI package is <a href="{{flask.pypi_url}}">Flask</a> with {{flask.pypi_info.download_num}} total downloads
+          The base rated PyPI package is <a href="{{flask.pypi_url}}">Flask</a> with {{flask.pypi_info.download_num}} downloads in the last 30 days
         </td>
       </tr>
       <tr>
@@ -32,13 +32,13 @@
           Now, the repository for {{package.name}} has got {{package.github_info.watchers}} watchers and {{package.github_info.forks}} forks
         </td>
         <td>
-          Now, the package {{package.name}} has got {{package.pypi_info.download_num}} total downloads
+          Now, the package {{package.name}} has got {{package.pypi_info.download_num}} downloads in the last 30 days
         </td>
       </tr>
 
       <tr>
         <td colspan="2">
-          Therefore, the relative popularity percentage can be calculated for {{package.name}}
+          Therefore, the relative popularity percentage can be calculated for {{package.name}}. PyPI downloads are normalized on a logarithmic scale to keep scores in the 0-100 range.
         </td>
       </tr>
 
@@ -67,10 +67,10 @@
             <tbody>
               <tr>
                 <td>
-                  {{package.pypi_info.download_num}} / {{flask.pypi_info.download_num}} * 100
+                  log(1 + {{package.pypi_info.download_num}}) / log(1 + {{flask.pypi_info.download_num}}) * 100
                 </td>
                 <td rowspan="2">
-                  = {{ (package.pypi_info.download_num / flask.pypi_info.download_num * 100) | round(3) }}
+                  = {{ download_score }}
                 </td>
               </tr>
               <tr>

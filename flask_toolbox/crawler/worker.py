@@ -1,3 +1,4 @@
+import math
 import time
 
 from flask_toolbox.extensions import db
@@ -10,11 +11,15 @@ from flask_toolbox.crawler.github import (get_first_commit,
 def calculate_package_score():
     flask = Package.query.filter_by(name='Flask').first()
     for package in Package.query.filter(Package.category_id != None).all():
-        watch_score = package.github_info.watchers / flask.github_info.watchers * 0.45
-        fork_score = package.github_info.forks / flask.github_info.forks * 0.55
-        download_score = package.pypi_info.download_num / flask.pypi_info.download_num
-        score = ((watch_score + fork_score) / 2 + download_score) / 2
-        package.score = round(score * 100, 3)
+        watch_score = _normalize_ratio(
+            package.github_info.watchers, flask.github_info.watchers) * 0.45
+        fork_score = _normalize_ratio(
+            package.github_info.forks, flask.github_info.forks) * 0.55
+        github_score = watch_score + fork_score
+        download_score = _normalize_downloads(
+            package.pypi_info.download_num, flask.pypi_info.download_num)
+        score = (github_score + download_score) / 2
+        package.score = round(min(score * 100, 100), 3)
         db.session.add(package)
     db.session.commit()
 
@@ -90,3 +95,15 @@ def update_package_github_info(package_id):
         )
         db.session.add(new_github)
         db.session.commit()
+
+
+def _normalize_ratio(value, baseline):
+    if value is None or value <= 0 or baseline is None or baseline == 0:
+        return 0
+    return min(value / baseline, 1)
+
+
+def _normalize_downloads(value, baseline):
+    if value is None or value <= 0 or baseline is None or baseline == 0:
+        return 0
+    return min(math.log1p(value) / math.log1p(baseline), 1)

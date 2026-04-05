@@ -9,19 +9,25 @@ description = "Hopefully the missing toolbox for flask, find the flask extension
 readme = "README.rst"
 requires-python = ">=3.12"
 dependencies = [
-    "cssselect",
     "flask",
     "flask-admin",
     "flask-migrate",
     "flask-sqlalchemy",
     "flask-wtf",
     "livereload",
-    "lxml",
     "pyyaml",
     "requests",
     "sentry-sdk[flask]",
     "sqlalchemy",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [tool.setuptools.packages.find]
 include = ["flask_toolbox*"]
