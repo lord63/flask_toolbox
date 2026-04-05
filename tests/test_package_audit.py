@@ -4,7 +4,6 @@ from flask_toolbox.package_audit import (
     audit_packages,
     get_github_repo,
     get_latest_release,
-    get_package_status,
     get_pypi_json_url,
     load_packages_file,
     render_text_report,
@@ -46,15 +45,6 @@ def test_get_latest_release():
 def test_get_latest_release_empty():
     assert get_latest_release({'releases': {}}) is None
 
-
-def test_get_package_status():
-    data = {'package_status': {'unmaintained': ['A', 'B'], 'archived': None}}
-    result = get_package_status(data)
-    assert result == {'unmaintained': {'A', 'B'}, 'archived': set()}
-
-
-def test_get_package_status_missing():
-    assert get_package_status({}) == {}
 
 
 def test_load_packages_file(tmp_path):
@@ -152,7 +142,7 @@ def test_summarize_results_flags_failures():
         },
     ]
 
-    summary = summarize_results(results, {}, stale_years=3, now=now)
+    summary = summarize_results(results, stale_years=3, now=now)
 
     assert summary['dead_source'] == ['DeadSource']
     assert summary['archived'] == ['ArchivedPackage']
@@ -160,32 +150,6 @@ def test_summarize_results_flags_failures():
     assert summary['redirected_source'][0]['name'] == 'MovedRepo'
     assert summary['has_failures'] is True
 
-
-def test_summarize_results_accepts_marked_packages():
-    now = datetime(2026, 4, 4, tzinfo=timezone.utc)
-    results = [
-        {
-            'name': 'StalePackage',
-            'pypi_status': 200,
-            'github_status': 200,
-            'source_code_url': 'https://github.com/example/stale',
-            'github_final_url': 'https://github.com/example/stale',
-            'github_archived': False,
-            'github_last_commit': '2020-01-01T00:00:00Z',
-        },
-    ]
-
-    summary = summarize_results(
-        results,
-        {'unmaintained': {'StalePackage', 'MissingPackage'}},
-        stale_years=3,
-        now=now,
-    )
-
-    assert summary['unmaintained'] == []
-    assert summary['marked_unmaintained'] == ['StalePackage']
-    assert summary['unknown_status_packages'] == ['MissingPackage']
-    assert summary['has_failures'] is True
 
 
 def test_render_text_report():
@@ -196,12 +160,8 @@ def test_render_text_report():
         'redirected_source': [],
         'archived': [],
         'unmaintained': [],
-        'marked_archived': [],
-        'marked_unmaintained': ['OldPkg'],
-        'unknown_status_packages': [],
         'has_failures': True,
     }
     report = render_text_report(summary)
     assert 'Packages checked: 2' in report
     assert 'DeadPkg' in report
-    assert 'Marked unmaintained packages: 1' in report

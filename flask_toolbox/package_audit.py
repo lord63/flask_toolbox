@@ -26,10 +26,6 @@ def load_packages_file(path=None):
         return yaml.safe_load(package_file)
 
 
-def get_package_status(data):
-    status = data.get('package_status') or {}
-    return {name: set(values or []) for name, values in status.items()}
-
 
 def get_github_repo(url):
     parsed = urlparse(url)
@@ -135,12 +131,8 @@ def get_stale_before(now, stale_years):
     return now - timedelta(days=int(stale_years * 365.25))
 
 
-def summarize_results(results, package_status, stale_years=DEFAULT_STALE_YEARS, now=None):
+def summarize_results(results, stale_years=DEFAULT_STALE_YEARS, now=None):
     now = now or datetime.now(timezone.utc)
-    package_names = set(result['name'] for result in results)
-    package_status = package_status or {}
-    archived_markers = package_status.get('archived', set())
-    unmaintained_markers = package_status.get('unmaintained', set())
     stale_before = get_stale_before(now, stale_years)
 
     summary = {
@@ -150,9 +142,6 @@ def summarize_results(results, package_status, stale_years=DEFAULT_STALE_YEARS, 
         'redirected_source': [],
         'archived': [],
         'unmaintained': [],
-        'marked_archived': [],
-        'marked_unmaintained': [],
-        'unknown_status_packages': sorted((archived_markers | unmaintained_markers) - package_names),
     }
 
     for result in results:
@@ -172,10 +161,7 @@ def summarize_results(results, package_status, stale_years=DEFAULT_STALE_YEARS, 
             })
 
         if result.get('github_archived'):
-            if result['name'] in archived_markers:
-                summary['marked_archived'].append(result['name'])
-            else:
-                summary['archived'].append(result['name'])
+            summary['archived'].append(result['name'])
             continue
 
         last_commit = result.get('github_last_commit')
@@ -184,10 +170,7 @@ def summarize_results(results, package_status, stale_years=DEFAULT_STALE_YEARS, 
 
         last_commit_datetime = datetime.fromisoformat(last_commit.replace('Z', '+00:00'))
         if last_commit_datetime <= stale_before:
-            if result['name'] in unmaintained_markers:
-                summary['marked_unmaintained'].append(result['name'])
-            else:
-                summary['unmaintained'].append(result['name'])
+            summary['unmaintained'].append(result['name'])
 
     summary['has_failures'] = any((
         summary['dead_pypi'],
@@ -195,7 +178,6 @@ def summarize_results(results, package_status, stale_years=DEFAULT_STALE_YEARS, 
         summary['redirected_source'],
         summary['archived'],
         summary['unmaintained'],
-        summary['unknown_status_packages'],
     ))
     return summary
 
@@ -204,12 +186,7 @@ def audit_packages_file(path=None, stale_years=DEFAULT_STALE_YEARS, timeout=DEFA
                         session=None, now=None):
     data = load_packages_file(path)
     results = audit_packages(data['packages'], session=session, timeout=timeout)
-    summary = summarize_results(
-        results,
-        get_package_status(data),
-        stale_years=stale_years,
-        now=now,
-    )
+    summary = summarize_results(results, stale_years=stale_years, now=now)
     return results, summary
 
 
@@ -241,9 +218,6 @@ def render_text_report(summary, stale_years=DEFAULT_STALE_YEARS):
             stale_years,
             len(summary['unmaintained']),
         ),
-        'Marked archived packages: {0}'.format(len(summary['marked_archived'])),
-        'Marked unmaintained packages: {0}'.format(len(summary['marked_unmaintained'])),
-        'Unknown package_status entries: {0}'.format(len(summary['unknown_status_packages'])),
         '',
         'Dead PyPI URLs:',
         _format_package_list(summary['dead_pypi']),
@@ -260,13 +234,6 @@ def render_text_report(summary, stale_years=DEFAULT_STALE_YEARS):
         'Unmaintained packages needing cleanup:',
         _format_package_list(summary['unmaintained']),
     ]
-
-    if summary['unknown_status_packages']:
-        lines.extend([
-            '',
-            'Unknown package_status entries:',
-            _format_package_list(summary['unknown_status_packages']),
-        ])
 
     return '\n'.join(lines)
 
