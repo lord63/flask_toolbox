@@ -10,9 +10,10 @@ from flask_toolbox.models import Category, Github, Package, PyPI
 class DummyResponse:
     """Fake requests.Response for testing HTTP clients."""
 
-    def __init__(self, payload=None, links=None):
+    def __init__(self, payload=None, links=None, status_code=200):
         self._payload = payload or []
         self.links = links or {}
+        self.status_code = status_code
 
     def json(self):
         return self._payload
