@@ -18,6 +18,11 @@ Initialize the database::
     $ uv run flask init_db
     $ uv run flask init_data
 
+Audit package metadata before syncing it into the database::
+
+    $ uv run python -m flask_toolbox.package_audit packages.yml
+    $ uv run flask check_packages
+
 Run the server::
 
     $ uv run flask run

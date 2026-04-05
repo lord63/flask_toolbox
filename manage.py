@@ -1,14 +1,15 @@
 import os
 
+import click
 from flask_migrate import Migrate
 from livereload import Server
-import yaml
 
 from flask_toolbox.crawler.worker import update_pypi_info, update_github_info, calculate_package_score
 from flask_toolbox.app import create_app
 from flask_toolbox.configs import ProductionConfig, DevelopmentConfig
 from flask_toolbox.extensions import db
 from flask_toolbox.models import Category, Package
+from flask_toolbox.package_audit import audit_packages_file, load_packages_file, render_text_report
 
 
 CONFIG = (ProductionConfig if os.environ.get('FLASK_APP_ENV') == 'production'
@@ -16,6 +17,7 @@ CONFIG = (ProductionConfig if os.environ.get('FLASK_APP_ENV') == 'production'
 app = create_app(CONFIG)
 app.app_context().push()
 migrate = Migrate(app, db)
+PACKAGES_FILE = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'packages.yml')
 
 
 @app.cli.command('live')
@@ -37,8 +39,7 @@ def init_db():
 @app.cli.command('init_data')
 def init_data():
     """Seed the database with packages.yml"""
-    with open('packages.yml') as f:
-        data = yaml.safe_load(f)
+    data = load_packages_file(PACKAGES_FILE)
 
     flask_info = data['packages']['Flask']
     flask = Package(
@@ -79,8 +80,7 @@ def init_data():
 @app.cli.command('sync_data')
 def sync_data():
     """Sync the database with packages.yml"""
-    with open('packages.yml') as f:
-        data = yaml.safe_load(f)
+    data = load_packages_file(PACKAGES_FILE)
 
     for category_name, category_info in data['categories'].items():
         category = Category.query.filter_by(name=category_name).first()
@@ -125,3 +125,13 @@ def update_data():
     print('Calculate Package score...')
     calculate_package_score()
     print('Done.')
+
+
+@app.cli.command('check_packages')
+@click.option('--stale-years', default=3.0, show_default=True, type=float)
+def check_packages(stale_years):
+    """Audit packages.yml and print a maintenance report."""
+    _, summary = audit_packages_file(PACKAGES_FILE, stale_years=stale_years)
+    click.echo(render_text_report(summary, stale_years=stale_years))
+    if summary['has_failures']:
+        raise SystemExit(1)
