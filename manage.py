@@ -36,9 +36,11 @@ def live():
 @app.cli.command('init_db')
 def init_db():
     """Initialize the database."""
+    from flask_migrate import stamp
     with app.app_context():
         db.drop_all()
         db.create_all()
+        stamp()
     print('Init the database.')
 
 
