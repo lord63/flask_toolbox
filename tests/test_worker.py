@@ -1,6 +1,10 @@
-from flask_toolbox.crawler.worker import calculate_package_score, update_package_pypi_info
+from flask_toolbox.crawler.worker import (
+    calculate_package_score,
+    update_package_github_info,
+    update_package_pypi_info,
+)
 from flask_toolbox.extensions import db
-from flask_toolbox.models import Package, PyPI
+from flask_toolbox.models import Github, Package, PyPI
 
 
 def test_calculate_package_score_updates_non_flask_packages(app, sample_data):
@@ -81,3 +85,31 @@ def test_update_package_pypi_info_creates_null_downloads_for_first_sync(app, sam
     created = PyPI.query.filter_by(package_id=package.id).first()
     assert created.download_num is None
     assert created.current_version == "2.0.1"
+
+
+def test_update_package_github_info_updates_archived_flag(app, sample_data, monkeypatch):
+    package = Package.query.filter_by(name="Flask-Testing").first()
+
+    class FakeRepoInfo:
+        watchers = 50
+        forks = 25
+        last_commit = package.github_info.last_commit
+        contributors = 10
+        issues = 3
+        pull_requests = 1
+        commits = 42
+        archived = True
+
+    monkeypatch.setattr(
+        "flask_toolbox.crawler.worker.Crawler.get_github_info",
+        lambda self, url: FakeRepoInfo(),
+    )
+    monkeypatch.setattr(
+        "flask_toolbox.crawler.worker.get_development_activity",
+        lambda url: "Inactive",
+    )
+
+    update_package_github_info(package.id)
+
+    refreshed = Github.query.filter_by(package_id=package.id).first()
+    assert refreshed.archived is True

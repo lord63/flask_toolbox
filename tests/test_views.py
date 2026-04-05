@@ -65,3 +65,15 @@ def test_package_score_page_handles_unknown_metrics(client, sample_data):
     assert response.status_code == 200
     assert b"unknown" in response.data
     assert b"unavailable" in response.data
+
+
+def test_package_detail_shows_archived_badge(client, sample_data):
+    package = sample_data["packages"][0]
+    package.github_info.archived = True
+    from flask_toolbox.extensions import db
+    db.session.commit()
+
+    response = client.get("/packages/Flask-Testing")
+
+    assert response.status_code == 200
+    assert b"Archived" in response.data

@@ -36,7 +36,7 @@ def update_pypi_info():
 
 
 def update_package_pypi_info(package_id):
-    package = Package.query.get(package_id)
+    package = db.session.get(Package, package_id)
     package_info = Crawler().get_pypi_info(package.pypi_url)
     pypi = PyPI.query.filter_by(package_id=package.id).first()
     if pypi:
@@ -75,12 +75,13 @@ def update_github_info():
 
 
 def update_package_github_info(package_id):
-    package = Package.query.get(package_id)
+    package = db.session.get(Package, package_id)
     repo_info = Crawler().get_github_info(package.source_code_url)
     github = Github.query.filter_by(package_id=package.id).first()
     if github:
         github.watchers = repo_info.watchers
         github.forks = repo_info.forks
+        github.archived = repo_info.archived
         github.last_commit = repo_info.last_commit
         github.contributors = repo_info.contributors
         github.issues = repo_info.issues
@@ -94,6 +95,7 @@ def update_package_github_info(package_id):
             package_id=package.id,
             watchers=repo_info.watchers,
             forks=repo_info.forks,
+            archived=repo_info.archived,
             last_commit=repo_info.last_commit,
             contributors=repo_info.contributors,
             issues=repo_info.issues,

@@ -34,6 +34,8 @@ categories:
       - Flask-OAuth
       - Flask-OAuthlib
       - Flask-OpenID
+      - Flask-Security
+      - Flask-Social
       - Flask-Social-Blueprint
       - Flask-User
       - GitHub-Flask
@@ -57,6 +59,7 @@ categories:
     description:
     packages:
       - Flask-And-Redis
+      - Flask-CouchDBKit
       - Flask-MongoAlchemy
       - Flask-MongoEngine
       - Flask-MongoKit
@@ -70,6 +73,7 @@ categories:
     description:
     packages:
       - Colander
+      - Flask-Docjson
       - Flask-SeaSurf
       - Flask-Validator
       - Flask-WTF
@@ -92,7 +96,9 @@ categories:
       - Connexion
       - Eve
       - Flasgger
+      - Flask-MongoREST
       - Flask-Peewee
+      - Flask-Potion
       - Flask-RESTful
       - Flask-RESTful-Swagger
       - Flask-RESTless
@@ -110,16 +116,20 @@ categories:
       - Flask-Mako
       - Flask-Markdown
       - Flask-Marshmallow
+      - Flask-MustacheJS
       - Flask-Rev
       - Flask-S3
+      - Flask-Sijax
       - Flask-SSLify
       - Flask-Turbolinks
       - Flask-UtilJs
+      - Jinja-Assets-Compressor
   Full-Text-Searching:
     description:
     packages:
       - Flask-PonyWhoosh
       - Flask-WhooshAlchemy
+      - Flask-WhooshAlchemyPlus
       - Flask-Whooshee
   i18n:
     description:
@@ -160,12 +170,14 @@ categories:
       - Flask-Classy
       - Flask-Common
       - Flask-CORS
+      - Flask-FeatureFlags
       - Flask-Heroku
       - Flask-JSONRPC
       - Flask-Moment
       - Flask-Paginate
       - Flask-Principal
       - Flask-Reggie
+      - Flask-Script
       - Flask-Shorturl
       - Flask-SocketIO
       - Flask-Sockets
@@ -301,6 +313,12 @@ packages:
     documentation_url: http://flask-cors.readthedocs.org/en/latest
     source_code_url: https://github.com/corydolphin/flask-cors
     bug_tracker_url: https://github.com/corydolphin/flask-cors/issues
+  Flask-CouchDBKit:
+    description: Flask extension that provides integration with CouchDBKit.
+    pypi_url: https://pypi.python.org/pypi/Flask-CouchDBKit
+    documentation_url:
+    source_code_url: https://github.com/sirn/flask-couchdbkit
+    bug_tracker_url: https://github.com/sirn/flask-couchdbkit/issues
   Flask-Dance:
     description: Doing the OAuth dance with style using Flask, requests, and oauthlib.
     pypi_url: https://pypi.python.org/pypi/Flask-Dance
@@ -319,12 +337,24 @@ packages:
     documentation_url:
     source_code_url: https://github.com/jlfwong/flask_debugtoolbar_lineprofilerpanel
     bug_tracker_url: https://github.com/jlfwong/flask_debugtoolbar_lineprofilerpanel/issues
+  Flask-Docjson:
+    description: A micro module to validate flask request and response json schemas via view function docstrings.
+    pypi_url: https://pypi.python.org/pypi/flask-docjson
+    documentation_url:
+    source_code_url: https://github.com/elemepi/flask-docjson
+    bug_tracker_url: https://github.com/elemepi/flask-docjson/issues
   Flask-Dropbox:
     description: Dropbox Python SDK support for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-Dropbox
     documentation_url:
     source_code_url: https://github.com/playpauseandstop/Flask-Dropbox
     bug_tracker_url: https://github.com/playpauseandstop/Flask-Dropbox/issues
+  Flask-FeatureFlags:
+    description: A Flask extension that enables or disables features based on configuration.
+    pypi_url: https://pypi.python.org/pypi/Flask-FeatureFlags
+    documentation_url: https://flask-featureflags.readthedocs.org/en/latest
+    source_code_url: https://github.com/trustrachel/Flask-FeatureFlags
+    bug_tracker_url: https://github.com/trustrachel/Flask-FeatureFlags/issues
   Flask-Funnel:
     description: A Flask extension for compressing/minifying assets.
     pypi_url: https://pypi.python.org/pypi/Flask-Funnel
@@ -457,6 +487,18 @@ packages:
     documentation_url: https://pythonhosted.org/Flask-MongoKit
     source_code_url: https://github.com/jarus/flask-mongokit
     bug_tracker_url: https://github.com/jarus/flask-mongokit/issues
+  Flask-MongoREST:
+    description: Restful API framework wrapped around MongoEngine.
+    pypi_url: https://pypi.python.org/pypi/Flask-MongoRest
+    documentation_url:
+    source_code_url: https://github.com/closeio/flask-mongorest
+    bug_tracker_url: https://github.com/closeio/flask-mongorest/issues
+  Flask-MustacheJS:
+    description: Mustache template integration with Flask.
+    pypi_url: https://pypi.python.org/pypi/Flask-MustacheJS
+    documentation_url:
+    source_code_url: https://github.com/bradwright/flask-mustachejs
+    bug_tracker_url: https://github.com/bradwright/flask-mustachejs/issues
   Flask-OAuth:
     description: OAuth Support for Flask.
     pypi_url: https://pypi.python.org/pypi/Flask-OAuth
@@ -505,6 +547,12 @@ packages:
     documentation_url: A search engine for flask using pony orm and whoosh.
     source_code_url: https://github.com/jonaprieto/flask-ponywhoosh
     bug_tracker_url: https://github.com/jonaprieto/flask-ponywhoosh/issues
+  Flask-Potion:
+    description: Flask-Potion is a RESTful API framework for Flask and SQLAlchemy, Peewee or MongoEngine.
+    pypi_url: https://pypi.python.org/pypi/Flask-Potion
+    documentation_url: http://potion.readthedocs.io
+    source_code_url: https://github.com/biosustain/potion
+    bug_tracker_url: https://github.com/biosustain/potion/issues
   Flask-Principal:
     description: Identity management for Flask applications.
     pypi_url: https://pypi.python.org/pypi/Flask-Principal
@@ -595,12 +643,24 @@ packages:
     documentation_url: http://flask-s3.readthedocs.org/en/latest
     source_code_url: https://github.com/e-dard/flask-s3
     bug_tracker_url: https://github.com/e-dard/flask-s3/issues
+  Flask-Script:
+    description: Flask extension to help writing external scripts for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-Script
+    documentation_url: http://flask-script.readthedocs.org/
+    source_code_url: https://github.com/smurfix/flask-script
+    bug_tracker_url: https://github.com/smurfix/flask-script/issues
   Flask-SeaSurf:
     description: SeaSurf is a Flask extension for preventing cross-site request forgery (CSRF).
     pypi_url: https://pypi.python.org/pypi/Flask-SeaSurf
     documentation_url: http://pythonhosted.org/Flask-SeaSurf
     source_code_url: https://github.com/maxcountryman/flask-seasurf
     bug_tracker_url: https://github.com/maxcountryman/flask-seasurf/issues
+  Flask-Security:
+    description: Quick and simple security for Flask applications.
+    pypi_url: https://pypi.python.org/pypi/Flask-Security
+    documentation_url: http://packages.python.org/Flask-Security
+    source_code_url: https://github.com/pallets-eco/flask-security
+    bug_tracker_url: https://github.com/pallets-eco/flask-security/issues
   Flask-Session:
     description: Server side session extension for Flask.
     pypi_url: https://pypi.python.org/pypi/Flask-Session
@@ -613,6 +673,18 @@ packages:
     documentation_url:
     source_code_url: https://github.com/lepture/flask-shorturl
     bug_tracker_url: https://github.com/lepture/flask-shorturl/issues
+  Flask-Sijax:
+    description: An extension for the Flask microframework that adds Sijax support.
+    pypi_url: https://pypi.python.org/pypi/Flask-Sijax
+    documentation_url: http://packages.python.org/Flask-Sijax
+    source_code_url: https://github.com/spantaleev/flask-sijax
+    bug_tracker_url: https://github.com/spantaleev/flask-sijax/issues
+  Flask-Social:
+    description: OAuth Provider Integration for Flask-Security.
+    pypi_url: https://pypi.python.org/pypi/Flask-Social
+    documentation_url: http://packages.python.org/Flask-Social
+    source_code_url: https://github.com/pallets-eco/flask-social
+    bug_tracker_url: https://github.com/pallets-eco/flask-social/issues
   Flask-Social-Blueprint:
     description: An OAuth based authentication blueprint for flask.
     pypi_url: https://pypi.python.org/pypi/flask-social-blueprint
@@ -733,6 +805,12 @@ packages:
     documentation_url: http://packages.python.org/Flask-WhooshAlchemy
     source_code_url: https://github.com/gyllstromk/Flask-WhooshAlchemy
     bug_tracker_url: https://github.com/gyllstromk/Flask-WhooshAlchemy/issues
+  Flask-WhooshAlchemyPlus:
+    description: Whoosh extension to Flask/SQLAlchemy.
+    pypi_url: https://pypi.python.org/pypi/Flask-WhooshAlchemyPlus
+    documentation_url:
+    source_code_url: https://github.com/Revolution1/Flask-WhooshAlchemyPlus
+    bug_tracker_url: https://github.com/Revolution1/Flask-WhooshAlchemyPlus/issues
   Flask-Whooshee:
     description: Customizable Flask - SQLAlchemy - Whoosh integration.
     pypi_url: https://pypi.python.org/pypi/flask-whooshee
@@ -763,6 +841,12 @@ packages:
     documentation_url: http://github-flask.readthedocs.org
     source_code_url: https://github.com/cenkalti/github-flask
     bug_tracker_url: https://github.com/cenkalti/github-flask/issues
+  Jinja-Assets-Compressor:
+    description: A Jinja extension (compatible with Flask and other frameworks) to compile and/or compress your assets.
+    pypi_url: https://pypi.python.org/pypi/jac
+    documentation_url:
+    source_code_url: https://github.com/jaysonsantos/jinja-assets-compressor
+    bug_tracker_url: https://github.com/jaysonsantos/jinja-assets-compressor/issues
   Pytest-Flask:
     description: A set of pytest fixtures to test Flask applications.
     pypi_url: https://pypi.python.org/pypi/pytest-flask

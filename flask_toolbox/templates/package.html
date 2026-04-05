@@ -4,6 +4,9 @@
 {% block body %}
 <div class="well">
   <span class="package-name">{{ package.name }}</span>
+  {% if package.github_info and package.github_info.archived %}
+  <span class="badge">Archived</span>
+  {% endif %}
   <span class="package-stats">
     <a href={{ url_for("package_page.score", package=package.name) }}>
       <i class="fa fa-trophy"></i> {{ package.score }}
