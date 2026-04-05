@@ -11,6 +11,7 @@ def test_github_meta_properties(monkeypatch):
                 "watchers_count": 1234,
                 "forks_count": 56,
                 "open_issues_count": 17,
+                "archived": True,
             })
         if url.endswith("/repos/pallets/flask/commits") and params == {"per_page": 1}:
             return DummyResponse(
@@ -41,6 +42,7 @@ def test_github_meta_properties(monkeypatch):
 
     assert meta.watchers == 1234
     assert meta.forks == 56
+    assert meta.archived is True
     assert meta.last_commit == datetime.datetime(2024, 1, 2, 3, 4, 5)
     assert meta.commits == 2345
     assert meta.contributors == 67

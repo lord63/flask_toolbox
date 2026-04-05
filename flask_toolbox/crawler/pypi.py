@@ -1,4 +1,5 @@
 import datetime
+import re
 
 
 class PyPIMeta:
@@ -9,6 +10,8 @@ class PyPIMeta:
     @property
     def download_num(self):
         """The total download num of the recent month."""
+        if not self.download_response:
+            return None
         return self.download_response['data']['last_month']
 
     @property
@@ -47,7 +50,7 @@ class PyPIMeta:
             item.split('::')[-1].strip()
             for item in self.response['info']['classifiers']
             if 'Programming Language' in item and
-            len(item.split('::')[-1].strip())==3]
+            re.match(r'^\d+\.\d+$', item.split('::')[-1].strip())]
         return ' '.join(versions)
 
     def _parse_date(self, date_string):

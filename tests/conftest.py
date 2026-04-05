@@ -10,9 +10,10 @@ from flask_toolbox.models import Category, Github, Package, PyPI
 class DummyResponse:
     """Fake requests.Response for testing HTTP clients."""
 
-    def __init__(self, payload=None, links=None):
+    def __init__(self, payload=None, links=None, status_code=200):
         self._payload = payload or []
         self.links = links or {}
+        self.status_code = status_code
 
     def json(self):
         return self._payload
@@ -86,7 +87,7 @@ def sample_data(app):
                  first_release=datetime.datetime(2010, 4, 1, 0, 0, 0),
                  python_version="3.10 3.11"),
             dict(watchers=100, forks=50, development_activity="Very active",
-                 last_commit=datetime.datetime(2024, 1, 2, 3, 4, 5),
+                 last_commit=datetime.datetime(2024, 1, 2, 3, 4, 5), archived=False,
                  first_commit=datetime.datetime(2010, 4, 1, 0, 0, 0),
                  contributors=25, issues=12, pull_requests=4),
         ),
@@ -97,7 +98,7 @@ def sample_data(app):
                  first_release=datetime.datetime(2015, 5, 1, 0, 0, 0),
                  python_version="3.10 3.11"),
             dict(watchers=50, forks=25, development_activity="Active",
-                 last_commit=datetime.datetime(2024, 2, 2, 0, 0, 0),
+                 last_commit=datetime.datetime(2024, 2, 2, 0, 0, 0), archived=False,
                  first_commit=datetime.datetime(2015, 5, 1, 0, 0, 0),
                  contributors=10, issues=3, pull_requests=1),
         ),
@@ -108,7 +109,7 @@ def sample_data(app):
                  first_release=datetime.datetime(2016, 6, 1, 0, 0, 0),
                  python_version="3.10 3.11"),
             dict(watchers=70, forks=35, development_activity="Active",
-                 last_commit=datetime.datetime(2024, 3, 2, 0, 0, 0),
+                 last_commit=datetime.datetime(2024, 3, 2, 0, 0, 0), archived=False,
                  first_commit=datetime.datetime(2016, 6, 1, 0, 0, 0),
                  contributors=12, issues=4, pull_requests=2),
         ),

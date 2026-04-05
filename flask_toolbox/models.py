@@ -47,6 +47,7 @@ class Github(db.Model):
     package_id = db.Column(db.Integer, db.ForeignKey('package.id'))
     watchers = db.Column(db.Integer)
     forks = db.Column(db.Integer)
+    archived = db.Column(db.Boolean, default=False)
     development_activity = db.Column(db.String(20))
     last_commit = db.Column(db.DateTime)
     first_commit = db.Column(db.DateTime)

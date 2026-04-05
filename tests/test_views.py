@@ -33,3 +33,47 @@ def test_search_route_returns_matching_packages(client, sample_data):
     assert response.status_code == 200
     assert b"There is only 1 result for Testing" in response.data
     assert b"Flask-Testing" in response.data
+
+
+def test_package_detail_shows_unknown_for_missing_metrics(client, sample_data):
+    package = sample_data["packages"][0]
+    package.pypi_info.download_num = None
+    package.pypi_info.python_version = None
+    package.github_info.development_activity = None
+    package.github_info.first_commit = None
+    from flask_toolbox.extensions import db
+    db.session.commit()
+
+    response = client.get("/packages/Flask-Testing")
+
+    assert response.status_code == 200
+    assert response.data.count(b"unknown") >= 4
+
+
+def test_package_score_page_handles_unknown_metrics(client, sample_data):
+    flask_package = sample_data["flask"]
+    package = sample_data["packages"][0]
+    flask_package.pypi_info.download_num = None
+    package.pypi_info.download_num = None
+    package.github_info.watchers = None
+    package.github_info.forks = None
+    from flask_toolbox.extensions import db
+    db.session.commit()
+
+    response = client.get("/packages/Flask-Testing/score")
+
+    assert response.status_code == 200
+    assert b"unknown" in response.data
+    assert b"unavailable" in response.data
+
+
+def test_package_detail_shows_archived_badge(client, sample_data):
+    package = sample_data["packages"][0]
+    package.github_info.archived = True
+    from flask_toolbox.extensions import db
+    db.session.commit()
+
+    response = client.get("/packages/Flask-Testing")
+
+    assert response.status_code == 200
+    assert b"Archived" in response.data

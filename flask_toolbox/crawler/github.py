@@ -55,6 +55,11 @@ class GithubMeta:
         return self._repo_data['forks_count']
 
     @property
+    def archived(self):
+        self._ensure_repo_data()
+        return self._repo_data.get('archived', False)
+
+    @property
     def last_commit(self):
         self._ensure_commits_data()
         commit_time = self._commits_data[0]['commit']['committer']['date']

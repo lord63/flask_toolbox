@@ -16,11 +16,11 @@
       </tr>
       <tr>
         <td>
-          The base rated repository is <a href="{{flask.source_code_url}}">Flask</a> with {{flask.github_info.watchers}} stars
-          and {{flask.github_info.forks}} forks, resulting in a Github score of 100.00
+          The base rated repository is <a href="{{flask.source_code_url}}">Flask</a> with {{ display_value(flask.github_info.watchers) }} stars
+          and {{ display_value(flask.github_info.forks) }} forks, resulting in a Github score of 100.00
         </td>
         <td>
-          The base rated PyPI package is <a href="{{flask.pypi_url}}">Flask</a> with {{flask.pypi_info.download_num}} downloads in the last 30 days
+          The base rated PyPI package is <a href="{{flask.pypi_url}}">Flask</a> with {{ display_value(flask.pypi_info.download_num) }} downloads in the last 30 days
         </td>
       </tr>
       <tr>
@@ -29,10 +29,10 @@
 
       <tr>
         <td>
-          Now, the repository for {{package.name}} has got {{package.github_info.watchers}} watchers and {{package.github_info.forks}} forks
+          Now, the repository for {{package.name}} has got {{ display_value(package.github_info.watchers) }} watchers and {{ display_value(package.github_info.forks) }} forks
         </td>
         <td>
-          Now, the package {{package.name}} has got {{package.pypi_info.download_num}} downloads in the last 30 days
+          Now, the package {{package.name}} has got {{ display_value(package.pypi_info.download_num) }} downloads in the last 30 days
         </td>
       </tr>
 
@@ -48,11 +48,10 @@
             <tbody>
               <tr>
                 <td>
-                  {{package.github_info.watchers}} / {{flask.github_info.watchers}} * 100 * 45% +
-                  {{package.github_info.forks}} / {{flask.github_info.forks}} * 100 * 55%
+                  {{ github_score.formula }}
                 </td>
                 <td rowspan="2">
-                  = {{ ((package.github_info.watchers / flask.github_info.watchers * 45 + package.github_info.forks / flask.github_info.forks * 55) / 2) | round(3)  }}
+                  = {{ github_score.value }}
                 </td>
               </tr>
               <tr>
@@ -67,10 +66,10 @@
             <tbody>
               <tr>
                 <td>
-                  log(1 + {{package.pypi_info.download_num}}) / log(1 + {{flask.pypi_info.download_num}}) * 100
+                  {{ download_score.formula }}
                 </td>
                 <td rowspan="2">
-                  = {{ download_score }}
+                  = {{ download_score.value }}
                 </td>
               </tr>
               <tr>

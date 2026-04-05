@@ -1,4 +1,5 @@
 import math
+import logging
 import time
 
 from flask_toolbox.extensions import db
@@ -6,6 +7,9 @@ from flask_toolbox.models import PyPI, Github, Package
 from flask_toolbox.crawler.crawler import Crawler
 from flask_toolbox.crawler.github import (get_first_commit,
                                           get_development_activity)
+
+
+logger = logging.getLogger(__name__)
 
 
 def calculate_package_score():
@@ -32,11 +36,17 @@ def update_pypi_info():
 
 
 def update_package_pypi_info(package_id):
-    package = Package.query.get(package_id)
+    package = db.session.get(Package, package_id)
     package_info = Crawler().get_pypi_info(package.pypi_url)
     pypi = PyPI.query.filter_by(package_id=package.id).first()
     if pypi:
-        pypi.download_num = package_info.download_num
+        if package_info.download_num is None:
+            logger.warning(
+                'Skipping download count update for %s because PyPIStats data is unavailable',
+                package.name,
+            )
+        else:
+            pypi.download_num = package_info.download_num
         pypi.release_num = package_info.release_num
         pypi.current_version = package_info.current_version
         pypi.released_date = package_info.released_date
@@ -65,12 +75,13 @@ def update_github_info():
 
 
 def update_package_github_info(package_id):
-    package = Package.query.get(package_id)
+    package = db.session.get(Package, package_id)
     repo_info = Crawler().get_github_info(package.source_code_url)
     github = Github.query.filter_by(package_id=package.id).first()
     if github:
         github.watchers = repo_info.watchers
         github.forks = repo_info.forks
+        github.archived = repo_info.archived
         github.last_commit = repo_info.last_commit
         github.contributors = repo_info.contributors
         github.issues = repo_info.issues
@@ -84,6 +95,7 @@ def update_package_github_info(package_id):
             package_id=package.id,
             watchers=repo_info.watchers,
             forks=repo_info.forks,
+            archived=repo_info.archived,
             last_commit=repo_info.last_commit,
             contributors=repo_info.contributors,
             issues=repo_info.issues,
