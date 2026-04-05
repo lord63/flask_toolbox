@@ -5,10 +5,19 @@ from flask_toolbox.package_audit import (
     get_github_repo,
     get_latest_release,
     get_package_status,
+    get_pypi_json_url,
     load_packages_file,
     render_text_report,
     summarize_results,
 )
+
+
+def test_get_pypi_json_url_project_page():
+    assert get_pypi_json_url('https://pypi.org/project/Flask/') == 'https://pypi.org/pypi/Flask/json'
+
+
+def test_get_pypi_json_url_legacy():
+    assert get_pypi_json_url('https://pypi.python.org/pypi/Flask') == 'https://pypi.python.org/pypi/Flask/json'
 
 
 def test_get_github_repo_parses_standard_url():

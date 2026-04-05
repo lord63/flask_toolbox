@@ -44,6 +44,12 @@ def get_github_repo(url):
 
 
 def get_pypi_json_url(url):
+    parsed = urlparse(url)
+    parts = [part for part in parsed.path.split('/') if part]
+
+    if parsed.netloc == 'pypi.org' and len(parts) >= 2 and parts[0] == 'project':
+        return 'https://pypi.org/pypi/{0}/json'.format(parts[1])
+
     return '{0}/json'.format(url.rstrip('/'))
 
 
