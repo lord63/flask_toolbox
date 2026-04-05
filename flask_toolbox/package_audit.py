@@ -11,6 +11,11 @@ import yaml
 
 DEFAULT_STALE_YEARS = 3.0
 DEFAULT_TIMEOUT = 20
+MISSING_GITHUB_TOKEN_MESSAGE = (
+    'GITHUB_TOKEN is required for package audits. '
+    'Set it before running this command, for example: '
+    'export GITHUB_TOKEN=your_token'
+)
 
 
 def get_default_packages_path():
@@ -73,6 +78,11 @@ def _github_api_headers():
     if token:
         headers['Authorization'] = 'Bearer {0}'.format(token)
     return headers
+
+
+def ensure_github_token():
+    if not os.environ.get('GITHUB_TOKEN'):
+        raise RuntimeError(MISSING_GITHUB_TOKEN_MESSAGE)
 
 
 def audit_packages(packages, session=None, timeout=DEFAULT_TIMEOUT):
@@ -142,9 +152,28 @@ def summarize_results(results, stale_years=DEFAULT_STALE_YEARS, now=None):
         'redirected_source': [],
         'archived': [],
         'unmaintained': [],
+        'errors': [],
     }
 
     for result in results:
+        errors = []
+        if result.get('pypi_error'):
+            errors.append('PyPI: {0}'.format(result['pypi_error']))
+        elif result.get('pypi_status') and result['pypi_status'] >= 400 and result['pypi_status'] != 404:
+            errors.append('PyPI: HTTP {0}'.format(result['pypi_status']))
+
+        if result.get('github_error'):
+            errors.append('GitHub: {0}'.format(result['github_error']))
+        elif result.get('github_status') and result['github_status'] >= 400 and result['github_status'] != 404:
+            errors.append('GitHub: HTTP {0}'.format(result['github_status']))
+
+        if errors:
+            summary['errors'].append({
+                'name': result['name'],
+                'errors': errors,
+            })
+            continue
+
         if result.get('pypi_status') == 404:
             summary['dead_pypi'].append(result['name'])
 
@@ -178,6 +207,7 @@ def summarize_results(results, stale_years=DEFAULT_STALE_YEARS, now=None):
         summary['redirected_source'],
         summary['archived'],
         summary['unmaintained'],
+        summary['errors'],
     ))
     return summary
 
@@ -205,6 +235,15 @@ def _format_redirects(items):
     )
 
 
+def _format_errors(items):
+    if not items:
+        return '  (none)'
+    return '\n'.join(
+        '  - {0}: {1}'.format(item['name'], '; '.join(item['errors']))
+        for item in items
+    )
+
+
 def render_text_report(summary, stale_years=DEFAULT_STALE_YEARS):
     lines = [
         'Package audit summary',
@@ -218,6 +257,7 @@ def render_text_report(summary, stale_years=DEFAULT_STALE_YEARS):
             stale_years,
             len(summary['unmaintained']),
         ),
+        'Audit errors: {0}'.format(len(summary['errors'])),
         '',
         'Dead PyPI URLs:',
         _format_package_list(summary['dead_pypi']),
@@ -233,6 +273,9 @@ def render_text_report(summary, stale_years=DEFAULT_STALE_YEARS):
         '',
         'Unmaintained packages needing cleanup:',
         _format_package_list(summary['unmaintained']),
+        '',
+        'Audit errors:',
+        _format_errors(summary['errors']),
     ]
 
     return '\n'.join(lines)
@@ -251,6 +294,10 @@ def build_argument_parser():
 def main(argv=None):
     parser = build_argument_parser()
     args = parser.parse_args(argv)
+    try:
+        ensure_github_token()
+    except RuntimeError as exc:
+        parser.exit(2, '{0}\n'.format(exc))
     results, summary = audit_packages_file(
         path=args.packages_file,
         stale_years=args.stale_years,

@@ -9,7 +9,13 @@ from flask_toolbox.app import create_app
 from flask_toolbox.configs import ProductionConfig, DevelopmentConfig
 from flask_toolbox.extensions import db
 from flask_toolbox.models import Category, Package
-from flask_toolbox.package_audit import audit_packages_file, load_packages_file, render_text_report
+from flask_toolbox.package_audit import (
+    MISSING_GITHUB_TOKEN_MESSAGE,
+    audit_packages_file,
+    ensure_github_token,
+    load_packages_file,
+    render_text_report,
+)
 
 
 CONFIG = (ProductionConfig if os.environ.get('FLASK_APP_ENV') == 'production'
@@ -131,6 +137,10 @@ def update_data():
 @click.option('--stale-years', default=3.0, show_default=True, type=float)
 def check_packages(stale_years):
     """Audit packages.yml and print a maintenance report."""
+    try:
+        ensure_github_token()
+    except RuntimeError as exc:
+        raise click.ClickException(str(exc))
     _, summary = audit_packages_file(PACKAGES_FILE, stale_years=stale_years)
     click.echo(render_text_report(summary, stale_years=stale_years))
     if summary['has_failures']:

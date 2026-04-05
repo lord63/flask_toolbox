@@ -1,11 +1,15 @@
 from datetime import datetime, timezone
 
+import pytest
+import requests
+
 from flask_toolbox.package_audit import (
     audit_packages,
     get_github_repo,
     get_latest_release,
     get_pypi_json_url,
     load_packages_file,
+    main,
     render_text_report,
     summarize_results,
 )
@@ -105,6 +109,31 @@ def test_audit_packages_uses_github_api():
     assert results[0].get('github_last_commit') == '2024-06-01T00:00:00Z'
 
 
+def test_audit_packages_records_request_errors():
+    class FakeSession:
+        headers = {}
+
+        def get(self, url, **kwargs):
+            raise requests.RequestException("boom")
+
+    packages = {
+        'Flask': {
+            'pypi_url': 'https://pypi.org/project/Flask/',
+            'source_code_url': 'https://github.com/pallets/flask',
+        }
+    }
+
+    results = audit_packages(packages, session=FakeSession())
+
+    assert results == [{
+        'name': 'Flask',
+        'pypi_url': 'https://pypi.org/project/Flask/',
+        'source_code_url': 'https://github.com/pallets/flask',
+        'pypi_error': 'boom',
+        'github_error': 'boom',
+    }]
+
+
 def test_summarize_results_flags_failures():
     now = datetime(2026, 4, 4, tzinfo=timezone.utc)
     results = [
@@ -151,6 +180,41 @@ def test_summarize_results_flags_failures():
     assert summary['has_failures'] is True
 
 
+def test_summarize_results_flags_errors():
+    summary = summarize_results([
+        {
+            'name': 'Flask',
+            'pypi_error': 'timed out',
+            'github_error': 'rate limit',
+            'source_code_url': 'https://github.com/pallets/flask',
+        }
+    ])
+
+    assert summary['errors'] == [
+        {'name': 'Flask', 'errors': ['PyPI: timed out', 'GitHub: rate limit']}
+    ]
+    assert summary['has_failures'] is True
+
+
+def test_main_requires_github_token(monkeypatch, capsys, tmp_path):
+    packages_file = tmp_path / 'packages.yml'
+    packages_file.write_text(
+        'packages:\n'
+        '  Flask:\n'
+        '    pypi_url: https://pypi.org/project/Flask/\n'
+        '    source_code_url: https://github.com/pallets/flask\n',
+        encoding='utf-8',
+    )
+    monkeypatch.delenv('GITHUB_TOKEN', raising=False)
+
+    with pytest.raises(SystemExit) as exc_info:
+        main([str(packages_file)])
+
+    captured = capsys.readouterr()
+    assert exc_info.value.code == 2
+    assert 'GITHUB_TOKEN' in captured.err
+
+
 
 def test_render_text_report():
     summary = {
@@ -160,8 +224,10 @@ def test_render_text_report():
         'redirected_source': [],
         'archived': [],
         'unmaintained': [],
+        'errors': [{'name': 'Flask', 'errors': ['GitHub: rate limit']}],
         'has_failures': True,
     }
     report = render_text_report(summary)
     assert 'Packages checked: 2' in report
     assert 'DeadPkg' in report
+    assert 'Audit errors: 1' in report

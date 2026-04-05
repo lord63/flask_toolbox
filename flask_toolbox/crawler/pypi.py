@@ -10,6 +10,8 @@ class PyPIMeta:
     @property
     def download_num(self):
         """The total download num of the recent month."""
+        if not self.download_response:
+            return None
         return self.download_response['data']['last_month']
 
     @property

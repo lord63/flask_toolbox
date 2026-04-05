@@ -1,4 +1,5 @@
 import math
+import logging
 import time
 
 from flask_toolbox.extensions import db
@@ -6,6 +7,9 @@ from flask_toolbox.models import PyPI, Github, Package
 from flask_toolbox.crawler.crawler import Crawler
 from flask_toolbox.crawler.github import (get_first_commit,
                                           get_development_activity)
+
+
+logger = logging.getLogger(__name__)
 
 
 def calculate_package_score():
@@ -36,7 +40,13 @@ def update_package_pypi_info(package_id):
     package_info = Crawler().get_pypi_info(package.pypi_url)
     pypi = PyPI.query.filter_by(package_id=package.id).first()
     if pypi:
-        pypi.download_num = package_info.download_num
+        if package_info.download_num is None:
+            logger.warning(
+                'Skipping download count update for %s because PyPIStats data is unavailable',
+                package.name,
+            )
+        else:
+            pypi.download_num = package_info.download_num
         pypi.release_num = package_info.release_num
         pypi.current_version = package_info.current_version
         pypi.released_date = package_info.released_date
