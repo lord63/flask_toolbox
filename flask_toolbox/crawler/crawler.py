@@ -10,13 +10,17 @@ class Crawler:
         response = requests.get('{0}/json'.format(url.rstrip('/')))
         response.raise_for_status()
         package_name = urlparse(url).path.strip('/').split('/')[-1]
-        download_response = requests.get(
-            'https://pypistats.org/api/packages/{0}/recent?period=month'.format(
-                quote(package_name, safe='')
+        try:
+            download_response = requests.get(
+                'https://pypistats.org/api/packages/{0}/recent?period=month'.format(
+                    quote(package_name, safe='')
+                )
             )
-        )
-        download_response.raise_for_status()
-        package_info = PyPIMeta(response.json(), download_response.json())
+            download_response.raise_for_status()
+            download_data = download_response.json()
+        except requests.RequestException:
+            download_data = {'data': {'last_month': 0}}
+        package_info = PyPIMeta(response.json(), download_data)
         return package_info
 
     def get_github_info(self, url):
