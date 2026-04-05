@@ -1,18 +1,7 @@
 import datetime
 
+from conftest import DummyResponse
 from flask_toolbox.crawler import github
-
-
-class DummyResponse(object):
-    def __init__(self, payload=None, links=None):
-        self._payload = payload or []
-        self.links = links or {}
-
-    def json(self):
-        return self._payload
-
-    def raise_for_status(self):
-        return None
 
 
 def test_github_meta_properties(monkeypatch):

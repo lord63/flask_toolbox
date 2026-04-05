@@ -70,7 +70,7 @@
                   log(1 + {{package.pypi_info.download_num}}) / log(1 + {{flask.pypi_info.download_num}}) * 100
                 </td>
                 <td rowspan="2">
-                  = normalized against Flask
+                  = {{ download_score }}
                 </td>
               </tr>
               <tr>

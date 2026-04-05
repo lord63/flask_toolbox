@@ -1,15 +1,5 @@
+from conftest import DummyResponse
 from flask_toolbox.crawler.crawler import Crawler
-
-
-class DummyResponse(object):
-    def __init__(self, payload):
-        self._payload = payload
-
-    def json(self):
-        return self._payload
-
-    def raise_for_status(self):
-        return None
 
 
 def test_get_pypi_info_uses_pypistats(monkeypatch):
@@ -53,7 +43,7 @@ def test_get_github_info_passes_repo_url_to_github_meta(monkeypatch):
     def fail_get(url):
         raise AssertionError('Crawler should not fetch GitHub HTML: {0}'.format(url))
 
-    class DummyGithubMeta(object):
+    class DummyGithubMeta:
         def __init__(self, url):
             captured['url'] = url
 

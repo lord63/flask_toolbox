@@ -22,31 +22,42 @@ API_ROOT = 'https://api.github.com'
 class GithubMeta:
     def __init__(self, url):
         self.url = url
-        owner, repo = _parse_repo_url(self.url)
-        self.owner = owner
-        self.repo = repo
-        self.repo_data = _request(
-            '{0}/repos/{1}/{2}'.format(API_ROOT, owner, repo)
-        ).json()
-        self.commits_response = _request(
-            '{0}/repos/{1}/{2}/commits'.format(API_ROOT, owner, repo),
-            params={'per_page': 1}
-        )
-        self.commits_data = self.commits_response.json()
+        self.owner, self.repo = _parse_repo_url(url)
+        self._repo_data = None
+        self._commits_response = None
+        self._commits_data = None
         self._contributors = None
         self._pull_requests = None
 
+    def _ensure_repo_data(self):
+        if self._repo_data is None:
+            self._repo_data = _request(
+                '{0}/repos/{1}/{2}'.format(API_ROOT, self.owner, self.repo)
+            ).json()
+
+    def _ensure_commits_data(self):
+        if self._commits_response is None:
+            self._commits_response = _request(
+                '{0}/repos/{1}/{2}/commits'.format(
+                    API_ROOT, self.owner, self.repo),
+                params={'per_page': 1}
+            )
+            self._commits_data = self._commits_response.json()
+
     @property
     def watchers(self):
-        return self.repo_data['watchers_count']
+        self._ensure_repo_data()
+        return self._repo_data['watchers_count']
 
     @property
     def forks(self):
-        return self.repo_data['forks_count']
+        self._ensure_repo_data()
+        return self._repo_data['forks_count']
 
     @property
     def last_commit(self):
-        commit_time = self.commits_data[0]['commit']['committer']['date']
+        self._ensure_commits_data()
+        commit_time = self._commits_data[0]['commit']['committer']['date']
         return _parse_date(commit_time)
 
     @property
@@ -61,11 +72,13 @@ class GithubMeta:
 
     @property
     def commits(self):
-        return _get_last_page(self.commits_response, self.commits_data)
+        self._ensure_commits_data()
+        return _get_last_page(self._commits_response, self._commits_data)
 
     @property
     def issues(self):
-        return max(self.repo_data['open_issues_count'] - self.pull_requests, 0)
+        self._ensure_repo_data()
+        return max(self._repo_data['open_issues_count'] - self.pull_requests, 0)
 
     @property
     def pull_requests(self):
@@ -110,11 +123,11 @@ def get_development_activity(url):
     delta_of_day = (
         datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
         - average_date).days
-    if delta_of_day in range(0, 7+1):
+    if 0 <= delta_of_day <= 7:
         return 'Very active'
-    elif delta_of_day in range(8, 31+1):
+    elif 8 <= delta_of_day <= 31:
         return 'Active'
-    elif delta_of_day in range(32, 365+1):
+    elif 32 <= delta_of_day <= 365:
         return 'Less Active'
     else:
         return 'Inactive'
@@ -134,8 +147,7 @@ def _parse_repo_url(url):
 
 def _request(url, **kwargs):
     response = api_request(url, **kwargs)
-    if hasattr(response, 'raise_for_status'):
-        response.raise_for_status()
+    response.raise_for_status()
     return response
 
 
@@ -152,6 +164,8 @@ def _get_last_page(response, payload):
         if page_values:
             return int(page_values[0])
 
+    # When there is no pagination (e.g. only 1 contributor), the full
+    # result set fits in a single page, so its length is the total count.
     if isinstance(payload, list):
         return len(payload)
 
