@@ -31,7 +31,7 @@ def calculate_package_score():
 
 def update_pypi_info():
     for package in Package.query.all():
-        time.sleep(0.3)
+        time.sleep(1)
         update_package_pypi_info(package.id)
 
 
@@ -70,7 +70,6 @@ def update_package_pypi_info(package_id):
 
 def update_github_info():
     for package in Package.query.all():
-        time.sleep(0.3)
         update_package_github_info(package.id)
 
 
