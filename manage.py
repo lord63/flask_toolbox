@@ -4,7 +4,7 @@ import click
 from flask_migrate import Migrate
 from livereload import Server
 
-from flask_toolbox.crawler.worker import update_pypi_info, update_github_info, calculate_package_score
+from flask_toolbox.crawler.worker import update_pypi_info, update_github_info, calculate_package_score, update_package_pypi_info, update_package_github_info
 from flask_toolbox.app import create_app
 from flask_toolbox.configs import ProductionConfig, DevelopmentConfig
 from flask_toolbox.extensions import db
@@ -89,6 +89,7 @@ def init_data():
 def sync_data():
     """Sync the database with packages.yml"""
     data = load_packages_file(PACKAGES_FILE)
+    new_package_ids = []
 
     for category_name, category_info in data['categories'].items():
         category = Category.query.filter_by(name=category_name).first()
@@ -119,8 +120,16 @@ def sync_data():
                     bug_tracker_url=package_info['bug_tracker_url'],
                     score=0.0,
                 )
+                db.session.add(package)
+                db.session.flush()
+                new_package_ids.append(package.id)
             db.session.add(package)
     db.session.commit()
+
+    for package_id in new_package_ids:
+        print(f'Fetching data for new package {package_id}...')
+        update_package_pypi_info(package_id)
+        update_package_github_info(package_id)
 
 
 @app.cli.command('update_data')
