@@ -19,8 +19,8 @@ def write_packages_file(path, content):
 
 
 def test_init_data_seeds_packages_with_categories(app, monkeypatch, tmp_path):
-    monkeypatch.chdir(tmp_path)
-    write_packages_file(tmp_path / "packages.yml", """
+    packages_file = tmp_path / "packages.yml"
+    write_packages_file(packages_file, """
         categories:
           Testing:
             description: Testing helpers.
@@ -40,6 +40,7 @@ def test_init_data_seeds_packages_with_categories(app, monkeypatch, tmp_path):
             source_code_url: https://github.com/jarus/flask-testing
             bug_tracker_url: https://github.com/jarus/flask-testing/issues
     """)
+    monkeypatch.setattr(manage, "PACKAGES_FILE", str(packages_file))
 
     manage.init_data.callback.__wrapped__()
 
@@ -68,8 +69,8 @@ def test_sync_data_updates_existing_rows_and_assigns_new_categories(app, monkeyp
     db.session.add_all([old_category, old_package])
     db.session.commit()
 
-    monkeypatch.chdir(tmp_path)
-    write_packages_file(tmp_path / "packages.yml", """
+    packages_file = tmp_path / "packages.yml"
+    write_packages_file(packages_file, """
         categories:
           Forms:
             description: Form helpers.
@@ -93,6 +94,7 @@ def test_sync_data_updates_existing_rows_and_assigns_new_categories(app, monkeyp
             source_code_url: https://github.com/wtforms/flask-wtf
             bug_tracker_url: https://github.com/wtforms/flask-wtf/issues
     """)
+    monkeypatch.setattr(manage, "PACKAGES_FILE", str(packages_file))
 
     manage.sync_data.callback.__wrapped__()
 
